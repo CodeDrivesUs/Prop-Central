@@ -1,0 +1,30 @@
+﻿@model Flats.SharedModel.FlatSharedModels.AddLandLordSharedModel
+
+@{
+    ViewBag.Title = "AddLandLord";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center text-primary">Add LandLord </h2>
+
+<form method="post">
+    @Html.HiddenFor(x => x.FlatId);
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text-success text-center">Choose the applicant</h4>
+            <div>@Html.Partial("_UserProfile", Model.userSharedModel)</div>
+            <div><input  type="radio" name="UserId" value="@Model.userSharedModel.Id" /></div>
+        </div>
+        <div class="col-md-2">
+            <strong>Or</strong>
+        </div>
+        <div class="col-md-12">
+            <h4 class="text-success text-center">Choose Other User</h4>
+            <div>@Html.Partial("_searchableUsers")</div>
+        </div>
+    </div>
+    <div>
+        <input type="submit"  value="Submit" class="btn btn-lg btn-outline-primary"/>
+    </div>
+</form>

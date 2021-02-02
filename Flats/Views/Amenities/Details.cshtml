@@ -1,0 +1,43 @@
+﻿@model Flats.SharedModel.AmenitiesSharedModel.AmenitiesSharedModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayouySystemAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AmenitiesSharedModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AmenitieID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmenitieID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "fine-uploader": "^5.16.2",
+    "font-awesome": "^4.7.0",
+    "vue-select": "^3.11.2"
+  }
+}

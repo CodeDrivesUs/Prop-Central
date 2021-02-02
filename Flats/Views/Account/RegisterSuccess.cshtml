@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Registration Success";
+}
+
+<h2 class="text-center" style="margin-top:60px;">@ViewBag.Title.</h2>
+<div>
+    <p class="text-center" style="margin-bottom:40px;">
+        Thank you for creating an account at new home solutions please confirm your email on the link that we have sent to your email.
+        <br />
+        or  @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>

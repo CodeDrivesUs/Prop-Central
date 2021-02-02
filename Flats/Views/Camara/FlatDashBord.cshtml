@@ -1,0 +1,141 @@
+﻿@model Flats.SharedModel.CamaraSharedModels.FlatDashboard
+@using System.Configuration
+
+@{
+    ViewBag.Title = "FlatDashBord";
+    Layout = "~/Views/Shared/_LayoutCamera.cshtml";
+}
+
+@if (Model.ProfilePicture != null)
+
+{
+
+    <div class="destination_banner_wrap overlay" style="background-image:url('@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture.ImageUrl'); background-size:cover; background-repeat:no-repeat; height:400px;">
+        <div class="destination_text text-center">
+            <h3>@Model.flat.Name</h3>
+            <div class="destination_text">
+            </div>
+            <div class="">
+                <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ProfileModal"><span><i class="fa fa-image"></i></span>Change Picture</button>
+
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="destination_banner_wrap overlay" style="background-image: url('../../Content/MySvg/undraw_apartment_rent_o0ut.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 400px;
+    ">
+        <div class="destination_text text-center">
+            <h3>@Model.flat.Name</h3>
+
+            <div class="destination_text">
+
+            </div>
+            <div>
+                <div class="">
+                    <button class="btn btn-outline-primary" data-toggle="modal" data-target="#ProfileModal"><span><i class="fa fa-camera"></i></span>Add Picture</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-lg-12"><h3 class="text-xl-center text-primary"><span>Room Images</span></h3></div>
+
+    @foreach (var item in Model.roomtypes)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 border-dark">
+                <div class="card-header"><h4><strong>@item.Name</strong></h4></div>
+                <div class="card-body">
+
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                </div>
+                <div class="card-footer">
+                    <p>Number of People :<span>@item.NumberOfPeople</span></p>
+                    <button  class="btn btn-md btn-outline-primary" onclick="PopulateFlatId('@item.Id')" data-toggle="modal" data-target="#RoomModal"><span><i class="fa fa-image"></i></span>Upload Pictures</button>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <form method="post" action="/Camara/SubmitFlatForActivation">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="FlatId" value="@Model.flat.Id" />
+                    <input class="btn-success btn-lg btn" value="Submit Flat For Activation" type="submit"/>
+
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
+
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="ProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="/Camara/AddProfilePicture">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Flat Profile Picture</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="fine-uploader"></div>
+                    <input type="hidden" name="FlatId" value="@Model.flat.Id" />
+                    <input type="hidden" id="ImageUrl" name="ImageUrl" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="RoomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="/Camara/AddRoomImage">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Room Images</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="fine-uploader-multiple"></div>
+                    <input type="hidden" id="FlatRoomId" name="FlatRoomtypeId" />
+                    
+                    <div id="ImageUrl_Multiple">
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@Html.Partial("_imageUpload", new Flats.Models.ImageUpload { location = "ProfilePictures" })
+@Html.Partial("_imageUploadMultiple", new Flats.Models.ImageUpload { location = "RoomImages" })
+<script>
+   
+</script>

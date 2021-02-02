@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Newhomesolutions.Models.Chatview>
+
+@{
+    /**/
+    Newhomesolutions.Models.ApplicationDbContext db = new Newhomesolutions.Models.ApplicationDbContext();
+}
+@using Microsoft.AspNet.Identity
+<div class="chat_list">
+    @foreach (var item in Model.OrderByDescending(x => x.lastupdate))
+    {
+        var userid = User.Identity.GetUserId();
+        var message = db.messages.Find(item.LastMessageId);
+
+        if (item.User1 == userid)
+        {
+            var profileID = db.profiles.Where(x => x.UserId == item.User2).Select(x => x.profileID).FirstOrDefault();
+            var profiles = db.profiles.Find(profileID);
+            <a href="#" onclick="loadme2('@item.User2')">
+                <div class="chat_people">
+
+                    <div class="chat_img">
+                        @if (profiles != null && profiles.ProfilePicture != null)
+                        {
+                            var base64 = Convert.ToBase64String(profiles.ProfilePicture);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                            <img src="@imgsrc" alt="Card image cap">
+                        }
+                        else
+                        {
+
+                            <img src="~/Content/Images/User.png" alt="Card image cap">
+                        }
+
+                    </div>
+                    <div class="chat_ib">
+                        <h5>
+                            @db.Users.Find(item.User2).FirstName @db.Users.Find(item.User2).LastName
+
+                            @if (db.messages.Where(x => x.To == item.User1 && x.From == item.User2 && x.Status == "Sent").Count() > 0)
+                            {
+                                <i class="badge badge-danger badge-counter"> @db.messages.Where(x => x.To == item.User1 && x.From == item.User2 && x.Status == "Sent").Count()</i>
+                            }
+                            <span class="chat_date">@message.Time.ToShortDateString()</span>
+                        </h5>
+                        <p class="text-muted">
+                            @if (message.From == userid)
+                            {
+                                <span> You: @message.Body</span>
+                            }
+                            else
+                            {
+                                <span>@message.Body</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </a>
+        }
+        else
+        {
+            var profileID = db.profiles.Where(x => x.UserId == item.User1).Select(x => x.profileID).FirstOrDefault();
+            var profiles = db.profiles.Find(profileID);
+            <a href="#" onclick="loadme2('@item.User1')">
+                <div class="chat_people">
+
+                    <div class="chat_img">
+                        @if (profiles != null && profiles.ProfilePicture != null)
+                        {
+                            var base64 = Convert.ToBase64String(profiles.ProfilePicture);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+
+                            <img src="@imgsrc" alt="Card image cap">
+                        }
+                        else
+                        {
+
+                            <img src="~/Content/Images/User.png" alt="Card image cap">
+                        }
+
+                    </div>
+                    <div class="chat_ib">
+                        <h5>
+                            @db.Users.Find(item.User1).FirstName @db.Users.Find(item.User1).LastName
+                            @if (db.messages.Where(x => x.To == item.User2 && x.From == item.User1 && x.Status == "Sent").Count() > 0)
+                            {
+                                <i class="badge badge-danger badge-counter"> @db.messages.Where(x => x.To == item.User2 && x.From == item.User1 && x.Status == "Sent").Count()</i>
+                            }
+                            <span class="chat_date">@message.Time.ToShortDateString()</span>
+                        </h5>
+                        <p class="text-muted">
+                            @if (message.From == userid)
+                            {
+                                <span> You: @message.Body</span>
+                            }
+                            else
+                            {
+                                <span>@message.Body</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </a>
+        }
+
+    }
+</div>
