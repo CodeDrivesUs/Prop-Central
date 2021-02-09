@@ -46,6 +46,7 @@
     <Compile Include="FlatsStatusEnums\FlatStatusEnum.cs" />
     <Compile Include="GenderEnum\GenderEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomBookingEnums\RoomBookingEnums.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

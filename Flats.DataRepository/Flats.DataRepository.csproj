@@ -51,6 +51,8 @@
     <Compile Include="FlatImageDataRepository\FlatImageDataRepository.cs" />
     <Compile Include="FlatImageDataRepository\IFlatImageDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomBookingDataRepository\IRoomBookingDataRepository.cs" />
+    <Compile Include="RoomBookingDataRepository\RoomBookingDataRepository.cs" />
     <Compile Include="RoomDataRepository\IRoomDataRepository.cs" />
     <Compile Include="RoomDataRepository\RoomDataRepository.cs" />
     <Compile Include="RoomTypeDataRepository\IRoomTypeDataRepository.cs" />

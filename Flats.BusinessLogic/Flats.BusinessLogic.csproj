@@ -50,6 +50,8 @@
     <Compile Include="FlatImageBusiness\FlatImageBusiness.cs" />
     <Compile Include="FlatImageBusiness\IFlatImageBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomBookingBusiness\IRoomBookingBusiness.cs" />
+    <Compile Include="RoomBookingBusiness\RoomBookingBusiness.cs" />
     <Compile Include="RoomBusiness\IRoomBusiness.cs" />
     <Compile Include="RoomBusiness\RoomBusiness.cs" />
     <Compile Include="RoomtypeBusiness\IRoomTypeBusiness.cs" />
