@@ -22,5 +22,6 @@ namespace Flats.BusinessLogic.FlatBusiness
         List<FlatSharedModel> GetFlatsToAddRooms();
         void SubmitApplicationForActivation(CreateUpdateFlatSharedModel createUpdateFlatSharedModel);
         List<FlatViewModel> GetLatestFlats();
+        CreateUpdateFlatSharedModel GetFlatPopulatedWithRommtypesAndAmenities(Guid FlatId);
     }
 }

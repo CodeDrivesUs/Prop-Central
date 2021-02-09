@@ -1,0 +1,237 @@
+﻿@model Flats.SharedModel.HomeSharedModel.FlatSharedModel
+@using System.Configuration
+
+@{
+    ViewBag.Title = "ViewFlat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .carousel-position {
+        height: 500px;
+        width: 100%;
+    }
+</style>
+
+@if (Model.ProfilePicture != null)
+
+{
+
+<div class="destination_banner_wrap overlay" style="background-image:url('@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture'); background-size:cover; background-repeat:no-repeat; height:400px;">
+    <div class="destination_text text-center">
+        <h3>@Model._flat.Name</h3>
+
+        <div class="destination_text">
+
+        </div>
+        <div class="hidden-lg hidden-md hidden-sm">
+            <a href="/flats/viewG/?id=@Model._flat.Id" class="btn btn-default ">View Photos</a>
+        </div>
+    </div>
+</div>
+
+}
+<section class="d-none d-lg-block">
+    <div class="row">
+        <div class="col-lg-7">
+            @if (Model.ProfilePicture != null)
+            {
+                <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="fancylight popup-btn" data-fancybox-group="light">
+                    <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="" height="400" width="100%">
+                    </a>
+                    }
+                    else
+                    {
+                    <img src="~/Content/jonathan-riley-VW8MUbHyxCU-unsplash.jpg" class="img-responsive">
+                    }
+            </div>
+        <div class="col-lg-5">
+            <div class="row">
+                @if (Model.AllPictures.Count > 4)
+                {
+                    foreach (var item in Model.AllPictures.Take(3))
+                    {
+                        <div class="col-sm-6 card" style="border-style:none">
+                            @if (item.ImageUrl != null)
+                            {
+                            <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
+
+                                <img class="card-img" src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" />
+                                </a>
+                                }
+</div>
+                    }
+            <div class="col-sm-6 card" style="border-style:none">
+                @foreach (var item in Model.AllPictures.OrderBy(x => x.Id).Skip(3).Take(1))
+                {
+                    <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
+                        <img class="card-img" src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" alt="image">
+                        </a>
+                    <div class="card-img-overlay">
+                        <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="fancylight popup-btn" data-fancybox-group="light"><i class="fa fa-images"></i> <span style="color: #333333;
+        background-color: #ffffff;
+        border-color: #cccccc;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.33;
+        border-radius: 6px;
+">Gallery</span> </a>
+
+                    </div>
+                        }
+                </div>
+                }
+                else
+                {
+                    foreach (var item in Model.AllPictures)
+                    {
+            <div class="col-sm-6" style="border-style:none;">
+                @if (item.ImageUrl != null)
+                {
+                    <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
+                        <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" />
+                        </a>
+                        }
+                </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="destination_details_info">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-9">
+                <div class="destination_info">
+                    <h3>Description</h3>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
+
+                </div>
+                <div class="bordered_1px"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="panel panel-default" style="border-color:transparent; margin-top:10px">
+                <div class="panel-heading" style="background-color:transparent; border-color:transparent;">
+                    <center><h1>Amenities</h1></center>
+                </div>
+                <div class="panel-body justify-content-center" style="border-color:transparent;">
+                    <div class="row justify-content-center">
+                        @foreach (var item in Model._flat.ListAmenities)
+                        {
+                            if (item.ImageUrl != null)
+                            {                             
+                                <div class="col-md-3">
+                                    <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" width="50" height="50" class="img-rounded" />
+                                    <p>@item.Name</p>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-5">
+            <h2 class="cost"><span class=""></span> <span style="color:darkblue">Renting Price:R @Model._flat.RentingPrice </span> </h2>
+            <h2 class="pre-cost"><span class=""></span> <span style="color:black;">Deposit: R @Model._flat.Deposit</span></h2>
+        </div>
+    </div>
+    <div>
+        <center><a href="/Bookings/Create/?id=@Model._flat.Id" class="btn btn-primary">Book Flat</a></center>
+    </div>
+</section>
+@*<section>
+    <div class="testimonial_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="testmonial_active owl-carousel">
+                        @foreach (var i in db.Reviews.Where(x => x.Flatid == Model.Flatid).ToList())
+                        {
+
+                            <div class="single_carousel">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <div class="single_testmonial text-center">
+                                            <div class="author_thumb">
+                                                <img src="~/img/testmonial/author.png" alt="">
+                                            </div>
+                                            <p>" @i.body"</p>
+                                            <div class="testmonial_author">
+                                                <h3>- Micky Mouse</h3>
+                                                <small class="text-muted"> @i.date.ToLongDateString()</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>*@
+@*<div class="popular_places_area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section_title text-center mb_70">
+                    <h3>Similar Flats</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.getlocationlist(Model.GetsingleSurbu(Model.Flatid)))
+            {
+                int space = item.AvailableSpa(item.Flatid);
+                if (space > 0 && item.Flatid != Model.Flatid)
+                {
+                    var flatimages = db.FlatImages.Where(x => x.Flatid == item.Flatid && x.Type == "Main").Select(x => x.Image).FirstOrDefault();
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single_place">
+                            <div class="thumb">
+                                @if (flatimages != null)
+                                {
+                                    var base64 = Convert.ToBase64String(flatimages);
+                                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                                    <img src="@imgsrc" alt="" height="240">
+                                }
+                                <a href="/flats/View?id=@item.Flatid" class="prise">R @item.RentingPrice</a>
+                            </div>
+                            <div class="place_info">
+                                <a href="/flats/View?id=@item.Flatid"><h3>@item.name</h3></a>
+                                <p><i class="glyphicon glyphicon-map-marker text-danger"></i> <span>@item.getlocation(item.Flatid)</span> </p>
+                                <div class="rating_days d-flex justify-content-between">
+                                    <span class="d-flex justify-content-center align-items-center">
+                                        <i class="fa fa-star"></i>
+                                        <a href="#">@item.countstars(item.Flatid)</a>
+                                    </span>
+                                    <div class="days">
+                                        <i class="fa fa-clock-o"></i>
+                                        <a href="#">5 Days</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>*@
+
+
+

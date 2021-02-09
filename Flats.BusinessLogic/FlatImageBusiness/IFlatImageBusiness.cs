@@ -13,5 +13,7 @@ namespace Flats.BusinessLogic.FlatImageBusiness
         void AddImage(FlatImageSharedModel flatImageSharedModel);
         void AddProfilePicture(FlatImageSharedModel flatImageSharedModel);
         void AddRoomImage(FlatImageSharedModel flatImageSharedModel, string[] ImageUrl);
+        List<FlatImageSharedModel> GetAllFlatImagesExcludeProfilePicture(Guid FlatId);
+        List<FlatImageSharedModel> GetGalleryImagesForAFlat(Guid FlatId);
     }
 }

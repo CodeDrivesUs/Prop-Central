@@ -42,7 +42,7 @@ namespace Flats.DataMapping.FlatDataMappings
             var dbModel = _dataRepository.GetAllFlatsByStatusId(statusId);
             return mapper.Map<IEnumerable<FlatSharedModel>>(dbModel);
         }
-        public IEnumerable<FlatViewModel> GetLatestNews()
+        public IEnumerable<FlatViewModel> GetLatestFlat()
         {
             var dbModel= _dataRepository.GetLatestFlat();
             return mapper.Map<IEnumerable<FlatViewModel>>(dbModel);

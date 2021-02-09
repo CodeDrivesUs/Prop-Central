@@ -64,6 +64,7 @@
     <Compile Include="Flat\FlatRoomsAmenities.cs" />
     <Compile Include="Flat\FlatView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomBookings\RoomBooking.cs" />
     <Compile Include="Rooms\CreateUpdateRoom.cs" />
     <Compile Include="RoomType\RoomType.cs" />
     <Compile Include="Users\User.cs" />

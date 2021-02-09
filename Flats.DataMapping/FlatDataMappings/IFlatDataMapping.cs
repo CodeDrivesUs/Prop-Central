@@ -20,6 +20,6 @@ namespace Flats.DataMapping.FlatDataMappings
         void AddToFlatHistory(AddToFlatHistorySharedModel addToFlatHistory);
         IEnumerable<FlatSharedModel> GetAllFlatsExeptStatusId(int statusId);
         void SubmitApplicationForActivation(CreateUpdateFlatSharedModel createUpdateFlat);
-        IEnumerable<FlatViewModel> GetLatestNews();
+        IEnumerable<FlatViewModel> GetLatestFlat();
     }
 }

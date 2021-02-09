@@ -2,6 +2,8 @@
 using Flats.Enums.FlatsStatusEnums;
 using Flats.SharedModel;
 using Flats.SharedModel.FlatSharedModels;
+using Flats.BusinessLogic.AmenitiesBusiness;
+using Flats.BusinessLogic.RoomtypeBusiness;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +16,14 @@ namespace Flats.BusinessLogic.FlatBusiness
     {
 
         private IFlatDataMapping _dataMapping;
+        private IAmenitiesBusiness _amenitiesBusiness;
+        private IRoomTypeBusiness _roomTypeBusiness;
 
         public FlatBusiness()
         {
             _dataMapping = new FlatDataMapping();
+            _amenitiesBusiness = new AmenitiesBusiness.AmenitiesBusiness();
+            _roomTypeBusiness = new RoomtypeBusiness.RoomTypeBusiness();
         }
         public void Add(CreateUpdateFlatSharedModel model)
         {
@@ -78,7 +84,14 @@ namespace Flats.BusinessLogic.FlatBusiness
         }
         public List<FlatViewModel> GetLatestFlats()
         {
-            return _dataMapping.GetLatestNews().ToList();
+            return _dataMapping.GetLatestFlat().ToList();
+        }
+        public CreateUpdateFlatSharedModel GetFlatPopulatedWithRommtypesAndAmenities(Guid FlatId)
+        {
+            var model = GetFlatApplication(FlatId);
+            model.ListAmenities = _amenitiesBusiness.GetAmenitiesByFlatId(FlatId);
+            model.ListRoomTypes = _roomTypeBusiness.GetRoomTypeByFlatId(FlatId);
+            return model;
         }
     }
 }

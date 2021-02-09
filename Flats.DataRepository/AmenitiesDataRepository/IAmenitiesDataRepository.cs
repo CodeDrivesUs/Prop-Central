@@ -16,5 +16,6 @@ namespace Flats.DataRepository.AmenitiesDataRepository
         void Delete(int id);
         void Update(Amenities model);
         Amenities Get(int id);
+        IEnumerable<Amenities> GetAmenitiesByFlatId(Guid FlatId);
     }
 }

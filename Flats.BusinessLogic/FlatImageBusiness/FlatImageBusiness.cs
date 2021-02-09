@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Flats.SharedModel.FlatImageSharedModel;
 using Flats.DataMapping.FlatImagsDataMappings;
+using Flats.BusinessLogic.RoomtypeBusiness;
 using Flats.Enums.FlatImagesEnum;
 
 namespace Flats.BusinessLogic.FlatImageBusiness
@@ -12,9 +13,12 @@ namespace Flats.BusinessLogic.FlatImageBusiness
     public class FlatImageBusiness : IFlatImageBusiness
     {
         private IFlatImagsDataMappings _dataMapping;
+        private IRoomTypeBusiness _roomTypeBusiness;
         public FlatImageBusiness()
         {
+            _roomTypeBusiness = new RoomtypeBusiness.RoomTypeBusiness();
             _dataMapping = new FlatImagsDataMappings();
+
         }
         public void AddImage(FlatImageSharedModel flatImageSharedModel)
         {
@@ -46,6 +50,21 @@ namespace Flats.BusinessLogic.FlatImageBusiness
                 FlatId = flatImageSharedModel.FlatId,
                 FlatRoomtypeId = flatImageSharedModel.FlatRoomtypeId
             }));
+        }
+        public List<FlatImageSharedModel> GetAllFlatImagesExcludeProfilePicture(Guid FlatId)
+        {
+            return _dataMapping.GetAllFlatImagesExcludeProfilePicture(FlatId).ToList();
+        }
+        public List<FlatImageSharedModel> GetAllImagesForARoom(Guid RoomtypeId)
+        {
+            return _dataMapping.GetAllImagesForARoom(RoomtypeId).ToList();
+        }
+        public List<FlatImageSharedModel> GetGalleryImagesForAFlat(Guid FlatId)
+        {
+            var _listOfImages = new List<FlatImageSharedModel>();
+            Parallel.ForEach(_roomTypeBusiness.GetRoomTypeByFlatId(FlatId), roomtye => _listOfImages.AddRange(GetAllImagesForARoom(roomtye.Id)));
+            _listOfImages.AddRange(GetAllFlatImagesExcludeProfilePicture(FlatId));
+            return _listOfImages;
         }
     }
 }

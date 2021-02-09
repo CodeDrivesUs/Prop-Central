@@ -12,5 +12,7 @@ namespace Flats.DataRepository.FlatImageDataRepository
         void AddImage(FlatImages flatImages);
         FlatImages GetFlatProfilePicture(Guid FlatId);
         void AddRoomImage(FlatImages flatImages);
+        IEnumerable<FlatImages> GetAllFlatImagesExcludeProfilePicture(Guid FlatId);
+        IEnumerable<FlatImages> GetAllImagesForARoom(Guid RoomTypeId);
     }
 }

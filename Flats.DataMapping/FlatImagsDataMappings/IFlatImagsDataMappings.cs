@@ -12,5 +12,7 @@ namespace Flats.DataMapping.FlatImagsDataMappings
         void AddImage(FlatImageSharedModel flatImageSharedModel);
         FlatImageSharedModel GetFlatProfilePicture(Guid FlatId);
         void AddRoomImage(FlatImageSharedModel flatImageSharedModel);
+        IEnumerable<FlatImageSharedModel> GetAllImagesForARoom(Guid RoomTypeId);
+        IEnumerable<FlatImageSharedModel> GetAllFlatImagesExcludeProfilePicture(Guid FlatId);
     }
 }

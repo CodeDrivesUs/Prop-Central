@@ -66,6 +66,7 @@
     <Compile Include="FlatSharedModels\FlatAmenitiesRoomsModel.cs" />
     <Compile Include="FlatSharedModels\FlatSharedModel.cs" />
     <Compile Include="FlatSharedModels\FlatViewModel.cs" />
+    <Compile Include="HomeSharedModel\FlatSharedModel.cs" />
     <Compile Include="HomeSharedModel\HomeSharedmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomSharedModel\CreateUpdateRoomSharedModel.cs" />

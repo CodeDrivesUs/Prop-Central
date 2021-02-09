@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 
-    <title>@ViewBag.Title New Home Solutions</title>
+    <title>@ViewBag.Title Prop-Central SA</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -278,10 +278,8 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
 
-    <script src="https//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     <!-- JS here -->
     <script src="~/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
@@ -303,8 +301,6 @@
     <script src="~/js/gijgo.min.js"></script>
     <script src="~/js/slick.min.js"></script>
 
-
-
     <!--contact js-->
     <script src="~/js/contact.js"></script>
     <script src="~/js/jquery.ajaxchimp.min.js"></script>
@@ -314,19 +310,30 @@
 
 
     <script src="~/js/main.js"></script>
-  
+
 
     @RenderSection("scripts", required: false)
 
+    <script>
 
-    <!-- Custom scripts for al
-        <script>
+        $(document).ready(function () {
+            $('.popup-btn').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+            console.log("Hitted");
+        });
+
+    </script>
+    <script>
             $('#datepicker').datepicker({
                 iconsLibrary: 'fontawesome',
-                icons: {
-                 rightIcon: '<span class="fa fa-caret-down"></span>'
-             }
-            });
-        </script>
-    </body>
+                            icons: {
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+                         }
+                        });
+    </script>
+</body>
     </html>

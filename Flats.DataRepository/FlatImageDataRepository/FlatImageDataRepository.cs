@@ -29,10 +29,20 @@ namespace Flats.DataRepository.FlatImageDataRepository
             var query = string.Format(@"INSERT INTO [dbo].[RoomImages]  ([FlatRoomtypeId],[ImageUrl]) VALUES ('{0}','{1}')", flatImages.FlatRoomtypeId, flatImages.ImageUrl);
             _repository.ExecuteNonQuery(query, null, CommandType.Text);
         }
+        public IEnumerable<FlatImages> GetAllImagesForARoom(Guid RoomTypeId)
+        {
+            var query = string.Format(@"SELECT [Id], [FlatRoomtypeId],[ImageUrl] FROM [dbo].[RoomImages]  WHERE FlatRoomtypeId='{0}' ", RoomTypeId);
+            return _repository.Query<FlatImages>(query, null, CommandType.Text);
+        }
         public FlatImages GetFlatProfilePicture(Guid FlatId)
         {
             var query = string.Format(@"SELECT [Id], [FlatId],[StatusId],[ImageUrl] FROM [dbo].[FlatImages]  WHERE FlatId='{0}' and StatusId='{1}'", FlatId, (int)FlatImagesEnum.ProfilePicture);
            return _repository.SelectOne<FlatImages>(query, null, CommandType.Text);
+        }
+        public IEnumerable<FlatImages> GetAllFlatImagesExcludeProfilePicture(Guid FlatId)
+        {
+            var query = string.Format(@"SELECT [Id], [FlatId],[StatusId],[ImageUrl] FROM [dbo].[FlatImages]  WHERE FlatId='{0}' and StatusId !='{1}'", FlatId, (int)FlatImagesEnum.ProfilePicture);
+            return _repository.Query<FlatImages>(query, null, CommandType.Text);
         }
     }
 }

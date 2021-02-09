@@ -39,14 +39,19 @@ namespace Flats.DataMapping.AmenitiesDataMapping
 
         public AmenitiesSharedModel Get(int id)
         {
-            var store = _dataRepository.Get(id);
-            return mapper.Map<AmenitiesSharedModel>(store);
+            var model = _dataRepository.Get(id);
+            return mapper.Map<AmenitiesSharedModel>(model);
         }
 
         public IEnumerable<AmenitiesSharedModel> GetAll()
         {
-            var stores = _dataRepository.GetAll();
-            return mapper.Map<IEnumerable<AmenitiesSharedModel>>(stores);
+            var model = _dataRepository.GetAll();
+            return mapper.Map<IEnumerable<AmenitiesSharedModel>>(model);
+        }
+        public IEnumerable<AmenitiesSharedModel> GetAmenitiesByFlatId(Guid FlatId)
+        {
+            var model = _dataRepository.GetAmenitiesByFlatId(FlatId);
+            return mapper.Map<IEnumerable<AmenitiesSharedModel>>(model);
         }
     }
 }

@@ -35,6 +35,10 @@ namespace Flats.BusinessLogic.AmenitiesBusiness
         {
             return (List<AmenitiesSharedModel>)_dataMapping.GetAll();
         }
+        public List<AmenitiesSharedModel> GetAmenitiesByFlatId(Guid FlatId)
+        {
+            return (List<AmenitiesSharedModel>)_dataMapping.GetAmenitiesByFlatId(FlatId);
+        }
 
         public void Update(AmenitiesSharedModel model)
         {

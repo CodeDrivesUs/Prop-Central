@@ -1,4 +1,5 @@
-﻿using Flats.DataModel.Amenities;
+﻿using Dapper;
+using Flats.DataModel.Amenities;
 using Flats.Repository;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,12 @@ namespace Flats.DataRepository.AmenitiesDataRepository
             var query = @"SELECT * FROM [dbo].[Amenities] ORDER BY Id;";
             var results = _repository.Query<Amenities>(query, null, CommandType.Text);
             return results;
+        }
+        public IEnumerable<Amenities> GetAmenitiesByFlatId(Guid FlatId)
+        {
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add("@flatId", FlatId);
+            return _repository.Query<Amenities>("GetAllAmenitiesByFlatId", sqlParameters, CommandType.StoredProcedure);
         }
     }
 }

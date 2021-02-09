@@ -14,5 +14,6 @@ namespace Flats.BusinessLogic.AmenitiesBusiness
         void Delete(int id);
         AmenitiesSharedModel Get(int id);
         void Update(AmenitiesSharedModel model);
+        List<AmenitiesSharedModel> GetAmenitiesByFlatId( Guid FlatId);
     }
 }

@@ -34,6 +34,14 @@ namespace Flats.DataMapping.FlatImagsDataMappings
         {
             return mapper.Map<FlatImageSharedModel>(_dataRepository.GetFlatProfilePicture(FlatId));
         }
+        public IEnumerable<FlatImageSharedModel> GetAllFlatImagesExcludeProfilePicture(Guid FlatId)
+        {
+            return mapper.Map<IEnumerable<FlatImageSharedModel>>(_dataRepository.GetAllFlatImagesExcludeProfilePicture(FlatId));
+        }
+        public IEnumerable<FlatImageSharedModel> GetAllImagesForARoom(Guid RoomTypeId)
+        {
+            return mapper.Map<IEnumerable<FlatImageSharedModel>>(_dataRepository.GetAllImagesForARoom(RoomTypeId));
+        }
 
     }
 }

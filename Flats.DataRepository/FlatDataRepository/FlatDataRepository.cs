@@ -68,6 +68,7 @@ namespace Flats.DataRepository.FlatDataRepository
             sqlParameters.Add("@Type", flatRoomsAmenities.Type);
             _repository.ExecuteNonQuery("AddRoomsOrAmenities", sqlParameters, CommandType.StoredProcedure);
         }
+      
         public IEnumerable<Flat> GetAllFlatsByStatusId(int statusId)
         {
             var sqlParameters = new DynamicParameters();

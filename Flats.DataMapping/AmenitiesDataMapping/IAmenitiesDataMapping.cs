@@ -16,5 +16,6 @@ namespace Flats.DataMapping.AmenitiesDataMapping
         void Delete(int id);
         AmenitiesSharedModel Get(int id);
         void Update(AmenitiesSharedModel model);
+        IEnumerable<AmenitiesSharedModel> GetAmenitiesByFlatId( Guid FlatId);
     }
 }

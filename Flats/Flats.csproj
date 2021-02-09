@@ -319,6 +319,12 @@
     <Content Include="fonts\themify.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\instagram\1.png" />
+    <Content Include="img\instagram\2.png" />
+    <Content Include="img\instagram\3.png" />
+    <Content Include="img\instagram\4.png" />
+    <Content Include="img\instagram\5.png" />
+    <Content Include="img\instagram\6.png" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="js\ajax-form.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -2630,6 +2636,7 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Views\Home\Indextemplate.html" />
     <Content Include="Views\Shared\_searchableUsers.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2878,6 +2885,7 @@
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Views\Shared\_ImageUploadMultiple.cshtml" />
     <Content Include="Views\Camara\Success.cshtml" />
+    <Content Include="Views\Home\ViewFlat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
