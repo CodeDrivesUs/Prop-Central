@@ -76,6 +76,14 @@ namespace Flats.DataMapping.FlatDataMappings
         {
             return _dataRepository.GetApplicantUserId(FlatId);
         }
-      
+        public IEnumerable<FlatViewModel> GetPaginatedListFlats(int startrow, int  rowsperpage, string keyword)
+        {
+            var dbModel = _dataRepository.GetPaginatedListFlats(startrow,rowsperpage,keyword);
+            return mapper.Map<IEnumerable<FlatViewModel>>(dbModel);
+        }
+        public int GetCountPaginatedListFlats(string keyword)
+        {
+            return _dataRepository.GetCountPaginatedListFlats(keyword);
+        }
     }
 }

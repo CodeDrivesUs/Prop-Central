@@ -22,5 +22,7 @@ namespace Flats.DataRepository.FlatDataRepository
         void AddToFlatHistory(AddToFlatHistory addToFlatHistory);
         void SubmitApplicationForActivation(CreateUpdateFlat createUpdateFlat);
         IEnumerable<FlatView> GetLatestFlat();
+        IEnumerable<FlatView> GetPaginatedListFlats(int startrow, int rowsperpage, string keyword);
+        int GetCountPaginatedListFlats(string keyword);
     }
 }

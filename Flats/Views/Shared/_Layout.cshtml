@@ -137,7 +137,7 @@
                         <div class="footer_widget">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="~/Content/Images/imageedit_4_4735067272.png" style="width:30%;" alt="">
+                                   <h2>Logo Hare</h2>
                                 </a>
                             </div>
                             <p>
@@ -315,6 +315,30 @@
     @RenderSection("scripts", required: false)
 
     <script>
+        var currentpage;
+        var totalpages;
+        var keyword = $("#keyword").val();
+        $(document).ready(function () {
+            getData(1);
+            currentpage = 1;
+            console.log("Loaded for the first time");
+        });
+  
+        function getData(page) {
+            currentpage = page;
+            console.log("fetch some JSON data");
+            $.ajax({
+                url: "/Home/Pagination/?page=" + page + "&keyword=" + keyword, success: function (result) {
+                    console.log(result);
+                    $("#flatlist").html(result.PaginationList);
+                    $("#pagination").html(result.navigation);
+                }
+            }
+            );
+        }
+    </script>
+
+    <script>
 
         $(document).ready(function () {
             $('.popup-btn').magnificPopup({
@@ -323,17 +347,58 @@
                     enabled: true
                 }
             });
-            console.log("Hitted");
+
         });
 
     </script>
     <script>
-            $('#datepicker').datepicker({
-                iconsLibrary: 'fontawesome',
-                            icons: {
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
                 rightIcon: '<span class="fa fa-caret-down"></span>'
-                         }
-                        });
+            }
+        });
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#City").change(function () {
+                $('#exampleModalfilter').modal('show')
+
+                var City = $(this).val();
+
+                $.ajax({
+                    url: "/Home/GetSubcatList/?city=" + City,
+                    contentType: "html",
+                    success: function (response) {
+                        $("#Surbublo").html(response);
+                        $('#exampleModalfilter').modal('hide')
+                    }
+
+                })
+
+            })
+
+        })
+        var Filter = function () {
+            var range = $("#amount").val();
+            var order = $("#Orderprice").val();
+            $.ajax({
+                type: "post",
+                url: "/Home/Filter/?range=" + range + "&&order=" + order,
+                error: function () {
+                    alert("error");
+                },
+                success: function (response) {
+                    $('#exampleModalfilter').modal('hide')
+                    $("#Result").html(response);
+
+
+                }
+            })
+        }
     </script>
 </body>
     </html>

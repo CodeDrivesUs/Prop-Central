@@ -4,6 +4,7 @@ using Flats.SharedModel;
 using Flats.SharedModel.FlatSharedModels;
 using Flats.BusinessLogic.AmenitiesBusiness;
 using Flats.BusinessLogic.RoomtypeBusiness;
+using Flats.SharedModel.SharedModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace Flats.BusinessLogic.FlatBusiness
         private IFlatDataMapping _dataMapping;
         private IAmenitiesBusiness _amenitiesBusiness;
         private IRoomTypeBusiness _roomTypeBusiness;
+        private int rowsperpage = 9;
+
 
         public FlatBusiness()
         {
@@ -82,9 +85,37 @@ namespace Flats.BusinessLogic.FlatBusiness
         {
             _dataMapping.AddToFlatHistory(new AddToFlatHistorySharedModel { FlatId=FlatId, statusId=status, UserId=UserId });
         }
+        public List<FlatViewModel> GetPaginatedListFlats(int page, string keyword)
+        {
+            return _dataMapping.GetPaginatedListFlats(GetStartRow(page), rowsperpage, keyword).ToList();
+        }
         public List<FlatViewModel> GetLatestFlats()
         {
             return _dataMapping.GetLatestFlat().ToList();
+        }
+        public int GetStartRow(int page)
+        {
+            int capture = page - 1;
+            if (page == 1)
+            {
+                return 0;
+            }
+            return capture * rowsperpage;
+        }
+        public int CalcTotalPages(string Keyword )
+        {
+            int totalnews = _dataMapping.GetCountPaginatedListFlats(Keyword);
+            int valu = totalnews / rowsperpage;
+            int modulas = totalnews % rowsperpage;
+            if (modulas != 0)
+            {
+                ++valu;
+            }
+            return valu;
+        }
+        public Pagination PopulatePagination( string keyword ,int page)
+        {
+            return new Pagination { _count=_dataMapping.GetCountPaginatedListFlats(keyword), _current=page, _final=CalcTotalPages(keyword), _from=GetStartRow(page), _to= 0   };
         }
         public CreateUpdateFlatSharedModel GetFlatPopulatedWithRommtypesAndAmenities(Guid FlatId)
         {
@@ -93,5 +124,13 @@ namespace Flats.BusinessLogic.FlatBusiness
             model.ListRoomTypes = _roomTypeBusiness.GetRoomTypeByFlatId(FlatId);
             return model;
         }
+        public int GetCountPaginatedListFlats( string keyword)
+        {
+            return _dataMapping.GetCountPaginatedListFlats(keyword);
+        }
+
+
+
+
     }
 }

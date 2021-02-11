@@ -319,12 +319,27 @@
     <Content Include="fonts\themify.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\banner\apartment-architectural-design-architecture-balcony-565324.jpg" />
+    <Content Include="img\banner\banner.png" />
+    <Content Include="img\banner\banner2.png" />
+    <Content Include="img\banner\banner3.png" />
+    <Content Include="img\banner\bradcam.png" />
+    <Content Include="img\banner\bradcam2.png" />
+    <Content Include="img\banner\bradcam3.png" />
+    <Content Include="img\banner\bradcam4.png" />
+    <Content Include="img\banner\destination.png" />
+    <Content Include="img\banner\newsletter.png" />
+    <Content Include="img\banner\testmonial.png" />
+    <Content Include="img\banner\video.png" />
     <Content Include="img\instagram\1.png" />
     <Content Include="img\instagram\2.png" />
     <Content Include="img\instagram\3.png" />
     <Content Include="img\instagram\4.png" />
     <Content Include="img\instagram\5.png" />
     <Content Include="img\instagram\6.png" />
+    <Content Include="img\trip\1.png" />
+    <Content Include="img\trip\2.png" />
+    <Content Include="img\trip\3.png" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="js\ajax-form.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -2886,6 +2901,9 @@
     <Content Include="Views\Shared\_ImageUploadMultiple.cshtml" />
     <Content Include="Views\Camara\Success.cshtml" />
     <Content Include="Views\Home\ViewFlat.cshtml" />
+    <Content Include="Views\Home\FindFlat.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
+    <Content Include="Views\Shared\_flat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

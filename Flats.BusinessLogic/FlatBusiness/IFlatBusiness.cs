@@ -1,5 +1,6 @@
 ﻿using Flats.SharedModel;
 using Flats.SharedModel.FlatSharedModels;
+using Flats.SharedModel.SharedModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,8 @@ namespace Flats.BusinessLogic.FlatBusiness
         void SubmitApplicationForActivation(CreateUpdateFlatSharedModel createUpdateFlatSharedModel);
         List<FlatViewModel> GetLatestFlats();
         CreateUpdateFlatSharedModel GetFlatPopulatedWithRommtypesAndAmenities(Guid FlatId);
+        List<FlatViewModel> GetPaginatedListFlats(int page, string keyword);
+        Pagination PopulatePagination(string keyword, int page);
+        int GetCountPaginatedListFlats(string keyword);
     }
 }

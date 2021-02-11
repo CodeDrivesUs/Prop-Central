@@ -21,5 +21,7 @@ namespace Flats.DataMapping.FlatDataMappings
         IEnumerable<FlatSharedModel> GetAllFlatsExeptStatusId(int statusId);
         void SubmitApplicationForActivation(CreateUpdateFlatSharedModel createUpdateFlat);
         IEnumerable<FlatViewModel> GetLatestFlat();
+        IEnumerable<FlatViewModel> GetPaginatedListFlats(int startrow, int rowsperpage, string keyword);
+        int GetCountPaginatedListFlats(string keyword);
     }
 }

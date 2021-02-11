@@ -115,7 +115,27 @@ namespace Flats.DataRepository.FlatDataRepository
             sqlParameters.Add("@flatId", addLandLord.FlatId);
             _repository.ExecuteNonQuery("AddLandLord", sqlParameters, CommandType.StoredProcedure);
         }
+        public IEnumerable<FlatView> GetPaginatedListFlats(int startrow, int rowsperpage, string keyword)
+        {
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add("@startRow", startrow);
+            sqlParameters.Add("@rowsPerPage", rowsperpage);
+            sqlParameters.Add("@isCount", false);
+            sqlParameters.Add("@keyword", keyword);
+            sqlParameters.Add("@statusId", (int)FlatImagesEnum.ProfilePicture);
 
+            return _repository.Query<FlatView>("GetPaginatedFlats", sqlParameters, CommandType.StoredProcedure);
+        }
+        public int GetCountPaginatedListFlats( string keyword)
+        {
+            var sqlParameters = new DynamicParameters();          
+            sqlParameters.Add("@isCount", true);
+            sqlParameters.Add("@keyword", keyword);
+            sqlParameters.Add("@statusId", (int)FlatImagesEnum.ProfilePicture);
+            sqlParameters.Add("@startRow", 0);
+            sqlParameters.Add("@rowsPerPage", 0);
+            return _repository.SelectOne<int>("GetPaginatedFlats", sqlParameters, CommandType.StoredProcedure);
+        }
     }
 }
 

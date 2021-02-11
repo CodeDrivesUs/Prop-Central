@@ -9,13 +9,14 @@ using Flats.BusinessLogic.RoomtypeBusiness;
 using Flats.BusinessLogic.FlatBusiness;
 using System.Net;
 using Flats.BusinessLogic.FlatImageBusiness;
+using System.IO;
 
 namespace Flats.Controllers
 {
     public class HomeController : Controller
     {
         private IRoomTypeBusiness _roomTypeBusiness;
-        private IFlatBusiness  _flatBusiness;
+        private IFlatBusiness _flatBusiness;
         private IFlatImageBusiness _flatImageBusiness;
 
         public HomeController()
@@ -26,8 +27,8 @@ namespace Flats.Controllers
         }
         public ActionResult Index()
         {
-          
-            return View( new HomeSharedmodel {RoomTypes= _roomTypeBusiness.GetAllRoomTypes() , LatestFlats=_flatBusiness.GetLatestFlats()});
+
+            return View(new HomeSharedmodel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes(), LatestFlats = _flatBusiness.GetLatestFlats() });
         }
         public ActionResult ViewFlat(Guid? FlatId)
         {
@@ -41,7 +42,12 @@ namespace Flats.Controllers
                 return HttpNotFound();
             }
 
-            return View( new FlatSharedModel { _flat=flat, ProfilePicture=_flatImageBusiness.GetProfilePicture((Guid)FlatId).ImageUrl, AllPictures=_flatImageBusiness.GetGalleryImagesForAFlat((Guid)FlatId) });
+            return View(new FlatSharedModel { _flat = flat, ProfilePicture = _flatImageBusiness.GetProfilePicture((Guid)FlatId).ImageUrl, AllPictures = _flatImageBusiness.GetGalleryImagesForAFlat((Guid)FlatId) });
+        }
+        public ActionResult FindFlat()
+        {
+
+            return View(new FindFlatSharedModel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes() });
         }
         public ActionResult About()
         {
@@ -54,5 +60,33 @@ namespace Flats.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
+        [HttpGet]
+        public JsonResult Pagination(int page, string keyword)
+        {
+            keyword = EscApostrophe(keyword);
+            return Json(new { PaginationList = ConvertPartialViewToString(PartialView("_flats", _flatBusiness.GetPaginatedListFlats(page, keyword))), navigation = ConvertPartialViewToString(PartialView("_Pagination", _flatBusiness.PopulatePagination(keyword, page))) }, JsonRequestBehavior.AllowGet);
+        }
+  
+        protected string ConvertPartialViewToString(PartialViewResult partialView)
+        {
+            using (var sw = new StringWriter())
+            {
+                partialView.View = ViewEngines.Engines
+                  .FindPartialView(ControllerContext, partialView.ViewName).View;
+
+                var vc = new ViewContext(
+                  ControllerContext, partialView.View, partialView.ViewData, partialView.TempData, sw);
+                partialView.View.Render(vc, sw);
+
+                var partialViewString = sw.GetStringBuilder().ToString();
+
+                return partialViewString;
+            }
+        }
+        public  string EscApostrophe(string str)
+        {
+            return str != null ? str.Replace("'", "''") : "''";
+        }
     }
+
 }
