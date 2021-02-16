@@ -42,7 +42,12 @@ namespace Flats.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public ActionResult Proccess(Guid bookingId)
         {
-            return View(_roomBookingBusiness.GetRoomBookingById(bookingId));
+            var booking = _roomBookingBusiness.GetRoomBookingById(bookingId);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
         }
     }
 }

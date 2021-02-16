@@ -55,6 +55,8 @@
     <Compile Include="RoomBookingDataRepository\RoomBookingDataRepository.cs" />
     <Compile Include="RoomDataRepository\IRoomDataRepository.cs" />
     <Compile Include="RoomDataRepository\RoomDataRepository.cs" />
+    <Compile Include="RoomOccupantDataRepository\IRoomOccupantDataRepository.cs" />
+    <Compile Include="RoomOccupantDataRepository\RoomOccupantDataRepository.cs" />
     <Compile Include="RoomTypeDataRepository\IRoomTypeDataRepository.cs" />
     <Compile Include="RoomTypeDataRepository\RoomTypeDataRepository.cs" />
     <Compile Include="UsersDataRepository\IUsersDataRepository.cs" />
