@@ -10,5 +10,7 @@ namespace Flats.DataRepository.RoomBookingDataRepository
     public interface IRoomBookingDataRepository
     {
         Guid AddRoomBooking(RoomBooking roomBooking);
+        IEnumerable<UserRoomBooking> GetRoomBookingsForAFlat(Guid FlatId);
+        UserRoomBooking GetRoomBookingsById(Guid bookingId);
     }
 }

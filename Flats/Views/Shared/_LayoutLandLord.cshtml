@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>@ViewBag.Title New Home Solutions</title>
+    <title>@ViewBag.Title Prop-Central SA</title>
     <!-- Custom fonts for this template-->
     <link href="~/Content/fontawesome-free/css/all.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -22,18 +22,8 @@
 
 <body id="page-top">
 
-    @{ 
-        Newhomesolutions.Models.ApplicationDbContext db = new Newhomesolutions.Models.ApplicationDbContext();
-        var userid = User.Identity.GetUserId();
-        var flats = db.flats.Where(x => x.UserId == userid && x.Status=="Active").ToList();
-
-        var userids = db.profiles.Where(x => x.UserId == userid).Select(x => x.profileID).FirstOrDefault();
-        var profiles = db.profiles.Find(userids);
-        decimal account = 0;
- }
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -42,20 +32,12 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> New Home Solutions <sup>Land Lord</sup></div>
+                <div class="sidebar-brand-text mx-3"> Prop-Central SA <sup>manager</sup></div>
             </a>
-
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            @*<li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>*@
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -63,48 +45,59 @@
             <div class="sidebar-heading">
                 Interface
             </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-building"></i>
-                    <span>My Flats <span class="badge-danger">@flats.Count()</span></span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        @foreach (var item in flats)
-                        {
-                            <a class="collapse-item" href="/MyFlat/Index/@item.Flatid">@item.name</a>
-                        }
-
-                    </div>
-                </div>
-            </li>
-        
-            <li class="nav-item">
-                <a class="nav-link" href="/LandLord/Flatmanagers">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseexample" aria-expanded="true" aria-controls="collapseexample">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Flat managers</span>
+                    <span>Tenant </span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo23" aria-expanded="true" aria-controls="collapseTwo23">
-                    <i class="fas fa-fw fa-building"></i>
-                    <span>Account Transactions<i class="fa fa-money"></i> </span>
-                </a>
-                <div id="collapseTwo23" class="collapse" aria-labelledby="headingTwo23" data-parent="#accordionSidebar">
+                <div id="collapseexample" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <div class="dropdown-header">Choose Flat:</div>
-                        @foreach (var item in flats)
-                        {
-                            <a class="collapse-item" href="/Landlord/statement/?flatid=@item.Flatid">@item.name</a>
-                            account += db.flatAccounts.Where(x => x.flatId == item.Flatid).Select(x => x.balance).FirstOrDefault();
-                        }
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Overol balance <span class="badge badge-danger">@account.ToString("C")</span></a>
+                        <a class="collapse-item" href="@Url.Action("Create","RoomOccupants")">Add Tenant</a>
+                        <a class="collapse-item" href="@Url.Action("Index","RoomOccupants")">List All Tenant</a>
+                        <a class="collapse-item" href="@Url.Action("CheckOut","Flatmanager")">Check Out Tenant</a>
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Bookings/Index">
+                    <i class="fas fa-fw fa-bookmark"></i>
+                    <span>Bookings</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseroom" aria-expanded="true" aria-controls="collapseroom">
+                    <i class="fas fa-fw fa-bed"></i>
+                    <span>Rooms</span>
+                </a>
+                <div id="collapseroom" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="@Url.Action("Available","Flatmanager")">Available Rooms</a>
+                        <a class="collapse-item" href="@Url.Action("listrooms","Flatmanager")">List All Rooms</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/flatmanager/Rentpayments">
+                    <i class="fas fa-fw fa-money-bill-wave"></i>
+                    <span>Rent Payments</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Flatmanager/RentTransactionList">
+                    <i class="fas fa-fw fa-money-bill"></i>
+                    <span>Rent Transactions</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Flatmanager/Statement">
+                    <i class="fas fa-fw fa-money-bill"></i>
+                    <span>Account Transactions</span>
+                </a>
+            </li>
+
+
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -128,34 +121,59 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    
+                    @*<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>*@
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                       
-                        <!-- Nav Item - Alerts -->
-                        
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle"  href="/messages" id="messagesDropdown">
+                            <a class="nav-link" href="/messages">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
                                 <span id="count" class="badge badge-danger badge-counter"></span>
                             </a>
-                            <!-- Dropdown - Messages -->
-                            
+
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        @*<li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.GetUserName()</span>
                                 @try
-                                {                                  
+                                {
                                     if (profiles.ProfilePicture != null)
                                     {
                                         var base64 = Convert.ToBase64String(profiles.ProfilePicture);
@@ -171,24 +189,24 @@
                                 {
                                     <img class="img-profile rounded-circle" width="40px;" height="40px;" src="~/Content/Images/User.png">
                                 }
+                            </a>*@
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="/profiles/profilemanage">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/profiles/profilemanage">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="/manage/Index">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                              
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
+                            <a class="dropdown-item" href="/manage/Index">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
                         </li>
 
                     </ul>
@@ -252,7 +270,6 @@
     <script src="~/Content/jquery-easing/jquery.easing.js"></script>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <!-- Custom scripts for all pages-->
     <script>
         $(function () {
 
@@ -280,6 +297,7 @@
             }, 1000);
         });
     </script>
+    <!-- Custom scripts for all pages-->
 
     <script src="~/Scripts/sb-admin-2.js"></script>
     <!-- Page level plugins -->

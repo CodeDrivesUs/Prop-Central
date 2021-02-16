@@ -3,235 +3,788 @@
 
 @{
     ViewBag.Title = "ViewFlat";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+    Flats.Models.ApplicationDbContext db = new Flats.Models.ApplicationDbContext();
+    var users = User.Identity.GetUserId();
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
 
-<style>
-    .carousel-position {
-        height: 500px;
-        width: 100%;
-    }
-</style>
+    <title>@Model._flat.Name Prop-Central SA</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@if (Model.ProfilePicture != null)
+    <link href="~/css/BookingOverLay.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <link rel="stylesheet" href="~/css/nice-select.css">
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/gijgo.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/slick.css">
+    <link rel="stylesheet" href="~/css/slicknav.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+    @using Microsoft.AspNet.Identity
+    <link rel="stylesheet" href="~/css/style.css">
 
-{
+</head>
+<body>
+    <style>
+        .carousel-position {
+            height: 500px;
+            width: 100%;
+        }
 
-<div class="destination_banner_wrap overlay" style="background-image:url('@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture'); background-size:cover; background-repeat:no-repeat; height:400px;">
-    <div class="destination_text text-center">
-        <h3>@Model._flat.Name</h3>
+        .flat-header {
+            color: darkblue;
+            margin: 50px;
+            font-size: xxx-large;
+            font-weight: bolder;
+        }
 
-        <div class="destination_text">
 
-        </div>
-        <div class="hidden-lg hidden-md hidden-sm">
-            <a href="/flats/viewG/?id=@Model._flat.Id" class="btn btn-default ">View Photos</a>
-        </div>
-    </div>
-</div>
+        #_close-overlay-btn {
+            position: relative;
+        }
 
-}
-<section class="d-none d-lg-block">
-    <div class="row">
-        <div class="col-lg-7">
-            @if (Model.ProfilePicture != null)
-            {
-                <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="fancylight popup-btn" data-fancybox-group="light">
-                    <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="" height="400" width="100%">
-                    </a>
-                    }
-                    else
-                    {
-                    <img src="~/Content/jonathan-riley-VW8MUbHyxCU-unsplash.jpg" class="img-responsive">
-                    }
+        .check {
+            opacity: 0.5;
+            color: #996;
+        }
+
+        .hidden {
+            display: none !important;
+            visibility: hidden !important;
+        }
+    </style>
+
+
+    <div id="_main">
+
+        <header>
+            <div class="header-area ">
+                <div id="sticky-header" class="main-header-area">
+                    <div class="container-fluid">
+                        <div class="header_bottom_border">
+                            <div class="row align-items-center">
+                                <div class="col-xl-2 col-lg-2">
+                                    <div class="logo">
+                                        <a href="/">
+                                            <img src="~/Content/Images/imageedit_4_4735067272.png" width="100" height="30" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="main-menu  d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+
+                                                <li><a href="/flats/create">Become a Landlord</a></li>
+                                                <li><a class="" href="/Home/Findflat">Find Flat</a></li>
+                                                <li>
+                                                    <a href="#">Room Mate <i class="ti-angle-down"></i></a>
+                                                    <ul class="submenu">
+                                                        <li><a href="/RoomMates/Index">Find Room Mate</a></li>
+                                                        @if (Request.IsAuthenticated)
+                                                        {
+                                                            <li><a href="/RoomMates/Create">Request Room Mate</a></li>
+                                                        }
+                                                    </ul>
+                                                </li>
+
+                                                @{ if (Request.IsAuthenticated)
+                                                    {
+
+                                                        <li>
+                                                            <a href="#">@User.Identity.GetUserName() <i class="ti-angle-down"></i></a>
+                                                            <ul class="submenu">
+                                                                @*@if(db.Booking.Where(x => x.UserId == users && x.Status == "Submitted").Count() > 0)
+                                                                    {
+                                                                    <li><a href="/Bookings/Mybookings">Bookings <i class="glyphicon glyphicon-bookmark"></i><span class="badge badge-danger"> @db.Booking.Where(x => x.UserId == users && x.Status == "Submitted").Count()</span></a></li>
+                                                                    }*@
+                                                                <li><a href="/Messages"><i><img src="~/Content/Icons/icons8-new-message-64.png" height="24" width="24" /></i><span id="count" class="badge badge-danger badge-counter"></span></a></li>
+                                                                <li><a href="/profiles/Details">Profile</a></li>
+                                                                <li><a href="/manage/Index">Settings</a></li>
+                                                                <li class="divider"></li>
+                                                                <li><a href="@Url.Action("LogOff", "Account")">LogOut</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <li>
+                                                            <a href="#">Account <i class="ti-angle-down"></i></a>
+                                                            <ul class="submenu">
+                                                                <li class=""><a class="" href='@Url.Action("Register", "Account")'><span class="">Create Account</span></a></li>
+                                                                <li class=""><a class="" href='@Url.Action("Login", "Account")'><span class="">Login</span></a></li>
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                                    <div class="social_wrap d-flex align-items-center justify-content-end">
+                                        <div class="number">
+                                            <p> <i class="fa fa-phone"></i> +2784 252 7283</p>
+                                        </div>
+                                        <div class="social_links d-none d-xl-block">
+                                            <ul>
+                                                <li><a href="#"> <i class="fa fa-instagram"></i> </a></li>
+                                                <li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>
+                                                <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
+                                                <li><a href="#"> <i class="fa fa-google-plus"></i> </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="seach_icon">
+                                    <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mobile_menu d-block d-lg-none"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        <div class="col-lg-5">
-            <div class="row">
-                @if (Model.AllPictures.Count > 4)
-                {
-                    foreach (var item in Model.AllPictures.Take(3))
-                    {
-                        <div class="col-sm-6 card" style="border-style:none">
-                            @if (item.ImageUrl != null)
+        </header>
+        <main>
+            <section class="d-none d-lg-block">
+                <div class="row">
+                    <div class="col-lg-7">
+                        @if (Model.ProfilePicture != null)
+                        {
+                            <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="fancylight popup-btn" data-fancybox-group="light">
+                                <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="" height="400" width="100%">
+                            </a>
+                        }
+                        else
+                        {
+                            <img src="~/Content/jonathan-riley-VW8MUbHyxCU-unsplash.jpg" class="img-responsive">
+                        }
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="row">
+                            @if (Model.AllPictures.Count > 4)
                             {
-                            <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
+                                foreach (var item in Model.AllPictures.Take(3))
+                                {
+                                    <div class="col-sm-6 card" style="border-style:none">
+                                        @if (item.ImageUrl != null)
+                                        {
+                                            <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
 
-                                <img class="card-img" src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" />
-                                </a>
+                                                <img class="card-img" src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" />
+                                            </a>
+                                        }
+                                    </div>
                                 }
-</div>
-                    }
-            <div class="col-sm-6 card" style="border-style:none">
-                @foreach (var item in Model.AllPictures.OrderBy(x => x.Id).Skip(3).Take(1))
-                {
-                    <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
-                        <img class="card-img" src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" alt="image">
-                        </a>
-                    <div class="card-img-overlay">
-                        <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="fancylight popup-btn" data-fancybox-group="light"><i class="fa fa-images"></i> <span style="color: #333333;
+                                <div class="col-sm-6 card" style="border-style:none">
+                                    @foreach (var item in Model.AllPictures.OrderBy(x => x.Id).Skip(3).Take(1))
+                                    {
+                                        <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
+                                            <img class="card-img" src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" alt="image">
+                                        </a>
+                                        <div class="card-img-overlay">
+                                            <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" class="fancylight popup-btn" data-fancybox-group="light">
+                                                <i class="fa fa-images"></i> <span style="color: #333333;
         background-color: #ffffff;
         border-color: #cccccc;
         padding: 10px 16px;
         font-size: 18px;
         line-height: 1.33;
         border-radius: 6px;
-">Gallery</span> </a>
+">Gallery</span>
+                                            </a>
 
-                    </div>
-                        }
-                </div>
-                }
-                else
-                {
-                    foreach (var item in Model.AllPictures)
-                    {
-            <div class="col-sm-6" style="border-style:none;">
-                @if (item.ImageUrl != null)
-                {
-                    <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
-                        <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" />
-                        </a>
-                        }
-                </div>
-                    }
-                }
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="destination_details_info">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-9">
-                <div class="destination_info">
-                    <h3>Description</h3>
-                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
-
-                </div>
-                <div class="bordered_1px"></div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<section>
-    <div class="row">
-        <div class="col-lg-7">
-            <div class="panel panel-default" style="border-color:transparent; margin-top:10px">
-                <div class="panel-heading" style="background-color:transparent; border-color:transparent;">
-                    <center><h1>Amenities</h1></center>
-                </div>
-                <div class="panel-body justify-content-center" style="border-color:transparent;">
-                    <div class="row justify-content-center">
-                        @foreach (var item in Model._flat.ListAmenities)
-                        {
-                            if (item.ImageUrl != null)
-                            {                             
-                                <div class="col-md-3">
-                                    <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" width="50" height="50" class="img-rounded" />
-                                    <p>@item.Name</p>
+                                        </div>
+                                    }
                                 </div>
                             }
-                        }
+                            else
+                            {
+                                foreach (var item in Model.AllPictures)
+                                {
+                                    <div class="col-sm-6" style="border-style:none;">
+                                        @if (item.ImageUrl != null)
+                                        {
+                                            <a href="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" class="fancylight popup-btn" data-fancybox-group="light">
+                                                <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" height="200" />
+                                            </a>
+                                        }
+                                    </div>
+                                }
+                            }
+
+                        </div>
                     </div>
                 </div>
+            </section>
+
+            <div class="container">
+                <header class="text-center"><h3 class="flat-header">@Model._flat.Name</h3></header>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
 
-        </div>
-        <div class="col-lg-5">
-            <h2 class="cost"><span class=""></span> <span style="color:darkblue">Renting Price:R @Model._flat.RentingPrice </span> </h2>
-            <h2 class="pre-cost"><span class=""></span> <span style="color:black;">Deposit: R @Model._flat.Deposit</span></h2>
-        </div>
-    </div>
-    <div>
-        <center><a href="/Bookings/Create/?id=@Model._flat.Id" class="btn btn-primary">Book Flat</a></center>
-    </div>
-</section>
-@*<section>
-    <div class="testimonial_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="testmonial_active owl-carousel">
-                        @foreach (var i in db.Reviews.Where(x => x.Flatid == Model.Flatid).ToList())
-                        {
-
-                            <div class="single_carousel">
+                        <div class="destination_details_info">
+                            <div class="container">
                                 <div class="row justify-content-center">
-                                    <div class="col-lg-8">
-                                        <div class="single_testmonial text-center">
-                                            <div class="author_thumb">
-                                                <img src="~/img/testmonial/author.png" alt="">
-                                            </div>
-                                            <p>" @i.body"</p>
-                                            <div class="testmonial_author">
-                                                <h3>- Micky Mouse</h3>
-                                                <small class="text-muted"> @i.date.ToLongDateString()</small>
-                                            </div>
+                                    <div class="col-lg-10 col-md-9">
+                                        <div class="destination_info">
+                                            <h3>Description</h3>
+                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
+
+                                        </div>
+                                        <div class="destination_info">
+                                            <h3>Amenities</h3>
+
+                                            @foreach (var item in Model._flat.ListAmenities)
+                                            {
+                                                if (item.ImageUrl != null)
+                                                {
+                                                    <div class="row ">
+                                                        <div class="col-lg-4">
+                                                            <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" width="50" height="50" class="img-rounded" />
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <h5 style="text-align:left; margin:10px;">@item.Name</h5>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+
+                                    <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@Model.ProfilePicture" alt="" height="240">
+                                    <a href="/Home/ViewFlat?FlatId=@Model._flat.Id" class="prise">R @Model._flat.RentingPrice</a>
+                                </div>
+                                <div class="place_info">
+                                    <p><i class="glyphicon glyphicon-map-marker text-danger"></i> @*<span>@item.getlocation(item.Flatid)</span>*@Berea </p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <i class="fa fa-star"></i>
+                                            <a href="#">@*@item.countstars(item.Flatid)*@</a>
+                                        </span>
+                                        <div class="days">
+                                            <i class="fa fa-clock-o"></i>
+                                            <a href="#">5 Days</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</section>*@
-@*<div class="popular_places_area">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="section_title text-center mb_70">
-                    <h3>Similar Flats</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @foreach (var item in Model.getlocationlist(Model.GetsingleSurbu(Model.Flatid)))
-            {
-                int space = item.AvailableSpa(item.Flatid);
-                if (space > 0 && item.Flatid != Model.Flatid)
-                {
-                    var flatimages = db.FlatImages.Where(x => x.Flatid == item.Flatid && x.Type == "Main").Select(x => x.Image).FirstOrDefault();
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single_place">
-                            <div class="thumb">
-                                @if (flatimages != null)
-                                {
-                                    var base64 = Convert.ToBase64String(flatimages);
-                                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-                                    <img src="@imgsrc" alt="" height="240">
-                                }
-                                <a href="/flats/View?id=@item.Flatid" class="prise">R @item.RentingPrice</a>
+                            <div>
+                                <button id="_book-btn" class="btn btn-lg btn-primary"> Book Flat Now!</button>
                             </div>
-                            <div class="place_info">
-                                <a href="/flats/View?id=@item.Flatid"><h3>@item.name</h3></a>
-                                <p><i class="glyphicon glyphicon-map-marker text-danger"></i> <span>@item.getlocation(item.Flatid)</span> </p>
-                                <div class="rating_days d-flex justify-content-between">
-                                    <span class="d-flex justify-content-center align-items-center">
-                                        <i class="fa fa-star"></i>
-                                        <a href="#">@item.countstars(item.Flatid)</a>
-                                    </span>
-                                    <div class="days">
-                                        <i class="fa fa-clock-o"></i>
-                                        <a href="#">5 Days</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            @*<section>
+                    <div class="testimonial_area">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="testmonial_active owl-carousel">
+                                        @foreach (var i in db.Reviews.Where(x => x.Flatid == Model.Flatid).ToList())
+                                        {
+
+                                            <div class="single_carousel">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-lg-8">
+                                                        <div class="single_testmonial text-center">
+                                                            <div class="author_thumb">
+                                                                <img src="~/img/testmonial/author.png" alt="">
+                                                            </div>
+                                                            <p>" @i.body"</p>
+                                                            <div class="testmonial_author">
+                                                                <h3>- Micky Mouse</h3>
+                                                                <small class="text-muted"> @i.date.ToLongDateString()</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                }
-            }
+
+                </section>*@
+            @*<div class="popular_places_area">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="section_title text-center mb_70">
+                                    <h3>Similar Flats</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach (var item in Model.getlocationlist(Model.GetsingleSurbu(Model.Flatid)))
+                            {
+                                int space = item.AvailableSpa(item.Flatid);
+                                if (space > 0 && item.Flatid != Model.Flatid)
+                                {
+                                    var flatimages = db.FlatImages.Where(x => x.Flatid == item.Flatid && x.Type == "Main").Select(x => x.Image).FirstOrDefault();
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="single_place">
+                                            <div class="thumb">
+                                                @if (flatimages != null)
+                                                {
+                                                    var base64 = Convert.ToBase64String(flatimages);
+                                                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                                                    <img src="@imgsrc" alt="" height="240">
+                                                }
+                                                <a href="/flats/View?id=@item.Flatid" class="prise">R @item.RentingPrice</a>
+                                            </div>
+                                            <div class="place_info">
+                                                <a href="/flats/View?id=@item.Flatid"><h3>@item.name</h3></a>
+                                                <p><i class="glyphicon glyphicon-map-marker text-danger"></i> <span>@item.getlocation(item.Flatid)</span> </p>
+                                                <div class="rating_days d-flex justify-content-between">
+                                                    <span class="d-flex justify-content-center align-items-center">
+                                                        <i class="fa fa-star"></i>
+                                                        <a href="#">@item.countstars(item.Flatid)</a>
+                                                    </span>
+                                                    <div class="days">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        <a href="#">5 Days</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>*@
+        </main>
+        <footer class="footer">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 col-lg-4 ">
+                            <div class="footer_widget">
+                                <div class="footer_logo">
+                                    <a href="#">
+                                        <h2>Logo Hare</h2>
+                                    </a>
+                                </div>
+                                <p>
+                                    65 Maud Mfusi, Durban Central <br> Durban 4001 <br>
+                                    <a href="#">+2784 252 7283</a> <br>
+                                    <a href="#">Info@newhomesolutions.co.za</a>
+                                </p>
+                                <div class="socail_links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ti-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ti-twitter-alt"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-pinterest"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-youtube-play"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 col-lg-2">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Company
+                                </h3>
+                                <ul class="links">
+                                    <li><a href="/flsts/Create">Become a Landlord</a></li>
+                                    <li><a href="/RoomMates/Index">Find Room Mate</a></li>
+                                    <li><a href="/Home/FindFlat"> Find Flat</a></li>
+                                    <li><a href="#"> Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-lg-3">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Popular Flat Locations
+                                </h3>
+                                <ul class="links double_links">
+                                    @*@foreach (var item in db.Places.ToList())
+                                        {
+                                            <li><a href="/home/Places/?name=@item.PlacesId">@item.Name</a></li>
+                                        }*@
+
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-lg-3">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Instagram
+                                </h3>
+                                <div class="instagram_feed">
+                                    <div class="single_insta">
+                                        <a href="#">
+                                            <img src="~/img/instagram/1.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="single_insta">
+                                        <a href="#">
+                                            <img src="~/img/instagram/2.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="single_insta">
+                                        <a href="#">
+                                            <img src="~/img/instagram/3.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="single_insta">
+                                        <a href="#">
+                                            <img src="~/img/instagram/4.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="single_insta">
+                                        <a href="#">
+                                            <img src="~/img/instagram/5.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="single_insta">
+                                        <a href="#">
+                                            <img src="~/img/instagram/6.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copy-right_text">
+                <div class="container">
+                    <div class="footer_border"></div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <p class="copy_right text-center">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> New Home Solutions <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Modal -->
+        <div class="modal fade custom_search_pop" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="serch_form">
+                        <form action="/Home/FindFlat" method="post">
+                            <input type="text" name="Search" id="Search" required placeholder="Search">
+                            <button type="submit">search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="_overlay" style="display:none;">
+        <div id="booking" class="section">
+            <button id="_close-overlay-btn">Close</button>
+            <div class="section-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="booking-cta">
+                                <h1>Make your reservation</h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-offset-1">
+                            <div class="booking-form">
+                                <form method="post" action="/Booking/Book">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="FlatId" value="@Model._flat.Id"/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text">
+                                                <span class="form-label">Name</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="email">
+                                                <span class="form-label">Email</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="tel">
+                                                <span class="form-label">Phone</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-group row">
+                                        @foreach (var item in Model._flat.ListRoomTypes)
+                                        {
+                                            <div class="col-md-5">
+                                                <label class="btn btn-primary">
+                                                    <img id="img-check" src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Running.png" alt="..." class="img-thumbnail ">
+                                                    <input type="radio" name="RoomTypeId"  value="@item.Id">
+                                                </label>
+                                                <p>@item.Name</p>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control" name="BookingDate" type="date" required>
+                                                <span class="form-label">Check In</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-btn">
+                                        <button class="submit-btn">Book Now</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>*@
+    <!-- JS here -->
+    <script src="~/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <script src="~/js/ajax-form.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/js/scrollIt.js"></script>
+    <script src="~/js/jquery.scrollUp.min.js"></script>
+    <script src="~/js/wow.min.js"></script>
+    <script src="~/js/nice-select.min.js"></script>
+    <script src="~/js/jquery.slicknav.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/gijgo.min.js"></script>
+    <script src="~/js/slick.min.js"></script>
+
+    <!--contact js-->
+    <script src="~/js/contact.js"></script>
+    <script src="~/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/js/jquery.form.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/mail-script.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <script>
+        var currentpage;
+        var totalpages;
+        var keyword = $("#keyword").val();
+        $(document).ready(function () {
+            getData(1);
+            currentpage = 1;
+            console.log("Loaded for the first time");
+
+        });
+
+        function getData(page) {
+            currentpage = page;
+            console.log("fetch some JSON data");
+            $.ajax({
+                url: "/Home/Pagination/?page=" + page + "&keyword=" + keyword, success: function (result) {
+                    console.log(result);
+                    $("#flatlist").html(result.PaginationList);
+                    $("#pagination").html(result.navigation);
+                }
+            }
+            );
+        }
+
+        //Overlay script
+        $("#_book-btn").click(function () {
+            $("#_main").hide(900);
+            $("#_overlay").show();
+            console.log("Arrived!!");
+        }
+        );
+        $("#_close-overlay-btn").click(function () {
+            $("#_overlay").hide();
+            $("#_main").show(900);
+            console.log("Arrived!!");
+        }
+        );
+
+        $("#img-check").click(function () {
+            $(this).toggleClass("check");
+            console.log("Radion button checked");
+        });
+
+    </script>
+    <script>
+        $('.form-control').each(function () {
+            floatedLabel($(this));
+        });
+
+        $('.form-control').on('input', function () {
+            console.log("Test the script");
+            floatedLabel($(this));
+        });
+
+        function floatedLabel(input) {
+            var $field = input.closest('.form-group');
+            if (input.val()) {
+                $field.addClass('input-not-empty');
+            } else {
+                $field.removeClass('input-not-empty');
+            }
+        }
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('.popup-btn').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+
+        });
+
+    </script>
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
+        });
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#City").change(function () {
+                $('#exampleModalfilter').modal('show')
+
+                var City = $(this).val();
+
+                $.ajax({
+                    url: "/Home/GetSubcatList/?city=" + City,
+                    contentType: "html",
+                    success: function (response) {
+                        $("#Surbublo").html(response);
+                        $('#exampleModalfilter').modal('hide')
+                    }
+
+                })
+
+            })
+
+        })
+        var Filter = function () {
+            var range = $("#amount").val();
+            var order = $("#Orderprice").val();
+            $.ajax({
+                type: "post",
+                url: "/Home/Filter/?range=" + range + "&&order=" + order,
+                error: function () {
+                    alert("error");
+                },
+                success: function (response) {
+                    $('#exampleModalfilter').modal('hide')
+                    $("#Result").html(response);
+
+
+                }
+            })
+        }
+    </script>
+</body>
+</html>
+
+
+
 
 
 

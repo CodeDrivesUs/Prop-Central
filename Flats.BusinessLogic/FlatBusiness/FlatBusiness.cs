@@ -115,7 +115,10 @@ namespace Flats.BusinessLogic.FlatBusiness
         }
         public Pagination PopulatePagination( string keyword ,int page)
         {
-            return new Pagination { _count=_dataMapping.GetCountPaginatedListFlats(keyword), _current=page, _final=CalcTotalPages(keyword), _from=GetStartRow(page), _to= 0   };
+            int total = GetPaginatedListFlats(page,keyword).ToList().Count;
+            int _to = GetStartRow(page) + total;
+            int _from = GetStartRow(page) + 1;
+            return new Pagination { _count=_dataMapping.GetCountPaginatedListFlats(keyword), _current=page, _final=CalcTotalPages(keyword), _from=_from, _to= _to };
         }
         public CreateUpdateFlatSharedModel GetFlatPopulatedWithRommtypesAndAmenities(Guid FlatId)
         {

@@ -24,5 +24,14 @@ namespace Flats.DataMapping.RoomBookingDataMapping
             var dbModel = mapper.Map<RoomBooking>(roomBookingSharedModel);
           return   _dataRepository.AddRoomBooking(dbModel);
         }
+        public IEnumerable<UserRoomBooingSharedModel> GetFlatBookingForAFlat(Guid FlatId)
+        {
+            return mapper.Map<IEnumerable<UserRoomBooingSharedModel>>(_dataRepository.GetRoomBookingsForAFlat(FlatId));
+        }
+        public UserRoomBooingSharedModel GetRoomBookingById(Guid bookingId)
+        {
+            return mapper.Map<UserRoomBooingSharedModel>(_dataRepository.GetRoomBookingsById(bookingId));
+
+        }
     }
 }

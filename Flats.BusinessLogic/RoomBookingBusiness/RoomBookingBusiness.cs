@@ -13,11 +13,19 @@ namespace Flats.BusinessLogic.RoomBookingBusiness
         private IRoomBookingDataMapping _roomBookingDataMapping;
         public RoomBookingBusiness()
         {
-
+            _roomBookingDataMapping = new RoomBookingDataMapping();
         }
         public Guid AddRoomBooking(RoomBookingSharedModel roomBookingSharedModel)
         {
             return _roomBookingDataMapping.AddRoomBooking(roomBookingSharedModel);
+        }
+        public List<UserRoomBooingSharedModel> GetRoomBookingsForAFlat(Guid flatId)
+        {
+            return _roomBookingDataMapping.GetFlatBookingForAFlat(flatId).ToList();
+        }
+        public UserRoomBooingSharedModel GetRoomBookingById(Guid bookingId)
+        {
+            return _roomBookingDataMapping.GetRoomBookingById(bookingId);
         }
     }
 }

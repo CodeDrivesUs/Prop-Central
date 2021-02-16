@@ -69,8 +69,10 @@
     <Compile Include="HomeSharedModel\FindFlatSharedModel.cs" />
     <Compile Include="HomeSharedModel\FlatSharedModel.cs" />
     <Compile Include="HomeSharedModel\HomeSharedmodel.cs" />
+    <Compile Include="LandLordSharedModels\LandLordIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomBookingSharedModel\RoomBookingSharedModel.cs" />
+    <Compile Include="RoomBookingSharedModel\UserRoomBooingSharedModel.cs" />
     <Compile Include="RoomSharedModel\CreateUpdateRoomSharedModel.cs" />
     <Compile Include="RoomTypeSharedModel\RoomTypeSharedModel.cs" />
     <Compile Include="SharedModels\Pagination.cs" />

@@ -49,6 +49,11 @@ namespace Flats.Controllers
 
             return View(new FindFlatSharedModel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes() });
         }
+        [HttpPost]
+        public ActionResult FindFlat(string Search)
+        {
+            return View(new  FindFlatSharedModel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes(), Keyword=Search });
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

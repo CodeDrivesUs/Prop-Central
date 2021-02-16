@@ -12,6 +12,7 @@ namespace Flats.SharedModel.RoomBookingSharedModel
         public Guid RoomTypeId { get; set; }
         public Guid FlatId { get; set; }
         public DateTime BookingCreationDate { get; set; }
+        public DateTime BookingDate { get; set; }
         public string IdNumber { get; set; }
     }
 }

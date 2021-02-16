@@ -119,10 +119,10 @@
                         <div class="thumb">
 
                             <img src="@ConfigurationManager.AppSettings["photosuploadUrl"]@item.ImageUrl" alt="" height="240">
-                            <a href="/Home/ViewFlat?FlatId=@item.Id" class="prise">R @item.RentingPrice</a>
+                            <a href="/Home/ViewFlat/?FlatId=@item.Id" class="prise">R @item.RentingPrice</a>
                         </div>
                         <div class="place_info">
-                            <a href="/flats/View?id=@item.Id"><h3>@item.Name flatnamr</h3></a>
+                            <a href="/Home/ViewFlat/?FlatId=@item.Id"><h3>@item.Name </h3></a>
                             <p><i class="glyphicon glyphicon-map-marker text-danger"></i> @*<span>@item.getlocation(item.Flatid)</span>*@Berea </p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">

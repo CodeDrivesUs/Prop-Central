@@ -10,5 +10,7 @@ namespace Flats.BusinessLogic.RoomBookingBusiness
     public interface IRoomBookingBusiness
     {
         Guid AddRoomBooking(RoomBookingSharedModel roomBookingSharedModel);
+        List<UserRoomBooingSharedModel> GetRoomBookingsForAFlat(Guid flatId);
+        UserRoomBooingSharedModel GetRoomBookingById(Guid bookingId);
     }
 }

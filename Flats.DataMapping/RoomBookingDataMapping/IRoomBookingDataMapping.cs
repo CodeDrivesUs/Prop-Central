@@ -1,4 +1,5 @@
-﻿using Flats.SharedModel.RoomBookingSharedModel;
+﻿using Flats.DataModel.RoomBookings;
+using Flats.SharedModel.RoomBookingSharedModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Flats.DataMapping.RoomBookingDataMapping
     public interface IRoomBookingDataMapping
     {
         Guid AddRoomBooking(RoomBookingSharedModel roomBookingSharedModel);
+        IEnumerable<UserRoomBooingSharedModel> GetFlatBookingForAFlat(Guid FlatId);
+        UserRoomBooingSharedModel GetRoomBookingById(Guid bookingId);
     }
 }

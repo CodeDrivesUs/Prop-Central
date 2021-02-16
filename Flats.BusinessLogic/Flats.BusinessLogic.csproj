@@ -64,6 +64,10 @@
       <Project>{b7ca8f1d-e3da-41af-8749-6b2705d20f30}</Project>
       <Name>Flats.DataMapping</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Flats.DataModel\Flats.DataModel.csproj">
+      <Project>{885166E5-CF3A-4BC1-A4FE-D86A5277685B}</Project>
+      <Name>Flats.DataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flats.Enums\Flats.Enums.csproj">
       <Project>{6d7a3dc2-2087-4f06-a84c-ea1ca97b41d9}</Project>
       <Name>Flats.Enums</Name>
