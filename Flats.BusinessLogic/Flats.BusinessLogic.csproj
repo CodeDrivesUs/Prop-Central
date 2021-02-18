@@ -54,6 +54,8 @@
     <Compile Include="RoomBookingBusiness\RoomBookingBusiness.cs" />
     <Compile Include="RoomBusiness\IRoomBusiness.cs" />
     <Compile Include="RoomBusiness\RoomBusiness.cs" />
+    <Compile Include="RoomOccupantBusiness\IRoomOccupantBusiness.cs" />
+    <Compile Include="RoomOccupantBusiness\RoomOccupantBusiness.cs" />
     <Compile Include="RoomtypeBusiness\IRoomTypeBusiness.cs" />
     <Compile Include="RoomtypeBusiness\RoomTypeBusiness.cs" />
     <Compile Include="UsereBusiness\IUsereBusiness.cs" />

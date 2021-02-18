@@ -216,7 +216,7 @@
                                     @item.PhoneNumber
 
                                 </td>
-                                <td>
+                                <td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 
                                     @item.Email
 
@@ -227,7 +227,7 @@
 
                                 <td>
 
-                                    <form action="/LandLord/Process" method="post">
+                                    <form action="/LandLord/Proccess" method="get">
                                         @Html.AntiForgeryToken()
                                         <input  type="hidden" name="bookingId" value="@item.Id"/>
                                         <input type="submit" class="btn btn-primary" value="Process Booking" />

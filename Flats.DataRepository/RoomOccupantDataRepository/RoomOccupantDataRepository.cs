@@ -28,10 +28,10 @@ namespace Flats.DataRepository.RoomOccupantDataRepository
             sqlParameters.Add("@FirstName", roomOccupant.FirstName);
             sqlParameters.Add("@Gender",(int)roomOccupant.Gender);
             sqlParameters.Add("@IdNumber", roomOccupant.IdNumber);
-            sqlParameters.Add("LastName", roomOccupant.LastName);
+            sqlParameters.Add("@LastName", roomOccupant.LastName);
             sqlParameters.Add("@PhoneNumber", roomOccupant.PhoneNumber);
             sqlParameters.Add("@StatusId",(int)roomOccupant.StatusId);
-            return _repository.SelectOne<Guid>("AddFlatRoom", sqlParameters, CommandType.StoredProcedure);
+            return _repository.SelectOne<Guid>("AddRoomOccupant", sqlParameters, CommandType.StoredProcedure);
         }
     }
 }

@@ -8,6 +8,8 @@ using Flats.BusinessLogic.FlatBusiness;
 using Flats.BusinessLogic.FlatImageBusiness;
 using Flats.BusinessLogic.RoomBookingBusiness;
 using Flats.SharedModel.LandLordSharedModels;
+using Flats.SharedModel.RoomOccupantSharedModels;
+using Flats.BusinessLogic.RoomOccupantBusiness;
 
 
 namespace Flats.Controllers
@@ -17,9 +19,10 @@ namespace Flats.Controllers
         private IFlatBusiness _flatBusiness;
         private IFlatImageBusiness _flatImageBusiness;
         private IRoomBookingBusiness _roomBookingBusiness;
-
+        private IRoomOccupantBusiness  _roomOccupantBusiness;
         public LandLordController()
         {
+            _roomOccupantBusiness = new RoomOccupantBusiness();
             _roomBookingBusiness = new RoomBookingBusiness();
             _flatBusiness = new FlatBusiness();
             _flatImageBusiness = new FlatImageBusiness();
@@ -39,15 +42,20 @@ namespace Flats.Controllers
 
             return View(new LandLordIndex { _flat = flat, ProfilePicture = _flatImageBusiness.GetProfilePicture((Guid)FlatId).ImageUrl,  _flatBookings = _roomBookingBusiness.GetRoomBookingsForAFlat((Guid)FlatId) });
         }
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult Proccess(Guid bookingId)
         {
-            var booking = _roomBookingBusiness.GetRoomBookingById(bookingId);
+            var booking = _roomBookingBusiness.PopulateRoomOccupantByBookingId(bookingId);
             if (booking == null)
             {
                 return HttpNotFound();
             }
             return View(booking);
         }
+        //[HttpPost, ValidateAntiForgeryToken]
+        //public ActionResult Proccess(RoomOccupantSharedModel roomOccupantSharedModel)
+        //{
+        //    return View();
+        //}
     }
 }

@@ -8,6 +8,7 @@ using Flats.DataModel.RoomBookings;
 using Flats.DataRepository.RoomBookingDataRepository;
 using AutoMapper;
 using Flats.DataMapping.AutoMapper;
+using Flats.SharedModel.RoomOccupantSharedModels;
 
 namespace Flats.DataMapping.RoomBookingDataMapping
 {
@@ -32,6 +33,11 @@ namespace Flats.DataMapping.RoomBookingDataMapping
         {
             return mapper.Map<UserRoomBooingSharedModel>(_dataRepository.GetRoomBookingsById(bookingId));
 
+        }
+        public RoomOccupantSharedModel PopulateRoomOccupantByBookingId(Guid Id)
+        {
+            var dbmodel = _dataRepository.GetRoomBookingsById(Id);
+            return mapper.Map< UserRoomBooking , RoomOccupantSharedModel>(dbmodel);
         }
     }
 }

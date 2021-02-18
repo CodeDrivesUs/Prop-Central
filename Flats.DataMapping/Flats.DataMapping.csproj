@@ -57,6 +57,8 @@
     <Compile Include="RoomBookingDataMapping\RoomBookingDataMapping.cs" />
     <Compile Include="RoomDataMapping\IRoomDataMapping.cs" />
     <Compile Include="RoomDataMapping\RoomDataMapping.cs" />
+    <Compile Include="RoomOccupantDataMappings\IRoomOccupantDataMappings.cs" />
+    <Compile Include="RoomOccupantDataMappings\RoomOccupantDataMappings.cs" />
     <Compile Include="RoomTypeDataMapping\IRoomTypeDataMapping.cs" />
     <Compile Include="RoomTypeDataMapping\RoomTypeDataMapping.cs" />
     <Compile Include="UsersDataMappings\IUsersDataMappings.cs" />

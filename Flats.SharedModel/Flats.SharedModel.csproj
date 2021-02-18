@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomBookingSharedModel\RoomBookingSharedModel.cs" />
     <Compile Include="RoomBookingSharedModel\UserRoomBooingSharedModel.cs" />
+    <Compile Include="RoomOccupantSharedModels\RoomOccupantSharedModel.cs" />
     <Compile Include="RoomSharedModel\CreateUpdateRoomSharedModel.cs" />
     <Compile Include="RoomTypeSharedModel\RoomTypeSharedModel.cs" />
     <Compile Include="SharedModels\Pagination.cs" />
@@ -88,5 +89,6 @@
       <Name>Flats.Enums</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

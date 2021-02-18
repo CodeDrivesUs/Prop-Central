@@ -1,4 +1,5 @@
 ﻿using Flats.SharedModel.RoomBookingSharedModel;
+using Flats.SharedModel.RoomOccupantSharedModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Flats.BusinessLogic.RoomBookingBusiness
         Guid AddRoomBooking(RoomBookingSharedModel roomBookingSharedModel);
         List<UserRoomBooingSharedModel> GetRoomBookingsForAFlat(Guid flatId);
         UserRoomBooingSharedModel GetRoomBookingById(Guid bookingId);
+        RoomOccupantSharedModel PopulateRoomOccupantByBookingId(Guid Id);
     }
 }
