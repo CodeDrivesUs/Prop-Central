@@ -112,9 +112,10 @@ body {
         content: "Rent and Deposit of the room types";
     }
     .steps ul.step-3:before {
-      content: "Your Order"; }
+      content: "Confirm Application"; }
     .steps ul.step-4:before {
-      content: "Billing Method"; }
+        content: "Step 1 out of 2 Success";
+    }
 
 h3 {
   font-family: "Poppins-SemiBold"; }

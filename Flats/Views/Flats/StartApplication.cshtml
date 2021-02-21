@@ -25,7 +25,6 @@
             display: none;
             background-color: antiquewhite;
         }
-
             .collapse.in {
                 display: block;
             }
@@ -82,7 +81,7 @@
                         <label for="">
                             Address *
                         </label>
-                        <input type="text" class="form-control" placeholder="Street address" style="margin-bottom: 20px">
+                        <input type="text" name="Address" class="form-control" placeholder="Street address" style="margin-bottom: 20px">
 
                     </div>
                     <div class="form-row">
@@ -135,7 +134,7 @@
                             <input type="text" name="Deposit" class="form-control">
                         </div>
                     </div>
-                    
+
                 </section>
 
                 <!-- SECTION 2 -->
@@ -149,52 +148,16 @@
                 <!-- SECTION 3 -->
                 <h4></h4>
                 <section>
-                    <div class="product">
-                        <div class="item">
-                            <div class="left">
-                                <a href="#" class="thumb">
-
-                                </a>
-                                <div class="purchase">
-                                    <h6>
-                                        <a href="#">Low Table/Stool</a>
-                                    </h6>
-                                    <span>x4</span>
-                                </div>
-                            </div>
-                            <span class="price">$29</span>
-                        </div>
-                        <div class="item">
-                            <div class="left">
-                                <a href="#" class="thumb">
-
-                                </a>
-                                <div class="purchase">
-                                    <h6>
-                                        <a href="#">Set of 3 Porcelain</a>
-                                    </h6>
-                                    <span>x2</span>
-                                </div>
-                            </div>
-                            <span class="price">$124</span>
-                        </div>
-                    </div>
-                    <div class="checkout">
-                        <div class="subtotal">
-                            <span class="heading">Subtotal</span>
-                            <span>$364</span>
-                        </div>
-                        <p class="shipping">
-                            <span class="heading">Shipping</span>
-                            there are no shipping methods available. please double check your address, or contact us if you need any help.
-                        </p>
-                        <div class="total">
-                            <span class="heading">Subtotal</span>
-                            <span class="total-price">$364</span>
-                        </div>
-                    </div>
+                    <div id="flat_preview"></div>
                 </section>
-
+                <!-- SECTION 4 -->
+                <h4></h4>
+                <section>
+                    <h2>Success</h2>
+                    <img src="~/Assert/FlatApplication/images/undraw_celebration_0jvk.png"  height="400" width="500"/>
+                    <p>One more step to go which is uploading of pictures</p>
+                    <input type="hidden" name="FlatId" id="FlatId"  />
+                </section>
             </div>
         </form>
     </div>
@@ -207,7 +170,6 @@
 
     <script src="~/Assert/FlatApplication/js/collaps.js"></script>
     <script>
-
         var populateamenities = function (name) {
             var value = $("#display_amenity").val();
             if (value == null) {

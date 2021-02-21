@@ -11,12 +11,10 @@ namespace Flats.BusinessLogic.FlatBusiness
 {
     public interface IFlatBusiness
     {
-        void Add(CreateUpdateFlatSharedModel model);
+        Guid AddFlatApplication(FullFlatApplicationSharedModel model);
         List<FlatSharedModel> GetAllSubmittedApllications();
         CreateUpdateFlatSharedModel GetFlatApplication(Guid FlatId);
-        List<FlatSharedModel> GetAllApprovedApllications();
-        void AddAmenitie(Guid flatId, Guid amenityId);
-        void AddFlatRoomType(Guid flatId, Guid roomtypeId);
+        List<FlatSharedModel> GetAllApprovedApllications();     
         void ProcessApplication(CreateUpdateFlatSharedModel createUpdateFlatSharedModel, Guid[] Amenities, Guid[] RoomTypes);
         Guid GetApplicantUserId(Guid FlatId);
         void AddLandLord(AddLandLordSharedModel addLandLord);

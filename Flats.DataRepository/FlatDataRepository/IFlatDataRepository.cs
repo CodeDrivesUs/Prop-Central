@@ -9,7 +9,7 @@ namespace Flats.DataRepository.FlatDataRepository
 {
     public interface IFlatDataRepository
     {
-        void CreateFlat(CreateUpdateFlat createUpdateFlat);
+        Guid CreateFlat(CreateUpdateFlat createUpdateFlat);
         
         IEnumerable<Flat> GetAllFlatsExeptStatusId(int statusId);
         IEnumerable<Flat> GetAllFlatsByStatusId(int statusId);

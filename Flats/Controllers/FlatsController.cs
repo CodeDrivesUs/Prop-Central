@@ -81,12 +81,21 @@ namespace Flats.Controllers
             }
             return list;
         }
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public ActionResult ReviewApplication(FullFlatApplicationSharedModel fullFlatApplicationSharedModel)
         {
             fullFlatApplicationSharedModel._listamenities = PopulaAmenities(fullFlatApplicationSharedModel.Amenities);
             fullFlatApplicationSharedModel._listflatroomtypes = PopulateFlatRoomType(fullFlatApplicationSharedModel.DepositWithIds,fullFlatApplicationSharedModel.RentWithIds, fullFlatApplicationSharedModel.RoomTypes);
             return View(fullFlatApplicationSharedModel);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult SubmitApplication(FullFlatApplicationSharedModel fullFlatApplicationSharedModel)
+        {
+            fullFlatApplicationSharedModel._listamenities = PopulaAmenities(fullFlatApplicationSharedModel.Amenities);
+            fullFlatApplicationSharedModel._listflatroomtypes = PopulateFlatRoomType(fullFlatApplicationSharedModel.DepositWithIds, fullFlatApplicationSharedModel.RentWithIds, fullFlatApplicationSharedModel.RoomTypes);
+            fullFlatApplicationSharedModel.UserId = new Guid(User.Identity.GetUserId());
+            Guid flatId= _flatBusiness.AddFlatApplication(fullFlatApplicationSharedModel);
+            return Json(flatId, JsonRequestBehavior.AllowGet);
         }
 
         public List<FlatRoomTypesSharedModel> PopulateFlatRoomType( string[] deposit, string[] rent,Guid[] Id)
@@ -125,11 +134,7 @@ namespace Flats.Controllers
             }
             return list;
         }
-        public ActionResult SubmitApplication()
-        {
-            _flatBusiness.Add((CreateUpdateFlatSharedModel)Session["FlatApplication"]);
-            return View("Sucess");
-        }
+
         [OutputCache(Duration = 3600)]
         public List<RoomTypeSharedModel> GetAllRoomTypes()
         {

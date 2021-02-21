@@ -198,11 +198,7 @@
     <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Assert\FlatApplication\fonts\muli\OFL.txt" />
     <Content Include="Assert\FlatApplication\fonts\poppins\OFL.txt" />
-    <Content Include="Assert\FlatApplication\images\form-wizard-bg.jpg" />
-    <Content Include="Assert\FlatApplication\images\form-wizard.jpg" />
-    <Content Include="Assert\FlatApplication\images\form-wizard.png" />
-    <Content Include="Assert\FlatApplication\images\item-1.png" />
-    <Content Include="Assert\FlatApplication\images\item-2.png" />
+    <Content Include="Assert\FlatApplication\images\undraw_celebration_0jvk.png" />
     <Content Include="Assert\FlatApplication\js\collaps.js" />
     <Content Include="Assert\FlatApplication\js\jquery-3.3.1.min.js" />
     <Content Include="Assert\FlatApplication\js\jquery.steps.js" />
@@ -2965,6 +2961,7 @@
     <Content Include="Views\LandLord\AddApplicatntToARoom.cshtml" />
     <Content Include="Views\Flats\StartApplication.cshtml" />
     <Content Include="Views\Flats\GetSelectedRoomTypes.cshtml" />
+    <Content Include="Views\Flats\ReviewApplication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

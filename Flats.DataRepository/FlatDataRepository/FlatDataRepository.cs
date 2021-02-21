@@ -21,7 +21,7 @@ namespace Flats.DataRepository.FlatDataRepository
         {
             _repository = new Repository.Repository();
         }
-        public void CreateFlat(CreateUpdateFlat createUpdateFlat)
+        public Guid CreateFlat(CreateUpdateFlat createUpdateFlat)
         {
             var sqlParameters = new DynamicParameters();
             sqlParameters.Add("@Name", createUpdateFlat.Name);
@@ -32,7 +32,7 @@ namespace Flats.DataRepository.FlatDataRepository
             sqlParameters.Add("@statusId", (int)FlatStatusEnum.ApplicationSubmitted);
             sqlParameters.Add("@Rent", createUpdateFlat.RentingPrice);
             sqlParameters.Add("@Deposit", createUpdateFlat.Deposit);
-            _repository.ExecuteNonQuery("CreateFlatAndHistory", sqlParameters, CommandType.StoredProcedure);
+          return  _repository.SelectOne<Guid>("CreateFlatAndHistory", sqlParameters, CommandType.StoredProcedure);
 
         }
         public void AcceptFlat(CreateUpdateFlat createUpdateFlat)

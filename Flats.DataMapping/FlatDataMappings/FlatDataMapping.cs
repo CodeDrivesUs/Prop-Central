@@ -21,10 +21,10 @@ namespace Flats.DataMapping.FlatDataMappings
         {
             _dataRepository = new FlatDataRepository();
         }
-        public void CreateFlat(CreateUpdateFlatSharedModel createUpdateFlat)
+        public Guid CreateFlat(CreateUpdateFlatSharedModel createUpdateFlat)
         {
             var dbModel = mapper.Map<CreateUpdateFlat>(createUpdateFlat);
-            _dataRepository.CreateFlat(dbModel);
+            return _dataRepository.CreateFlat(dbModel);
         }
         
         public void AcceptFlat(CreateUpdateFlatSharedModel createUpdateFlat)

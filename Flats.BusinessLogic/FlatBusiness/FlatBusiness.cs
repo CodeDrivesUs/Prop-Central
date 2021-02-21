@@ -28,10 +28,7 @@ namespace Flats.BusinessLogic.FlatBusiness
             _amenitiesBusiness = new AmenitiesBusiness.AmenitiesBusiness();
             _roomTypeBusiness = new RoomtypeBusiness.RoomTypeBusiness();
         }
-        public void Add(CreateUpdateFlatSharedModel model)
-        {
-            _dataMapping.CreateFlat(model);
-        }
+      
 
         public List<FlatSharedModel> GetAllSubmittedApllications()
         {
@@ -46,11 +43,7 @@ namespace Flats.BusinessLogic.FlatBusiness
         {
             return _dataMapping.GetAllFlatsExeptStatusId((int)FlatStatusEnum.ApplicationSubmitted).ToList();
         }
-        public void AddFlatRoomType(FlatAmenitiesRoomsModel flatAmenitiesRoomsModel)
-        {
-            flatAmenitiesRoomsModel.Type = 2;
-            _dataMapping.AddRoomOrAmenitie(flatAmenitiesRoomsModel);
-        }
+       
         public void AddAmenitie(Guid flatId, Guid  amenityId)
         {
             _dataMapping.AddRoomOrAmenitie(new FlatAmenitiesRoomsModel { FlatId= flatId, AmenityId= amenityId, Type = 1 });
@@ -64,7 +57,7 @@ namespace Flats.BusinessLogic.FlatBusiness
         {
             
             Parallel.ForEach(Amenities, amenity => AddAmenitie(createUpdateFlatSharedModel.Id, amenity));
-            Parallel.ForEach(RoomTypes, roomtype=>AddFlatRoomType(createUpdateFlatSharedModel.Id,roomtype));
+          //  Parallel.ForEach(RoomTypes, roomtype=>AddFlatRoomType(createUpdateFlatSharedModel.Id,roomtype));
             _dataMapping.AcceptFlat(createUpdateFlatSharedModel);
         }
         public void SubmitApplicationForActivation(CreateUpdateFlatSharedModel createUpdateFlatSharedModel)
@@ -133,9 +126,17 @@ namespace Flats.BusinessLogic.FlatBusiness
             return _dataMapping.GetCountPaginatedListFlats(keyword);
         }
 
-        public void AddFlatRoomType(Guid flatId, Guid roomtypeId)
+        public void AddFlatRoomType(FlatAmenitiesRoomsModel model)
         {
-            throw new NotImplementedException();
+            _dataMapping.AddRoomOrAmenitie(model);
+        }
+
+        public Guid AddFlatApplication(FullFlatApplicationSharedModel model)
+        {
+            Guid flatId= _dataMapping.CreateFlat(new CreateUpdateFlatSharedModel { Address=model.Address, Deposit=model.Deposit, Email=model.Email, Name=model.FlatName, RentingPrice= model.Rent, PhoneNumber=model.PhoneNumber, UserId =model.UserId });
+            Parallel.ForEach(model.Amenities, amenity => AddAmenitie(flatId, amenity));
+            Parallel.ForEach(model._listflatroomtypes, roomtype => AddFlatRoomType(new FlatAmenitiesRoomsModel { FlatId=flatId, RoomTypeId=roomtype.RoomTypeId, Rent=roomtype.Rent, Deposit=roomtype.Deposit, Type=2 }));
+            return flatId;        
         }
     }
 }

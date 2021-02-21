@@ -10,7 +10,7 @@ namespace Flats.DataMapping.FlatDataMappings
 {
   public interface IFlatDataMapping
     {
-        void CreateFlat(CreateUpdateFlatSharedModel createUpdateFlat);
+        Guid CreateFlat(CreateUpdateFlatSharedModel createUpdateFlat);
         IEnumerable<FlatSharedModel> GetAllFlatsByStatusId(int statusId);
         void AddRoomOrAmenitie(FlatAmenitiesRoomsModel flatAmenitiesRoomsModel);
         CreateUpdateFlatSharedModel GetFlatApplication(Guid FlatId);

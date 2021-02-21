@@ -29,16 +29,27 @@ $(function () {
             if (newIndex === 3) {
                 $('.steps ul').addClass('step-4');
                 $('.actions ul').addClass('step-last');
+                submitform();
             } else {
                 $('.steps ul').removeClass('step-4');
                 $('.actions ul').removeClass('step-last');
             }
+            if (newIndex === 4) {
+                console.log("Testing The submit  to change the photos");
+            }
             return true;
         },
+        onFinished: function (event, currentIndex) {
+            Finished();
+            
+        },
         labels: {
-            finish: "Place Holder",
+            finish: "Add Pictures",
             next: "Next",
-            previous: "Previous"
+            previous: "Previous",
+            loading: "Loading ...",
+            current: "current step:",
+            pagination: "Pagination",
         }
     });
     // Custom Steps Jquery Steps
@@ -49,7 +60,6 @@ $(function () {
     });
     // Custom Button Jquery Steps
     $('.forward').click(function () {
-       
         $("#wizard").steps('next');
     })
     $('.backward').click(function () {
@@ -77,7 +87,7 @@ var populateroomtypes = function () {
                 roomtypeId: data
             },
             function (response) {
-               
+                console.log(response);
                 $("#room_template").html(response);
 
             });
@@ -105,12 +115,31 @@ var review = function () {
         ConcatinatedUrl.push(value);
     });
     var data = $("#application_form").serialize()+"&" + ConcatinatedUrl.join('&');
-    console.log(data);
     $.post("/Flats/ReviewApplication",
         data,
         function (response) {
-
-            $("#room_template").html(response);
-
+            $("#flat_preview").html(response);
         });
+}
+
+var submitform = function () {
+    var ConcatinatedUrl = [];
+    jQuery("input[name='RentRooms']").each(function () {
+        var value = "RentWithIds=" + this.id + "|" + this.value;
+        ConcatinatedUrl.push(value);
+    });
+    jQuery("input[name='DepositRooms']").each(function () {
+        var value = "DepositWithIds=" + this.id + "|" + this.value;
+        ConcatinatedUrl.push(value);
+    });
+    var data = $("#application_form").serialize() + "&" + ConcatinatedUrl.join('&');
+    $.post("/Flats/SubmitApplication",
+        data,
+        function (response) {
+            $("#FlatId").val(response);
+        });
+}
+var Finished = function () {
+    var flatId = $("#FlatId").val();
+    window.location.replace("/Camara/FlatDashBord/?FlatId=" + flatId);
 }

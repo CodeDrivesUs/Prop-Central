@@ -9,9 +9,11 @@ namespace Flats.SharedModel.FlatSharedModels
 {
     public class FullFlatApplicationSharedModel
     {
+        public Guid UserId { get; set; }
         public string FlatName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public string Address { get; set; }
         public decimal Rent { get; set; }
         public decimal Deposit { get; set; }
         public Guid[] Amenities { get; set; }
