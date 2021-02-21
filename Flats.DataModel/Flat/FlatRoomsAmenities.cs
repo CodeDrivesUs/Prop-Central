@@ -12,5 +12,7 @@ namespace Flats.DataModel.Flat
         public Guid AmenityId { get; set; }
         public Guid RoomTypeId { get; set; }
         public int Type { get; set; }
+        public decimal Deposit { get; set; }
+        public decimal Rent { get; set; }
     }
 }

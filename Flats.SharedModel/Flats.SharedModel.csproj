@@ -64,11 +64,14 @@
     <Compile Include="FlatSharedModels\AddToFlatHistorySharedModel.cs" />
     <Compile Include="FlatSharedModels\CreateUpdateFlatSharedModel.cs" />
     <Compile Include="FlatSharedModels\FlatAmenitiesRoomsModel.cs" />
+    <Compile Include="FlatSharedModels\FlatRoomTypesSharedModel.cs" />
     <Compile Include="FlatSharedModels\FlatSharedModel.cs" />
     <Compile Include="FlatSharedModels\FlatViewModel.cs" />
+    <Compile Include="FlatSharedModels\FullFlatApplicationSharedModel.cs" />
     <Compile Include="HomeSharedModel\FindFlatSharedModel.cs" />
     <Compile Include="HomeSharedModel\FlatSharedModel.cs" />
     <Compile Include="HomeSharedModel\HomeSharedmodel.cs" />
+    <Compile Include="LandLordSharedModels\AddOccupantToARoom.cs" />
     <Compile Include="LandLordSharedModels\LandLordIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomBookingSharedModel\RoomBookingSharedModel.cs" />
@@ -77,6 +80,8 @@
     <Compile Include="RoomSharedModel\CreateUpdateRoomSharedModel.cs" />
     <Compile Include="RoomTypeSharedModel\RoomTypeSharedModel.cs" />
     <Compile Include="SharedModels\Pagination.cs" />
+    <Compile Include="UserSharedModel\IdAndAmount.cs" />
+    <Compile Include="UserSharedModel\SelectedRoomTypes.cs" />
     <Compile Include="UserSharedModel\UserSharedModel.cs" />
   </ItemGroup>
   <ItemGroup>

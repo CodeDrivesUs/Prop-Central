@@ -54,17 +54,8 @@ namespace Flats.Controllers
         {
             return View(new  FindFlatSharedModel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes(), Keyword=Search });
         }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-            return View();
-        }
+      
+      
         [HttpGet]
         public JsonResult Pagination(int page, string keyword)
         {

@@ -31,6 +31,7 @@ namespace Flats.BusinessLogic.AmenitiesBusiness
             return _dataMapping.Get(id);
         }
 
+        
         public List<AmenitiesSharedModel> GetAll()
         {
             return (List<AmenitiesSharedModel>)_dataMapping.GetAll();

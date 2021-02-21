@@ -19,5 +19,6 @@ namespace Flats.SharedModel.RoomOccupantSharedModels
         public DateTime DateOut { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+     
     }
 }

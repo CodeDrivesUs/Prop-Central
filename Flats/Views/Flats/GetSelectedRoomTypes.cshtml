@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+@model Flats.SharedModel.UserSharedModel.SelectedRoomTypes
+@if (Model._roomtypeIds.Count != 0)
+{
+<ol>
+    @foreach (var item in Model._roomtypeIds)
+    {
+    <li>
+        <h5>@item.Name</h5>
+        <hr />
+        <div class="form-row form-group">
+
+            <div class="form-holder">
+                <label for="">
+                    Rent *
+                </label>
+                <input type="text" id="@item.Id" name="RentRooms" class="form-control">
+            </div>
+            <div class="form-holder">
+                <label for="">
+                    Deposit *
+                </label>
+                <input type="text" id="@item.Id" name="DepositRooms" class="form-control">
+            </div>
+        </div>
+    </li>
+    }
+</ol>
+}

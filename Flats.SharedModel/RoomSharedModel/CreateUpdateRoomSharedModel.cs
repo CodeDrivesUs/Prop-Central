@@ -15,5 +15,6 @@ namespace Flats.SharedModel.RoomSharedModel
         public string RoomNumber { get; set; }
         public GenderEnum Gender { get; set; }
         public List<RoomTypeSharedModel.RoomTypeSharedModel> listRoomTypes { get; set; }
+        
     }
 }

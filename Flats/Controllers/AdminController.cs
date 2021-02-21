@@ -64,6 +64,10 @@ namespace Flats.Controllers
             _flatBusiness.ProcessApplication(createUpdateFlatSharedModel,Amenities,RoomTypes);
             return RedirectToAction("AddLandLord", new { FlatId=createUpdateFlatSharedModel.Id });
         }
+        public ActionResult AddRoomTypes(Guid FlatId)
+        {
+            return View();
+        }
         public ActionResult AddLandLord(Guid FlatId)
         {
             Guid userid = _flatBusiness.GetApplicantUserId(FlatId);

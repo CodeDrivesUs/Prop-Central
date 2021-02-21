@@ -46,9 +46,10 @@ namespace Flats.BusinessLogic.FlatBusiness
         {
             return _dataMapping.GetAllFlatsExeptStatusId((int)FlatStatusEnum.ApplicationSubmitted).ToList();
         }
-        public void AddFlatRoomType( Guid flatId, Guid roomtypeId)
+        public void AddFlatRoomType(FlatAmenitiesRoomsModel flatAmenitiesRoomsModel)
         {
-            _dataMapping.AddRoomOrAmenitie(new FlatAmenitiesRoomsModel { RoomTypeId = roomtypeId, FlatId = flatId, Type = 2 });
+            flatAmenitiesRoomsModel.Type = 2;
+            _dataMapping.AddRoomOrAmenitie(flatAmenitiesRoomsModel);
         }
         public void AddAmenitie(Guid flatId, Guid  amenityId)
         {
@@ -132,8 +133,9 @@ namespace Flats.BusinessLogic.FlatBusiness
             return _dataMapping.GetCountPaginatedListFlats(keyword);
         }
 
-
-
-
+        public void AddFlatRoomType(Guid flatId, Guid roomtypeId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

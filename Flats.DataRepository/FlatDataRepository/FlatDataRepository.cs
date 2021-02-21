@@ -66,6 +66,8 @@ namespace Flats.DataRepository.FlatDataRepository
             sqlParameters.Add("@AmenitieId", flatRoomsAmenities.AmenityId);
             sqlParameters.Add("@RoomTypeId", flatRoomsAmenities.RoomTypeId);
             sqlParameters.Add("@Type", flatRoomsAmenities.Type);
+            sqlParameters.Add("@Deposit", flatRoomsAmenities.Deposit);
+            sqlParameters.Add("@Rent", flatRoomsAmenities.Rent);
             _repository.ExecuteNonQuery("AddRoomsOrAmenities", sqlParameters, CommandType.StoredProcedure);
         }
       

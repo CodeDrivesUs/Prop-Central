@@ -52,10 +52,16 @@ namespace Flats.Controllers
             }
             return View(booking);
         }
-        //[HttpPost, ValidateAntiForgeryToken]
-        //public ActionResult Proccess(RoomOccupantSharedModel roomOccupantSharedModel)
-        //{
-        //    return View();
-        //}
+        public ActionResult AddApplicatntToARoom(Guid?  bookingId)
+        {
+
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Proccess(RoomOccupantSharedModel roomOccupantSharedModel)
+        {
+            return View();
+        }
     }
 }

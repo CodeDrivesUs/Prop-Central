@@ -192,6 +192,21 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assert\FlatApplication\css\style.css" />
+    <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\css\material-design-iconic-font.css" />
+    <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\css\material-design-iconic-font.min.css" />
+    <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Assert\FlatApplication\fonts\muli\OFL.txt" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\OFL.txt" />
+    <Content Include="Assert\FlatApplication\images\form-wizard-bg.jpg" />
+    <Content Include="Assert\FlatApplication\images\form-wizard.jpg" />
+    <Content Include="Assert\FlatApplication\images\form-wizard.png" />
+    <Content Include="Assert\FlatApplication\images\item-1.png" />
+    <Content Include="Assert\FlatApplication\images\item-2.png" />
+    <Content Include="Assert\FlatApplication\js\collaps.js" />
+    <Content Include="Assert\FlatApplication\js\jquery-3.3.1.min.js" />
+    <Content Include="Assert\FlatApplication\js\jquery.steps.js" />
+    <Content Include="Assert\FlatApplication\js\main.js" />
     <Content Include="Content\animate-text.css" />
     <Content Include="Content\architectural-design-architecture-blue-build-417273.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -971,6 +986,44 @@
     <Content Include="fonts\themify.eot" />
     <Content Include="fonts\themify.ttf" />
     <Content Include="fonts\themify.woff" />
+    <Content Include="Assert\FlatApplication\css\style.css.map" />
+    <Content Include="Assert\FlatApplication\css\style.scss" />
+    <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Assert\FlatApplication\fonts\material-design-iconic-font\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-Black.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-BlackItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-Bold.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-BoldItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-ExtraBold.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-ExtraBoldItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-ExtraLight.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-ExtraLightItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-Italic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-Light.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-LightItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-Regular.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-SemiBold.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\muli\Muli-SemiBoldItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-ThinItalic.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\demo\chart-area-demo.js" />
     <Content Include="Scripts\demo\chart-bar-demo.js" />
@@ -2654,7 +2707,6 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
-    <Content Include="Views\Home\Indextemplate.html" />
     <Content Include="Views\Shared\_searchableUsers.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2910,6 +2962,9 @@
     <Content Include="Views\LandLord\Index.cshtml" />
     <Content Include="Views\Booking\Sucess.cshtml" />
     <Content Include="Views\LandLord\Proccess.cshtml" />
+    <Content Include="Views\LandLord\AddApplicatntToARoom.cshtml" />
+    <Content Include="Views\Flats\StartApplication.cshtml" />
+    <Content Include="Views\Flats\GetSelectedRoomTypes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
