@@ -138,5 +138,9 @@ namespace Flats.BusinessLogic.FlatBusiness
             Parallel.ForEach(model._listflatroomtypes, roomtype => AddFlatRoomType(new FlatAmenitiesRoomsModel { FlatId=flatId, RoomTypeId=roomtype.RoomTypeId, Rent=roomtype.Rent, Deposit=roomtype.Deposit, Type=2 }));
             return flatId;        
         }
+        public List<FlatRoomTypesSharedModel> GetFlatRoomTypesByFlatId(Guid FlatId)
+        {
+            return _dataMapping.GetFlatRoomTypesByFlatId(FlatId).ToList();
+        }
     }
 }

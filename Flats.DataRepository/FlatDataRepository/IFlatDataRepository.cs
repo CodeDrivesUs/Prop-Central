@@ -24,5 +24,7 @@ namespace Flats.DataRepository.FlatDataRepository
         IEnumerable<FlatView> GetLatestFlat();
         IEnumerable<FlatView> GetPaginatedListFlats(int startrow, int rowsperpage, string keyword);
         int GetCountPaginatedListFlats(string keyword);
+        IEnumerable<FlatRoomTypes> GetFlatRoomTypesByFlatId(Guid FlatId);
+        IEnumerable<CreateUpdateFlat> GetUserFlatListByStatusId(Guid UserId, int statusId);
     }
 }

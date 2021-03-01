@@ -10,6 +10,6 @@ namespace Flats.SharedModel.CamaraSharedModels
     {
         public FlatImageSharedModel.FlatImageSharedModel ProfilePicture { get; set; }
         public FlatSharedModels.CreateUpdateFlatSharedModel flat { get; set; }
-        public List<RoomTypeSharedModel.RoomTypeSharedModel> roomtypes { get; set; }
+        public List<FlatSharedModels.FlatRoomTypesSharedModel> roomtypes { get; set; }
     }
 }

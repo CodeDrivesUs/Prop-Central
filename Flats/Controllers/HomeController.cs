@@ -10,6 +10,7 @@ using Flats.BusinessLogic.FlatBusiness;
 using System.Net;
 using Flats.BusinessLogic.FlatImageBusiness;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace Flats.Controllers
 {
@@ -21,15 +22,20 @@ namespace Flats.Controllers
 
         public HomeController()
         {
+           
             _flatBusiness = new FlatBusiness();
             _roomTypeBusiness = new RoomTypeBusiness();
             _flatImageBusiness = new FlatImageBusiness();
         }
         public ActionResult Index()
         {
-
+            if (User.IsInRole(""))
+            {
+                return RedirectToAction("Index", "LandLord");
+            }
             return View(new HomeSharedmodel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes(), LatestFlats = _flatBusiness.GetLatestFlats() });
         }
+       
         public ActionResult ViewFlat(Guid? FlatId)
         {
             if (FlatId == null)

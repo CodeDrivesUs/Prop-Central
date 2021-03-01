@@ -27,6 +27,10 @@ namespace Flats.Controllers
             _flatBusiness = new FlatBusiness();
             _flatImageBusiness = new FlatImageBusiness();
         }
+        public ActionResult MyFlats()
+        {
+            return View();
+        }
         // GET: LandLord
         public ActionResult Index(Guid? FlatId)
         {

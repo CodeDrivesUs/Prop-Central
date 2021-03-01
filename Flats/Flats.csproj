@@ -1020,6 +1020,8 @@
     <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
     <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="Assert\FlatApplication\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\demo\chart-area-demo.js" />
     <Content Include="Scripts\demo\chart-bar-demo.js" />
@@ -2962,6 +2964,7 @@
     <Content Include="Views\Flats\StartApplication.cshtml" />
     <Content Include="Views\Flats\GetSelectedRoomTypes.cshtml" />
     <Content Include="Views\Flats\ReviewApplication.cshtml" />
+    <Content Include="Views\LandLord\MyFlats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

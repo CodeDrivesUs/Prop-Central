@@ -46,7 +46,7 @@ namespace Flats.Controllers
             {
                 return HttpNotFound();
             }
-            return View(new FlatDashboard { flat =flatapplication, ProfilePicture = _flatImageBusiness.GetProfilePicture((Guid)FlatId), roomtypes= _roomTypeBusiness.GetRoomTypeByFlatId((Guid)FlatId) });
+            return View(new FlatDashboard { flat =flatapplication, ProfilePicture = _flatImageBusiness.GetProfilePicture((Guid)FlatId), roomtypes= _flatBusiness.GetFlatRoomTypesByFlatId((Guid)FlatId)});
         }
         [HttpPost,ValidateAntiForgeryToken]
         public ActionResult AddProfilePicture(FlatImageSharedModel flatImage)

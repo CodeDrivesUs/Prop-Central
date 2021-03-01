@@ -85,5 +85,15 @@ namespace Flats.DataMapping.FlatDataMappings
         {
             return _dataRepository.GetCountPaginatedListFlats(keyword);
         }
+        public IEnumerable<FlatRoomTypesSharedModel> GetFlatRoomTypesByFlatId(Guid FlatId)
+        {
+            var dbModel = _dataRepository.GetFlatRoomTypesByFlatId(FlatId);
+            return mapper.Map<IEnumerable<FlatRoomTypesSharedModel>>(dbModel);
+        }
+        public IEnumerable<CreateUpdateFlatSharedModel> GetUserFlatListByStatusId(Guid UserId, int statusId)
+        {
+            var dbmodel = _dataRepository.GetUserFlatListByStatusId(UserId, statusId);
+            return mapper.Map<IEnumerable<CreateUpdateFlatSharedModel>>(dbmodel);
+        }
     }
 }

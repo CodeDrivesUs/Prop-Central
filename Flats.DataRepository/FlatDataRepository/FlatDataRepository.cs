@@ -138,6 +138,27 @@ namespace Flats.DataRepository.FlatDataRepository
             sqlParameters.Add("@rowsPerPage", 0);
             return _repository.SelectOne<int>("GetPaginatedFlats", sqlParameters, CommandType.StoredProcedure);
         }
+        public IEnumerable<FlatRoomTypes> GetFlatRoomTypesByFlatId(Guid FlatId)
+        {
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add("@flatId", FlatId);
+            return _repository.Query<FlatRoomTypes>("GetFlatRoomTypes", sqlParameters, CommandType.StoredProcedure);
+        }
+        public IEnumerable<CreateUpdateFlat> GetUserFlatListByStatusId( Guid UserId, int statusId)
+        {
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add("@userId", UserId);
+            sqlParameters.Add("@statusId", statusId);
+            return _repository.Query<CreateUpdateFlat>("GetUserFlatByStatusId", sqlParameters, CommandType.StoredProcedure);
+        }
+        public IEnumerable<CreateUpdateFlat> GetAllUserFlatList(Guid UserId, int statusId)
+        {
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add("@userId", UserId);
+            sqlParameters.Add("@statusId", statusId);
+            return _repository.Query<CreateUpdateFlat>("GetUserFlatByStatusId", sqlParameters, CommandType.StoredProcedure);
+        }
+
     }
 }
 

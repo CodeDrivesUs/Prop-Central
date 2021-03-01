@@ -2804,10 +2804,10 @@ h3 {
 
 /* line 80, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
 .destination_banner_wrap {
-  background-image: url(../img/banner/destination.png);
-  padding: 340px 0;
-  background-size: cover;
-  background-position: center center;
+    background-color: #ed4141;
+    padding: 340px 0;
+    background-size: cover;
+    background-position: center center;
 }
 
 @media (max-width: 767px) {
