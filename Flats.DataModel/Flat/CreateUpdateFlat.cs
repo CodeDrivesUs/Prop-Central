@@ -17,6 +17,7 @@ namespace Flats.DataModel.Flat
 
         public decimal Deposit { get; set; }
         public int Status { get; set; }
+        public string StatusDescription { get; set; }
 
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

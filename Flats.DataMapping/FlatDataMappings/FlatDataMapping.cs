@@ -93,6 +93,7 @@ namespace Flats.DataMapping.FlatDataMappings
         public IEnumerable<CreateUpdateFlatSharedModel> GetUserFlatListByStatusId(Guid UserId, int statusId)
         {
             var dbmodel = _dataRepository.GetUserFlatListByStatusId(UserId, statusId);
+
             return mapper.Map<IEnumerable<CreateUpdateFlatSharedModel>>(dbmodel);
         }
     }

@@ -2965,6 +2965,8 @@
     <Content Include="Views\Flats\GetSelectedRoomTypes.cshtml" />
     <Content Include="Views\Flats\ReviewApplication.cshtml" />
     <Content Include="Views\LandLord\MyFlats.cshtml" />
+    <Content Include="Views\LandLord\FlatDashBord.cshtml" />
+    <Content Include="Views\LandLord\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

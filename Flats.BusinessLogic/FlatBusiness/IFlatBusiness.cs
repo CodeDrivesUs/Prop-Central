@@ -26,5 +26,6 @@ namespace Flats.BusinessLogic.FlatBusiness
         Pagination PopulatePagination(string keyword, int page);
         int GetCountPaginatedListFlats(string keyword);
         List<FlatRoomTypesSharedModel> GetFlatRoomTypesByFlatId(Guid FlatId);
+        List<CreateUpdateFlatSharedModel> GetAllUserFlats(Guid userId);
     }
 }

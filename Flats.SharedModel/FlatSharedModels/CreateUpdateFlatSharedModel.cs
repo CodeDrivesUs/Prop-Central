@@ -23,6 +23,8 @@ namespace Flats.SharedModel.FlatSharedModels
       
         [Display(Name = "Flat PhoneNumber")]
         public string PhoneNumber { get; set; }
+        [Display(Name = "Status")]
+        public string StatusDescription { get; set; }
         [Display(Name = "Flat Email")]
         public string Email { get; set; }
         public Guid UserId { get; set; }

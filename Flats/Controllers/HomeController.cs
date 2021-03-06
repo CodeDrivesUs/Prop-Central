@@ -29,9 +29,9 @@ namespace Flats.Controllers
         }
         public ActionResult Index()
         {
-            if (User.IsInRole(""))
+            if (User.IsInRole("LandLord"))
             {
-                return RedirectToAction("Index", "LandLord");
+                return RedirectToAction("MyFlats", "LandLord");
             }
             return View(new HomeSharedmodel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes(), LatestFlats = _flatBusiness.GetLatestFlats() });
         }
@@ -52,7 +52,6 @@ namespace Flats.Controllers
         }
         public ActionResult FindFlat()
         {
-
             return View(new FindFlatSharedModel { RoomTypes = _roomTypeBusiness.GetAllRoomTypes() });
         }
         [HttpPost]

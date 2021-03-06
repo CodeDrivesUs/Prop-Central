@@ -89,7 +89,6 @@ var populateroomtypes = function () {
             function (response) {
                 console.log(response);
                 $("#room_template").html(response);
-
             });
     });
 }

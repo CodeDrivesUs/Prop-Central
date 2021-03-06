@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Flats.DataModel.FlatImages;
 using System.Data;
 using Flats.Enums.FlatImagesEnum;
+using Dapper;
 
 namespace Flats.DataRepository.FlatImageDataRepository
 {
@@ -26,8 +27,11 @@ namespace Flats.DataRepository.FlatImageDataRepository
         }
         public void AddRoomImage(FlatImages flatImages)
         {
-            var query = string.Format(@"INSERT INTO [dbo].[RoomImages]  ([FlatRoomtypeId],[ImageUrl]) VALUES ('{0}','{1}')", flatImages.FlatRoomtypeId, flatImages.ImageUrl);
-            _repository.ExecuteNonQuery(query, null, CommandType.Text);
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add("@flatroomtypid", flatImages.FlatRoomtypeId.ToString());
+            sqlParameters.Add("@imageUrl", flatImages.ImageUrl);
+            sqlParameters.Add("@statusId", (int)FlatImagesEnum.Room);
+            _repository.ExecuteNonQuery("AddFlatRoomImage", sqlParameters, CommandType.StoredProcedure);
         }
         public IEnumerable<FlatImages> GetAllImagesForARoom(Guid RoomTypeId)
         {

@@ -1,11 +1,11 @@
 ﻿@model Flats.SharedModel.LandLordSharedModels.MyFlatsIndex
-
+@using Flats.Enums.FlatsStatusEnums
 @{
     ViewBag.Title = "MyFlats";
     Layout = "~/Views/Shared/_LayoutLandLord.cshtml";
 }
-
-<div class="panel panel-default">
+<h1 class="text-center text-primary"> LandLord DashBoard</h1>
+<div class="panel panel-info col-lg-6 shadow-sm">
     <div class="panel-heading"> List OF Flats</div>
     <div class="panel-body">
         @if (Model._ListFlats.Count != 0)
@@ -16,12 +16,21 @@
                 <div class="col-3"><strong>Status</strong></div>
                 <div class="col-lg-3"><strong>Action</strong></div>
             </div>
-            @foreach (var item in Model._ListFlats)
+            foreach (var item in Model._ListFlats.ToList())
             {
-
+                <hr />
                 <div class="row">
-                    <div class="col-lg-3"></div>
-                   
+                    <div class="col-lg-3">@item.Name</div>
+                    <div class="col-lg-3">@item.Address</div>
+                    <div class="col-lg-3">@item.StatusDescription</div>
+                    @if (item.Status == (int)FlatStatusEnum.ApplicationSubmitted)
+                    {
+                        <div class="col-lg-3"><a href="/LandLord/FlatDashBord/?FlatId=@item.Id" class="btn btn-primary">Upload</a></div>
+                    }
+                    else
+                    {
+                        <div class="col-lg-3"><a class="btn btn-primary">View Flat</a></div>
+                    }
                 </div>
             }
         }

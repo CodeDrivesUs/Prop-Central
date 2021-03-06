@@ -43,6 +43,7 @@ namespace Flats.DataMapping.AutoMapper
             CreateMap<UserRoomBooingSharedModel, UserRoomBooking>().ReverseMap();
             CreateMap<RoomOccupantSharedModel, RoomOccupant>().ReverseMap();
             CreateMap<RoomOccupantSharedModel, UserRoomBooking>().ReverseMap();
+            CreateMap<FlatRoomTypesSharedModel, FlatRoomTypes>().ReverseMap();
 
         }
     }

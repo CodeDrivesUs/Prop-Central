@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <title>@ViewBag.Title Prop-Central SA</title>
     <!-- Custom fonts for this template-->
-    <link href="~/Content/fontawesome-free/css/all.css" rel="stylesheet" />
+    <link href="~/node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="~/Content/sb-admin-2.css" rel="stylesheet" />
@@ -48,7 +48,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseexample" aria-expanded="true" aria-controls="collapseexample">
-                    <i class="fas fa-fw fa-user"></i>
+                    <i class="fa fa-user"></i>
                     <span>Tenant </span>
                 </a>
                 <div id="collapseexample" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -61,14 +61,14 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Bookings/Index">
-                    <i class="fas fa-fw fa-bookmark"></i>
+                    <i class="fa fa-bookmark"></i>
                     <span>Bookings</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseroom" aria-expanded="true" aria-controls="collapseroom">
-                    <i class="fas fa-fw fa-bed"></i>
+                    <i class="fa fa-bed"></i>
                     <span>Rooms</span>
                 </a>
                 <div id="collapseroom" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -80,19 +80,19 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/flatmanager/Rentpayments">
-                    <i class="fas fa-fw fa-money-bill-wave"></i>
+                    <i class="fa fa-money-bill-wave"></i>
                     <span>Rent Payments</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Flatmanager/RentTransactionList">
-                    <i class="fas fa-fw fa-money-bill"></i>
+                    <i class="fa fa-money-bill"></i>
                     <span>Rent Transactions</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Flatmanager/Statement">
-                    <i class="fas fa-fw fa-money-bill"></i>
+                    <i class="fa fa-money-bill"></i>
                     <span>Account Transactions</span>
                 </a>
             </li>
@@ -147,7 +147,7 @@
                                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
+                                                <i class="fa fa-search fa-sm"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link" href="/messages">
-                                <i class="fas fa-envelope fa-fw"></i>
+                                <i class="fa fa-envelope"></i>
                                 <!-- Counter - Messages -->
                                 <span id="count" class="badge badge-danger badge-counter"></span>
                             </a>
@@ -169,41 +169,25 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        @*<li class="nav-item dropdown no-arrow">
+                        <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.GetUserName()</span>
-                                @try
-                                {
-                                    if (profiles.ProfilePicture != null)
-                                    {
-                                        var base64 = Convert.ToBase64String(profiles.ProfilePicture);
-                                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-                                        <img class="img-profile rounded-circle" width="40px;" height="40px;" src="@imgsrc">
-                                    }
-                                    else
-                                    {
-                                        <img class="img-profile rounded-circle" width="40px;" height="40px;" src="~/Content/Images/User.png">
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                    <img class="img-profile rounded-circle" width="40px;" height="40px;" src="~/Content/Images/User.png">
-                                }
-                            </a>*@
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.GetUserName()</span>                    
+                               <img class="img-profile rounded-circle" width="40" height="40" src="~/Content/Images/User.png">                          
+                            </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="/profiles/profilemanage">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fa-user fa-sm  mr-2 text-gray-400"></i>
                                 Profile
                             </a>
                             <a class="dropdown-item" href="/manage/Index">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fa fa-cogs fa-sm  mr-2 text-gray-400"></i>
                                 Settings
                             </a>
 
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fa fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
                         </div>
@@ -268,35 +252,7 @@
 
     <!-- Core plugin JavaScript-->
     <script src="~/Content/jquery-easing/jquery.easing.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script>
-        $(function () {
 
-            window.setInterval(function () {
-                var data = new FormData;
-
-                data.append("user", "test")
-
-                $.ajax({
-                    type: "post",
-                    url: "/Messages/Count",
-                    data: data,
-                    contentType: false,
-                    processData: false,
-                    error: function () {
-
-                    },
-                    success: function (response) {
-                        if (parseInt(response) != 0) {
-                            document.getElementById("count").innerHTML = response;
-                        }
-                    }
-                })
-
-            }, 1000);
-        });
-    </script>
     <!-- Custom scripts for all pages-->
 
     <script src="~/Scripts/sb-admin-2.js"></script>

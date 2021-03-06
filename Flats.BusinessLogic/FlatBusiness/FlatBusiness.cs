@@ -26,7 +26,7 @@ namespace Flats.BusinessLogic.FlatBusiness
         {
             _dataMapping = new FlatDataMapping();
             _amenitiesBusiness = new AmenitiesBusiness.AmenitiesBusiness();
-            _roomTypeBusiness = new RoomtypeBusiness.RoomTypeBusiness();
+            _roomTypeBusiness = new RoomTypeBusiness();
         }
       
 
@@ -141,6 +141,16 @@ namespace Flats.BusinessLogic.FlatBusiness
         public List<FlatRoomTypesSharedModel> GetFlatRoomTypesByFlatId(Guid FlatId)
         {
             return _dataMapping.GetFlatRoomTypesByFlatId(FlatId).ToList();
+        }
+        public List<CreateUpdateFlatSharedModel> GetAllUserFlats(Guid userId)
+        {
+            var submitted = _dataMapping.GetUserFlatListByStatusId(userId, (int)FlatStatusEnum.ApplicationSubmitted).ToList();
+            var submittedForActivation = _dataMapping.GetUserFlatListByStatusId(userId, (int)FlatStatusEnum.ApplicationSubmitedForActivation);
+            if (submittedForActivation != null)
+            {
+                submitted.AddRange(submittedForActivation);
+            }
+            return submitted;
         }
     }
 }

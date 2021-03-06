@@ -48,3 +48,8 @@
   });
 
 })(jQuery); // End of use strict
+
+function PopulateFlatId(flatroomId) {
+    $("#FlatRoomId").val(flatroomId);
+    console.log(flatroomId);
+} 
