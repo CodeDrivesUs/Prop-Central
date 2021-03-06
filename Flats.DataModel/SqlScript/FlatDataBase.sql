@@ -1,36 +1,1674 @@
 USE [FlatsDatabase]
 GO
-
-INSERT INTO [dbo].[AspNetRoles]([Id], [Name])
-     VALUES
-           ('CAA44127-FB1F-4ACC-97DB-02CD28358B93','Admin')
+/****** Object:  Table [dbo].[__MigrationHistory]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
 GO
-INSERT INTO [dbo].[AspNetRoles]([Id] ,[Name])
-     VALUES
-           ('b138fc4f-da74-49e4-8243-0fd2f275d07c','Tenet')
+SET QUOTED_IDENTIFIER ON
 GO
-INSERT INTO [dbo].[AspNetRoles]([Id] ,[Name])
-     VALUES
-           ('2F36C5E2-68A1-42F7-B147-0E70678CEBF5','LandLord')
+CREATE TABLE [dbo].[__MigrationHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ContextKey] [nvarchar](300) NOT NULL,
+	[Model] [varbinary](max) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC,
+	[ContextKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-INSERT INTO [dbo].[Status]
-           ([ShortDescription]
-           ,[LongDescription])
-     VALUES ('ApplicationSubmitted','The Flat application has been successfully submitted to the system pending approval')
+/****** Object:  Table [dbo].[Amenities]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Amenities](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[ImageUrl] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoles](
+	[Id] [nvarchar](128) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.AspNetUserClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserLogins](
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[ProviderKey] [nvarchar](128) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserLogins] PRIMARY KEY CLUSTERED 
+(
+	[LoginProvider] ASC,
+	[ProviderKey] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserRoles](
+	[UserId] [nvarchar](128) NOT NULL,
+	[RoleId] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserRoles] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUsers](
+	[Id] [nvarchar](128) NOT NULL,
+	[FirstName] [nvarchar](max) NULL,
+	[LastName] [nvarchar](max) NULL,
+	[Gender] [int] NOT NULL,
+	[Email] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NOT NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NOT NULL,
+	[TwoFactorEnabled] [bit] NOT NULL,
+	[LockoutEndDateUtc] [datetime] NULL,
+	[LockoutEnabled] [bit] NOT NULL,
+	[AccessFailedCount] [int] NOT NULL,
+	[UserName] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FlatAmenities]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FlatAmenities](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatId] [uniqueidentifier] NOT NULL,
+	[AmenitieId] [uniqueidentifier] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FlatHistory]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FlatHistory](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatId] [uniqueidentifier] NOT NULL,
+	[StatusId] [int] NULL,
+	[UserId] [uniqueidentifier] NOT NULL,
+	[Date] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FlatImages]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FlatImages](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatId] [uniqueidentifier] NULL,
+	[StatusId] [int] NOT NULL,
+	[ImageUrl] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FlatRoomImages]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FlatRoomImages](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatRoomTypeId] [uniqueidentifier] NOT NULL,
+	[FlatImageId] [uniqueidentifier] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FlatRooms]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FlatRooms](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatId] [uniqueidentifier] NULL,
+	[RoomTypeId] [uniqueidentifier] NULL,
+	[RoomNumber] [varchar](25) NULL,
+	[Gender] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FlatRoomTypes]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FlatRoomTypes](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatId] [uniqueidentifier] NOT NULL,
+	[RoomTypeId] [uniqueidentifier] NOT NULL,
+	[Deposit] [decimal](18, 0) NOT NULL,
+	[Rent] [decimal](18, 0) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[flats]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[flats](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Address] [nvarchar](max) NULL,
+	[RentingPrice] [decimal](18, 2) NOT NULL,
+	[Deposit] [decimal](18, 2) NOT NULL,
+	[StatusId] [int] NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[Email] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LandLord]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LandLord](
+	[Id] [uniqueidentifier] NOT NULL,
+	[UserId] [uniqueidentifier] NULL,
+	[FlatId] [uniqueidentifier] NULL,
+	[Date] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RoomBookings]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RoomBookings](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatId] [uniqueidentifier] NULL,
+	[FlatRoomTypeId] [uniqueidentifier] NULL,
+	[UserId] [uniqueidentifier] NULL,
+	[Idnumber] [varchar](13) NULL,
+	[BookingCreationDate] [datetime] NULL,
+	[BookingDate] [datetime] NOT NULL,
+	[StatusId] [int] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RoomImages]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RoomImages](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FlatRoomtypeId] [uniqueidentifier] NULL,
+	[ImageUrl] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RoomOccupant]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RoomOccupant](
+	[Id] [uniqueidentifier] NOT NULL,
+	[FirstName] [nvarchar](max) NULL,
+	[LastName] [nvarchar](max) NULL,
+	[CellPhone] [nvarchar](max) NULL,
+	[StatusId] [int] NULL,
+	[Gender] [int] NOT NULL,
+	[Idnumber] [nvarchar](13) NULL,
+	[DateIn] [datetime] NOT NULL,
+	[DateOut] [datetime] NOT NULL,
+	[FlatRoomId] [uniqueidentifier] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RoomTypes]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RoomTypes](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](max) NULL,
+	[Description] [nvarchar](max) NULL,
+	[NumberOfPeople] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Status]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Status](
+	[StatusId] [int] IDENTITY(1,1) NOT NULL,
+	[ShortDescription] [nvarchar](max) NULL,
+	[LongDescription] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[StatusId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+INSERT [dbo].[__MigrationHistory] ([MigrationId], [ContextKey], [Model], [ProductVersion]) VALUES (N'202101041012383_InitialCreate', N'Flats.Models.ApplicationDbContext', 0x1F8B0800000000000400DD5C5F6FE3B8117F2FD0EF20E8A92D7256FE7417DBC0BE43CE89DBA0F98775F6D0B7052DD18EB012E593A85C82E23E591FEE23DD57E850A224521425CA566CE770C0212687BF190E87E4CC68B8BFFFEFB7F10F2F61603DE338F12332B14F46C7B685891B793E594DEC942EBFFB64FFF0FD9FFF34BEF2C217EBA782EE8CD1C148924CEC274AD7E78E93B84F3844C928F4DD384AA2251DB951E8202F724E8F8FFFE19C9C3818206CC0B2ACF1E794503FC4D90FF8398D888BD73445C16DE4E120E1EDD033CF50AD3B14E2648D5C3CB16701A2C928A7B3AD8BC04720C31C074BDB428444145190F0FC4B82E7348EC86ABE8606143CBEAE31D02D5190602EF979456E3A89E3533609A71A5840B96942A3B027E0C919D78A531FBE916EED526BA0B72BD02F7D65B3CE7437B1AF3D9C357D8E0250409DE1F9348819F1C4BE2D595C24EB3B4C47C5C0510E398B01EE9728FE3612118F2CE37147A5159D8E8ED97F47D6340D681AE309C1298D5170643DA48BC077FF8D5F1FA36F984CCE4E16CBB34F1F3E22EFECE3DFF1D90771A63057A0931AA0E9218ED63806D9F0B29CBF6D39F238A73EB01C268CC9B502B6041BC2B66ED1CB0D262BFA045BE5F4936DCDFC17EC152DDCB8BE101FF60F0CA2710A3FEFD220408B0097FD4E2B4FF6FF16AEA71F3E0EC2F50E3DFBAB6CE96BFC61E3C4B0AF3EE320EB4D9EFC75BEBDA4F5FECAC9667114B2DFB27DE5BD5FE7511ABB6C329196E411C52B4C65E9C64E65BC4626CDA08637EB02F5F04D9B49AA9A7723299BD0263BA160B1EBDD50C8FBB67C8D2DEE62BD86C5CB4C8B69A4CDE0C46B6A541B776465BD95B99C989A0B8169FC914FBF991F27B4E308843F8D58B773BA413B62F44F4C3C662A9C0D3B49F3A62B9286BD157415223F18E07E30E0024ED9D28F435C9AC18F11EC46447ACBFC8092048E47EF5F28797A7375CFB19BC6B06BE71485EB37E7F6F014117C97860B618577C06BB0A579FC259A219746608C6CD4D6783791FB2D4AE915F12E11C55FA85B00B29F8F7E680E30883817AE8B936406C68CBD6904314701784DE8D9696F387676EFDB3F9B06C80F9B1DB4DA2DF3B520AD9CB4660AC551D39035396B6DA2DE442B9F98895A90EA45CD293A45E5647D4565606692724ABDA01941A79C39D560EE6FB642C3FBBF19ECE13BC0DB7937BAB34050E31C4E480CB7368EE118F31E10A53826D50A989C1BFBF0A6B2E5634CDFFC6ECA38FD84827468561BED86EC10187E3764B087BF1B3231A1F9D9CFFC4E83A8B020067823FAE680B37BCFD524DBF57690A6B96BE6BB3903F4DB250D85CD220620D70904A3AB2A37DA15D2B2518910C2087FF2B83627D934BA85F9025CF00AFA11CF6759B9B798B9C17C36B788E57EB2D367621F2B0B21D1CE7028529FA8EACB1525365E2449E4FA99321A92A93C1526F30407D8EACE8B5511A19C9DBD053DF9CC5F801626637D47DE934B1C608AAD0B374F364F51E2224FB541988ED743B0C21D6910ACCAB1C9C2FD4DE109C7048ED920C422C80416DA27543D537CE2FA6B14746AA936D2F0FE67732F79D47B2EF19A992CA19D9A3061DE9C526302947C6A8BD2A5A1B123585CBB216A5C7EDD9A77F9FFD5BA2B99AE9DD86447E0A1B14BEEFCBE8961B66B6C07C6D9AE121301B4E9E17D18280FF44C0DA01EF51D9A81D6C24D8D81727F7427062A6B6C0F062AABE4DD19681EDF9BAE7F2DD83F34F394B30CBBBFD65BD5B507DB94F47160A6993BEE3086C288D25F156670B9609DF88536F8E8202777D3131E27D44D8481CF3195F35D55B0D0E8873AED2075236A03AC0CAD03947F585680940DD543B82211DA2A1DF7227AC01649CB56587EF6D760051B50B1C50FEC02A1FE337CDD388DA28F7266A53528466E142C08380D06513FBCE4891B284597D4561563E20BF7F1868589F1C568515087E7AA51523199C1B5549866B7969A1CB23E2ED9565AAAB94F1A2D1593195C4BDC46BB95D4E014F4700BB652917C850FB4D98A345179DB947D6327AFB8E30D6347539A37BE45EBB54F5642A91E6FB1E6799DDEF4BB79FF32B630C770DCA4A19AAD94B6E444A318AD70AD175883A45925C125A2688158566BEA850A59E3DDAA39FE0B96E2F5A92E62710F14D4EC6F9E7712CB41A45B567543F8E819CC2D64BE4CF6F5A161E59B875BAC681205286EF8E0318D8234247AD74A3F3AFFEC298ECF5B5484B153935F719D143D290EAEAC74A32551B7C3D6CB53FA2C9B2F911E42A7E8C2E31455ADF342F52845524A44D125AAF6B6643AE7C57099EA1E61FF55EA44789BBD241439892042B3395655C6244255ADE648459D928853B499A3F0FA24118437F5C4104A5C1430A1CF1C55AE421231E51E73C45AA9910859EBEA21A55850240929766C84A7D16833853907B5844844577B7BD8B65A4C2419B9DABD017683CCF53E73D4867A2311B8A1DB1CBB2A3EAA5F0D077C136B63B00DAEE23C40DFEE2ED660BCCD393FCC552E1471884042734F2C5EA6A180F1F683B4236D94BA811DE51999EDEC4883A13F6DA4C207F9B069ADD6D0634AD50CD281DE56CDA1C7EB67AD6F6A134A785A2729B997616A2D1C1DF3D0B0FB3999122BE624B655A8112EF3D784E270C40846F39F8369E06376741704B788F84B9CD0BC86C13E3D3E39ADBD4B3B9C37624E9278414368AD7B2826AFD90E8AF1C8338ADD2714ABA5315BBCA3AA4095C4F93538B82F13FBBFD9A8F32C07C3FECA9A8FACEBE40BF17F4EA1E3314EB1F5AB5AEA3BCCBB1283974CA5A0BFBE8B2742E62ABFFECFD77CE891751FC3763AB78E6B8ADE64F9E58743BDA4C9876E21CDC6CF89DEEF6E53DEED14C87F09D1CB5F45B84DDEE66C0526BFBFF1D9C9BDCD9B9B4695D58E82CD9FD82CFCFEE2353DAFD94A638D4F68B6426C78263314DE202AD43D83D9044BFB04C6839F347B02D37337343E89D94434ED73984D7645FD318CF9195B8CDCE325DB1007EEE2BCCDF4DCF99860ABCAE27D5FBCCA9B83AD36BAFAAEA007DCA06F07B6F3BFDE594DFE607E4143C9FD60D8FBB47B9D690D562A7E28D5E15544B2DFA2F05DD681B77CF7FB43957F1F40C1624301D6FE8BBC776D6BBAC4F68157CAF62BE53E3063E3D7FCFE0BB6776D6CBAECF7811B5BAFB2EC03B3B57DDD9F7BB634E32B74EF45D66ABD98E60355538ABCAB883AFF9E00E1FF220223C83DCAFCE17073D55E5BC57107C38A44CF545F2E5867AC6C1C85AF42D1CEB6DF5CF985DF3A594ED3CE565364DBC69B9FFFADBC394D3B6F4DE9EA3ECABF1B8B479B4AF23BCEB1B62AB7F754EE2DCDA4E3754197CFDA5A6DF09EAABB07518AB47B349FCEDF4F31F7202A1972EBF428DE56BF82C3DD29FCD3AB707F27FEAA8260FF102BC1AE746B9634D764191597774DA282A496A1B9C5147970A55EC4D45F229742374B4067FFF2017F807F152EB0774DEE53BA4E294C19878B404A783127A08D7F56A12ECB3CBE5FB35FC9105300317D96B8BF273FA67EE09572CF1A72421A08E65DF0742F5B4BCAD2BEABD712E92E2286405C7DA553F488C3750060C93D99A367BC896C607E377885DCD72A03A803E95E0859EDE34B1FAD6214261CA31A0F3FC186BDF0E5FBFF03C17A2AD781580000, N'6.2.0-61023')
+GO
+INSERT [dbo].[Amenities] ([Id], [Name], [ImageUrl]) VALUES (N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12', N'Wifi', N'Amenities/Amenities12232020112818pm.jpg')
+GO
+INSERT [dbo].[Amenities] ([Id], [Name], [ImageUrl]) VALUES (N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12', N'24HR Security', N'Amenities/Amenities2164fda3-8319-44e4-8578-8377b067a1ac.png')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name]) VALUES (N'CAA44127-FB1F-4ACC-97DB-02CD28358B93', N'Admin')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name]) VALUES (N'2F36C5E2-68A1-42F7-B147-0E70678CEBF5', N'LandLord')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name]) VALUES (N'b138fc4f-da74-49e4-8243-0fd2f275d07c', N'Tenet')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'7C2DA213-E316-4416-8109-D5DB003E594D', N'2F36C5E2-68A1-42F7-B147-0E70678CEBF5')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'b138fc4f-da74-49e4-8243-0fd2f275d07c', N'b138fc4f-da74-49e4-8243-0fd2f275d07c')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'b138fc4f-da74-49e4-8243-0fd2f275d07c', N'CAA44127-FB1F-4ACC-97DB-02CD28358B93')
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'CAA44127-FB1F-4ACC-97DB-02CD28358B93', N'CAA44127-FB1F-4ACC-97DB-02CD28358B93')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Gender], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'7c2da213-e316-4416-8109-d5db003e594d', N'Zweli', N'Nkuna', 0, N'zwelimzweshiah.nkuna@dutappfactory.co.za', 0, N'AOkOnRU+M6yYibZTQ8hA6x7HfcTF1mEANwpUnWiu/X0OOFsFX4uAay6ey5K9gNEwoA==', N'749cf139-0898-40eb-a2d1-47f0ceb93144', N'0606630092', 0, 0, NULL, 1, 0, N'zwelimzweshiah.nkuna@dutappfactory.co.za')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Gender], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'a9e2a6ca-d790-4c99-be46-d3702266052f', N'Maxwell', N'Nkuna', 1, N'codedrivesus@gmail.com', 0, N'AFea+Mkq9cUE8q547oTSAARzsqCw26zSGpcuuv+8F7buL9U1eCuQJLUnCRtlUCOf1A==', N'00d319c1-17d5-43a1-895b-a7a9a6e4794f', N'0606633845', 0, 0, NULL, 1, 0, N'codedrivesus@gmail.com')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Gender], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'b138fc4f-da74-49e4-8243-0fd2f275d07c', N'Zweli', N'Nkuna', 0, N'maxwellzweli@gmail.com', 0, N'AC9fUrRU1/DLmBwq7UHXIYt9natzK5k4exmZ6QvzTOsfSNsiPcftSKdvnBXk4aHOLg==', N'f94a8963-d035-46f5-9cd2-60ff4928f35d', N'0606630092', 0, 0, NULL, 1, 0, N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [Gender], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'CAA44127-FB1F-4ACC-97DB-02CD28358B93', N'Zweli', N'Nkuna', 1, N'Admin@Flats.com', 1, N'AGig1qwCaaT03lZe2vsaeMKNJ9Yreh8bn3vcle6qO6MTJuHzx8ZtVZFwPnJbDV6Big==', N'CAA44127-FB1F-4ACC-97DB-02CD28358B93', N'0606633845', 1, 1, NULL, 0, 0, N'Admin')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'299a2141-3cd0-4742-b1e5-105bde7bb5d1', N'095de9cb-1697-4f86-97cb-dbb69fc6f948', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'f8fe9536-b1a1-463e-82e8-29537d495de3', N'6ee7390d-3ea5-4636-9193-af3fd479d608', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'356a0032-c65e-433b-8114-32c1ad508ab9', N'1330faef-2595-4fd3-a65a-815dec8e83df', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'3228798a-da72-4004-81bf-38b5ce6f69a7', N'c6fd1648-a566-4552-acf6-21739b80f59a', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'ef427066-e3f7-4767-9d16-39ada03c7545', N'2e3c464c-6abd-4ebb-b0b2-20904c113e64', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'336403fb-3ca1-4ca9-9172-4a8ba76a5633', N'cd566478-efc4-40a8-86bc-83165f694a27', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'bc6d2ff6-5f71-4607-8228-4d3f84582863', N'ae9126bb-fcb3-470c-be8d-f8d3df96d37f', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'6d443bde-9ba5-4317-b6c7-524d521171c1', N'cd566478-efc4-40a8-86bc-83165f694a27', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'f7778fec-6d26-4c36-9698-5a78bdb84890', N'1330faef-2595-4fd3-a65a-815dec8e83df', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'4f6577fc-443f-4833-a1cb-5e33ffe933d6', N'a441f720-89b2-4fe7-93d3-dffc7da21a33', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'208657aa-6f8c-4bab-9dd4-60e225cc7178', N'5d3ce9d6-1f63-4a55-b048-244816eca791', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'5ddfd7db-b133-483b-96b0-6555215cca67', N'9ee7b101-d254-476c-9138-fc64c4498144', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'3ea53fb1-dcea-4176-a330-757216cc288e', N'e179499d-5694-4bf8-ba17-22024627d23d', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'0e65c02e-9c47-4026-8727-80c57646d9ff', N'b6f2bb5f-0fd2-4f27-acf5-2de7dadf09c1', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'e0a2f4bb-d1d3-4f1b-954a-8742ce0b0d40', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'1e8eed7e-9d67-41c1-84f1-8ccca8c0d800', N'075c7019-b005-464c-8033-7d8758a8c343', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'1a8d0a79-bd3e-4613-b023-94200905aa55', N'a441f720-89b2-4fe7-93d3-dffc7da21a33', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'25458717-94d2-4196-9b8d-9c2e371847c6', N'c64a204e-7de4-45ca-9df9-1deb41577007', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'018d705e-ddb3-41ea-9ef4-a328e207a7cf', N'6ee7390d-3ea5-4636-9193-af3fd479d608', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'64e74af4-df40-4b6d-8488-a9cc86c8538f', N'2e3c464c-6abd-4ebb-b0b2-20904c113e64', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'34193fd2-3530-4c2c-a280-ae23bc249e5f', N'ae9126bb-fcb3-470c-be8d-f8d3df96d37f', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'4869b381-5b5f-4992-9379-b6597585e807', N'caa44127-fb1f-4acc-97db-02cd28358b93', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'236358d5-914d-44c9-beb9-d6b37f51fc1f', N'147b3cb5-65a8-4321-82ad-294e5da3dc71', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'd0a4f4ae-6d5d-4fb3-a78a-df892ae5a884', N'075c7019-b005-464c-8033-7d8758a8c343', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'87dbb157-54eb-4805-a134-e3da4c2a48c8', N'095de9cb-1697-4f86-97cb-dbb69fc6f948', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'0df2f16a-562f-4fde-8383-eaa77b743955', N'c64a204e-7de4-45ca-9df9-1deb41577007', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'8a5114cd-7688-4661-8382-ebee13554b72', N'8645b147-8a1d-4e8f-aff4-4cbec7f81f31', N'c4c8f783-b373-eb11-a491-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'3bdb0c0e-c131-41e9-aa30-f6638aebf47d', N'8645b147-8a1d-4e8f-aff4-4cbec7f81f31', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatAmenities] ([Id], [FlatId], [AmenitieId]) VALUES (N'693d4e96-e9b5-433e-908c-fcfd317262ae', N'9ee7b101-d254-476c-9138-fc64c4498144', N'9aa945c7-6545-eb11-a478-ecf4bb4f7b12')
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'b8ad557f-06b5-45cd-9f56-0b48dfe5cb96', N'e179499d-5694-4bf8-ba17-22024627d23d', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T23:16:38.193' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'e2739279-34c4-4da6-87ac-14d75523da52', N'1b12e58f-6527-4ffa-a21f-d5c2cc3a83b1', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:23:19.973' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'b6251d74-1f9d-487b-923e-24a6be98c9d1', N'cd566478-efc4-40a8-86bc-83165f694a27', 1, N'7c2da213-e316-4416-8109-d5db003e594d', CAST(N'2021-03-05T18:34:35.650' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'19b18888-9401-4fd5-aa25-267a9904177f', N'2e3c464c-6abd-4ebb-b0b2-20904c113e64', 1, N'7c2da213-e316-4416-8109-d5db003e594d', CAST(N'2021-02-25T22:07:44.777' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'532ae57d-69f4-4346-8ff4-309f417ead7f', N'79ab3509-6985-41dd-8735-ba1aef872155', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:23:49.560' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'0421cb49-afcb-4856-b6bb-34d8012e4268', N'e9c380f6-9586-47b2-a99b-c8e55fac5d2f', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:14:43.867' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'286e820b-41a7-468a-a521-4a46519d0f7a', N'caa44127-fb1f-4acc-97db-02cd28358b93', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:42:31.770' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'e81c36eb-7224-4767-909e-4acb406a7202', N'caa44127-fb1f-4acc-97db-02cd28358b93', 2, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-01-29T14:33:18.680' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'e7f3edc2-1e69-4980-a5ee-5ad72f874719', N'6ee7390d-3ea5-4636-9193-af3fd479d608', 4, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T23:37:14.660' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'3e30c938-6020-4c13-9b7c-5b30aa0d84a6', N'2f36c5e2-68a1-42f7-b147-0e70678cebf5', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:21:25.967' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'88745a0a-c005-41e9-bb06-650ffea23e58', N'ed7b0711-0d4b-4767-8aad-f13502ec8e8e', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:01:07.090' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'8540e46c-1025-4315-be4c-6a826182d659', N'095de9cb-1697-4f86-97cb-dbb69fc6f948', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T22:40:36.167' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'9f4f9ab7-475e-4cf9-875a-6d67713e07cd', N'075c7019-b005-464c-8033-7d8758a8c343', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T23:31:58.337' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'5c54c770-b9aa-444a-bbbb-6f8ae74ae066', N'c6fd1648-a566-4552-acf6-21739b80f59a', 2, N'00000000-0000-0000-0000-000000000000', CAST(N'2021-01-04T11:52:21.680' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'500f92ff-f591-439e-94c6-748d69fc96b7', N'9ee7b101-d254-476c-9138-fc64c4498144', 1, N'7c2da213-e316-4416-8109-d5db003e594d', CAST(N'2021-03-06T02:33:12.860' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'40ddbb0e-dd43-4c85-8ebd-753afd3e990c', N'8c631283-7911-43c3-83dd-d39cc6dd3d8d', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T03:40:15.667' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'0ae1015c-1701-40b6-978f-7e2ddd6d5501', N'3b376a3c-f670-4f58-a5f6-5b7db4216cc3', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T03:42:26.220' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'242749a2-f736-4dbe-b8bb-853097394fa6', N'95cf89aa-ba16-4920-a227-99ca35dab54c', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:32:04.677' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'bac91f68-c607-4506-99d6-8575635b35ca', N'caa44127-fb1f-4acc-97db-02cd28358b93', 4, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-02T20:59:24.800' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'86d94749-5314-4494-a55b-858dafad1c7f', N'c6fd1648-a566-4552-acf6-21739b80f59a', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:38:46.420' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'354cc09a-1f6f-4bad-97e6-89bf06efabdb', N'fb1fc3a6-d547-4087-a84d-fad6ec06ab2d', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:31:15.327' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'4d5a19d8-c4c1-4504-a06d-93dd9615476e', N'caa44127-fb1f-4acc-97db-02cd28358b93', 4, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-02T20:57:43.130' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'59fc4839-86ce-4b5b-a0de-9476b460b516', N'a5540dd6-f293-42d2-a6eb-3dd96582e5a2', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:38:16.610' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'48e9e9d7-86c7-4d6a-b369-9ae2581324f7', N'a3741821-a86c-4f68-a091-3d470a81532f', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T03:40:50.833' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'4c1a60a8-547d-4667-a4d3-9e9b0c82fa03', N'147b3cb5-65a8-4321-82ad-294e5da3dc71', 2, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-12T16:09:47.563' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'6197dceb-1330-4995-ad0a-a7200eb47107', N'6ee7390d-3ea5-4636-9193-af3fd479d608', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T23:34:07.113' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'8329f499-e32a-49dc-9083-ad4a7f15636a', N'8f5eaafd-9981-4730-b0d0-d50509bc82f6', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:12:02.337' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'c5424492-af4a-4120-a1d4-b0004d9ab20a', N'5d3ce9d6-1f63-4a55-b048-244816eca791', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:40:58.667' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'0e19d66d-78f1-43a0-8d26-c3e2b43f315d', N'5d3ce9d6-1f63-4a55-b048-244816eca791', 2, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-11T20:03:27.873' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'c2ed6186-d545-48c6-ad31-c53eea8ea3c5', N'c6fd1648-a566-4552-acf6-21739b80f59a', 4, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-11T20:09:06.620' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'23c8892e-4491-449a-aa61-c6530c60153a', N'5d3ce9d6-1f63-4a55-b048-244816eca791', 4, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-11T20:07:03.033' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'dd7a37b6-57ac-4467-adbd-d44f2534bab5', N'b6f2bb5f-0fd2-4f27-acf5-2de7dadf09c1', 2, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-12T16:13:22.017' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'01b80483-3e33-480c-9a6c-d68208a7c4d3', N'1330faef-2595-4fd3-a65a-815dec8e83df', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T22:42:32.700' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'68717cb7-fa02-4abd-bb8d-dcec77a019f7', N'147b3cb5-65a8-4321-82ad-294e5da3dc71', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:15:49.670' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'9a5f7b1d-aac0-4acd-b318-e2592349c41d', N'90b51c38-4ce5-4cff-a772-c9e56bc64026', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:12:18.490' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'a7fc3f6f-03e3-4841-85c8-e45273efeb65', N'9e3a0d5f-ee92-4f71-a211-36734d6f4bf7', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:46:16.577' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'cae96800-3a39-46b7-84b8-e944ba4fbf4b', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', 1, N'a9e2a6ca-d790-4c99-be46-d3702266052f', CAST(N'2021-01-23T20:26:00.093' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'578649c0-17fa-4dbd-9768-eba0859169ff', N'147b3cb5-65a8-4321-82ad-294e5da3dc71', 4, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-12T16:22:13.350' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'1ff48e40-7f62-4852-9fcd-efcf55a4953e', N'43437692-3e46-43d3-bd95-6b34f4a45c31', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:31:55.980' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'80dc6273-3ba0-4f2a-857f-f0dd0199a0be', N'22007e2a-6095-4080-b13b-437ec475088f', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-24T22:34:00.223' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'6a31f67c-ff97-4781-b8cf-f359cf8cb188', N'ae9126bb-fcb3-470c-be8d-f8d3df96d37f', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T22:27:56.977' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'dddd5e9b-fb4c-44c1-a6e6-f626b179b27f', N'a441f720-89b2-4fe7-93d3-dffc7da21a33', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T23:07:55.920' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'fe28b7df-2c6e-474e-ad89-f63105aa5ee6', N'8645b147-8a1d-4e8f-aff4-4cbec7f81f31', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T21:20:20.357' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'15e04fb6-4b1b-45ac-9455-faaadac38b1f', N'c64a204e-7de4-45ca-9df9-1deb41577007', 1, N'b138fc4f-da74-49e4-8243-0fd2f275d07c', CAST(N'2021-02-21T21:29:47.430' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'a29f547a-1b61-4936-b657-fb84304180e0', N'08fe8c2c-98ec-497c-b098-fd870ce868a8', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:46:41.927' AS DateTime))
+GO
+INSERT [dbo].[FlatHistory] ([Id], [FlatId], [StatusId], [UserId], [Date]) VALUES (N'e6a6aa02-e02e-4c9d-af0a-fe573ec353af', N'b6f2bb5f-0fd2-4f27-acf5-2de7dadf09c1', 1, N'b019fc99-2819-4054-87df-31abae03e4af', CAST(N'2020-12-26T12:13:47.187' AS DateTime))
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'83258b55-8138-4ca3-b9b9-061f24283fbf', N'b6f2bb5f-0fd2-4f27-acf5-2de7dadf09c1', 0, N'ProfilePictures/ProfilePictures089e17c9-ad80-4624-8133-913ab530e795.jpg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'ee8e491c-5b62-4e2f-a5a9-11a5ab8f75e3', N'00000000-0000-0000-0000-000000000000', 1, N'RoomImages/RoomImagesb16565c4-cfd5-469f-a460-095a529187cb.jpeg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'cec09b49-4ca0-492c-abfb-13280fd93230', N'00000000-0000-0000-0000-000000000000', 1, N'RoomImages/RoomImages2f550f7b-95d1-4fcf-9e6b-263c2b2fc20e.jpeg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'ca91c72f-1632-4779-9b9d-13a5cf02dca6', NULL, 2, N'R')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'2715c6f9-e61d-4432-8760-386e06cbdab2', N'147b3cb5-65a8-4321-82ad-294e5da3dc71', 0, N'ProfilePictures/ProfilePictures406a8623-84c2-4b3e-af1a-26e0ad7e24d5.jpg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'1c085968-ac91-419b-945a-5f20e80c5ad0', N'c6fd1648-a566-4552-acf6-21739b80f59a', 0, N'ProfilePictures/ProfilePictures103d0c26-b6f9-40f4-a34b-d6d927f4f605.jpg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'caa32286-c65e-43d2-b3fc-6b8d6c2504b1', NULL, 2, N'R')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'd4db3e61-4db8-459a-8295-74f81f77bbef', N'9ee7b101-d254-476c-9138-fc64c4498144', 0, N'ProfilePictures/ProfilePicturesbdecfcfb-f352-4ade-adf5-7e6e1f1b8810.jpg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'3a03e25f-c2e1-493e-a3b7-74fbccdb43a6', N'00000000-0000-0000-0000-000000000000', 1, N'RoomImages/RoomImages1248c91e-4a2c-407d-8222-2386c4b13c15.jpeg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'e5dc941a-5b6b-4c13-9e34-a400be0fb232', N'6ee7390d-3ea5-4636-9193-af3fd479d608', 0, N'ProfilePictures/ProfilePicturescae43d03-ed9c-4642-afe4-b506b24600bb.jpeg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'8bf83018-89c3-4f2f-9234-cdcb221348bd', N'caa44127-fb1f-4acc-97db-02cd28358b93', 0, N'ProfilePictures/ProfilePictures01302021031857pm.jpg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'd2164de2-81a2-415c-ac20-e8dfc3bd3823', NULL, 2, N'R')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'7c2129ea-17fa-45b1-b2c5-f411973144d5', N'5d3ce9d6-1f63-4a55-b048-244816eca791', 0, N'ProfilePictures/ProfilePictures77a39d59-61de-4e99-99df-9f81ab5434a4.jpeg')
+GO
+INSERT [dbo].[FlatImages] ([Id], [FlatId], [StatusId], [ImageUrl]) VALUES (N'17efde77-3b78-4e73-9d8c-f78ad6f16be4', NULL, 2, N'R')
+GO
+INSERT [dbo].[FlatRoomImages] ([Id], [FlatRoomTypeId], [FlatImageId]) VALUES (N'38db4d70-4af1-4cbf-bcae-db7b6520e73b', N'46e453e2-6dc9-48f3-968d-9aac100887a1', N'caa32286-c65e-43d2-b3fc-6b8d6c2504b1')
+GO
+INSERT [dbo].[FlatRoomImages] ([Id], [FlatRoomTypeId], [FlatImageId]) VALUES (N'70c2ce31-1228-4494-a1d0-78b2612d5351', N'46e453e2-6dc9-48f3-968d-9aac100887a1', N'd2164de2-81a2-415c-ac20-e8dfc3bd3823')
+GO
+INSERT [dbo].[FlatRoomImages] ([Id], [FlatRoomTypeId], [FlatImageId]) VALUES (N'92f8ca31-13f6-442f-b8ff-7b1fa3895a72', N'46e453e2-6dc9-48f3-968d-9aac100887a1', N'17efde77-3b78-4e73-9d8c-f78ad6f16be4')
+GO
+INSERT [dbo].[FlatRooms] ([Id], [FlatId], [RoomTypeId], [RoomNumber], [Gender]) VALUES (N'3e108257-52c4-4515-af78-853d07233dee', N'caa44127-fb1f-4acc-97db-02cd28358b93', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'Z', 0)
+GO
+INSERT [dbo].[FlatRooms] ([Id], [FlatId], [RoomTypeId], [RoomNumber], [Gender]) VALUES (N'2d55b248-26fc-410f-b398-fa5e082169d5', N'caa44127-fb1f-4acc-97db-02cd28358b93', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'Z', 1)
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'77fbaac1-c9c4-4930-b224-0882f02c7247', N'1330faef-2595-4fd3-a65a-815dec8e83df', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'd31948f3-e968-4d51-9e09-097b4be64c92', N'e179499d-5694-4bf8-ba17-22024627d23d', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'4f019e65-30e4-416f-98ce-0b7800e938ed', N'1330faef-2595-4fd3-a65a-815dec8e83df', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'8a827037-c0cf-49e2-881e-1c5332b3a8dd', N'caa44127-fb1f-4acc-97db-02cd28358b93', N'caa44127-fb1f-4acc-97db-02cd28358b93', CAST(5000 AS Decimal(18, 0)), CAST(4000 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'9316ed31-1953-41c0-a84a-2365a0bdf9ca', N'ae9126bb-fcb3-470c-be8d-f8d3df96d37f', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'44f0f4c5-7e85-4a05-b40d-29d822d66229', N'6ee7390d-3ea5-4636-9193-af3fd479d608', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'9bbc8847-bab4-4adc-be91-3e569712f52b', N'a441f720-89b2-4fe7-93d3-dffc7da21a33', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'87cb5cb8-d78b-4b0b-8b21-47281f26103b', N'2e3c464c-6abd-4ebb-b0b2-20904c113e64', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'1984a54d-45f1-4d35-8b7a-48a01451582c', N'095de9cb-1697-4f86-97cb-dbb69fc6f948', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(1200 AS Decimal(18, 0)), CAST(2400 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'd93da64d-31fd-4e6f-ab73-49bb0e76b367', N'9ee7b101-d254-476c-9138-fc64c4498144', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'724f97ef-e64b-4a91-bcf4-53d52e53d51b', N'075c7019-b005-464c-8033-7d8758a8c343', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(1200 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'46dc5bac-3436-400e-9243-556c49b37a2c', N'e179499d-5694-4bf8-ba17-22024627d23d', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'a85040aa-1c55-4f10-8a9a-5829ffeac5af', N'ae9126bb-fcb3-470c-be8d-f8d3df96d37f', N'2b572480-d321-4574-81ac-a6cdfb0252b2', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'3f9fe043-ab8d-4e34-ab2a-6c5af955e88a', N'6ee7390d-3ea5-4636-9193-af3fd479d608', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'57a6ff52-c363-49c3-93e6-6d7f41dab5e4', N'075c7019-b005-464c-8033-7d8758a8c343', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(1200 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'dae6fe9b-5742-45fa-844c-7c4a9a6d88f1', N'075c7019-b005-464c-8033-7d8758a8c343', N'2b572480-d321-4574-81ac-a6cdfb0252b2', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'fae56d92-8b3f-49a9-a445-82bd3a5ecb28', N'095de9cb-1697-4f86-97cb-dbb69fc6f948', N'2b572480-d321-4574-81ac-a6cdfb0252b2', CAST(35425 AS Decimal(18, 0)), CAST(2400 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'0c227e52-37ee-4302-a11d-8572640a1cce', N'ae9126bb-fcb3-470c-be8d-f8d3df96d37f', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'46e453e2-6dc9-48f3-968d-9aac100887a1', N'cd566478-efc4-40a8-86bc-83165f694a27', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'54787b4e-7997-448d-80f0-ab3ee8066e94', N'6ee7390d-3ea5-4636-9193-af3fd479d608', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(35425 AS Decimal(18, 0)), CAST(2400 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'ef6e8fe9-1d6f-4d77-bb1a-b2fa712745eb', N'095de9cb-1697-4f86-97cb-dbb69fc6f948', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'921bbeb1-f5a4-4231-81f0-c622468f6f46', N'2e3c464c-6abd-4ebb-b0b2-20904c113e64', N'2b572480-d321-4574-81ac-a6cdfb0252b2', CAST(1200 AS Decimal(18, 0)), CAST(2400 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'd7bcef48-22cf-4b92-8f6b-dadd59d8e77d', N'075c7019-b005-464c-8033-7d8758a8c343', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'fa80f940-3d82-4032-8631-df95b13a4d08', N'e179499d-5694-4bf8-ba17-22024627d23d', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'4aa37edc-4e86-4239-9bda-e5503d8feb36', N'a441f720-89b2-4fe7-93d3-dffc7da21a33', N'f3713f82-b961-4417-a14f-6bc7ad16b412', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'52157984-138a-4385-9b4f-ebf1bc4c8443', N'cd566478-efc4-40a8-86bc-83165f694a27', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'85181f56-ad73-4551-9d8e-faf065476104', N'9ee7b101-d254-476c-9138-fc64c4498144', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', CAST(1200 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'3f37bb45-32bf-4c11-942e-fb8f33254215', N'1330faef-2595-4fd3-a65a-815dec8e83df', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[FlatRoomTypes] ([Id], [FlatId], [RoomTypeId], [Deposit], [Rent]) VALUES (N'0a4627fe-5c52-4b8c-a496-fea3585dc9ac', N'a441f720-89b2-4fe7-93d3-dffc7da21a33', N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', CAST(35425 AS Decimal(18, 0)), CAST(3423 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'caa44127-fb1f-4acc-97db-02cd28358b93', N'TT Apartment', N'65 Maud Mfusi Street', CAST(7000.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 4, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'2f36c5e2-68a1-42f7-b147-0e70678cebf5', NULL, NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, NULL, NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'c64a204e-7de4-45ca-9df9-1deb41577007', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'2e3c464c-6abd-4ebb-b0b2-20904c113e64', N'Steve Biko', N'47 Steve Biko Street', CAST(3000.00 AS Decimal(18, 2)), CAST(2000.00 AS Decimal(18, 2)), 1, N'0606630092', N'SteveBiko@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'c6fd1648-a566-4552-acf6-21739b80f59a', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 4, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'e179499d-5694-4bf8-ba17-22024627d23d', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'5d3ce9d6-1f63-4a55-b048-244816eca791', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(4000.00 AS Decimal(18, 2)), CAST(2000.00 AS Decimal(18, 2)), 4, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'147b3cb5-65a8-4321-82ad-294e5da3dc71', N'Hlelo Prop', N'65 Maud Mfusi Street', CAST(3400.00 AS Decimal(18, 2)), CAST(1000.00 AS Decimal(18, 2)), 4, N'0706633845', N'codedrivesus@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'b6f2bb5f-0fd2-4f27-acf5-2de7dadf09c1', N'HomII', N'183  King dinuzulu ', CAST(4000.00 AS Decimal(18, 2)), CAST(1200.00 AS Decimal(18, 2)), 2, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'9e3a0d5f-ee92-4f71-a211-36734d6f4bf7', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'a3741821-a86c-4f68-a091-3d470a81532f', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(2400.00 AS Decimal(18, 2)), CAST(1200.00 AS Decimal(18, 2)), 1, N'maxwellzweli@gmail.com', NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'a5540dd6-f293-42d2-a6eb-3dd96582e5a2', NULL, NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, NULL, NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'22007e2a-6095-4080-b13b-437ec475088f', NULL, NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, NULL, NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'8645b147-8a1d-4e8f-aff4-4cbec7f81f31', N'TT Apartment', N'65 Maud Mfusi Street', CAST(3000.00 AS Decimal(18, 2)), CAST(4300.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'3b376a3c-f670-4f58-a5f6-5b7db4216cc3', N'Hometown', N'65 Maud Mfusi Street', CAST(2400.00 AS Decimal(18, 2)), CAST(1200.00 AS Decimal(18, 2)), 1, N'codedrivesus@gmail.com', NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'43437692-3e46-43d3-bd95-6b34f4a45c31', NULL, NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, NULL, NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'075c7019-b005-464c-8033-7d8758a8c343', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'1330faef-2595-4fd3-a65a-815dec8e83df', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(2354.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'cd566478-efc4-40a8-86bc-83165f694a27', N'Sterling house', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(2354.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'95cf89aa-ba16-4920-a227-99ca35dab54c', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'6ee7390d-3ea5-4636-9193-af3fd479d608', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 4, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'79ab3509-6985-41dd-8735-ba1aef872155', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'f7bfbf91-c002-4d85-b747-c360f4b7d417', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'e9c380f6-9586-47b2-a99b-c8e55fac5d2f', N'Zweli Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606633845', NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'90b51c38-4ce5-4cff-a772-c9e56bc64026', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwell232')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'8c631283-7911-43c3-83dd-d39cc6dd3d8d', NULL, NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, NULL, NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'8f5eaafd-9981-4730-b0d0-d50509bc82f6', N'Zweli JP Nkuna', NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'1b12e58f-6527-4ffa-a21f-d5c2cc3a83b1', N'zweli nkuna', N'29 Syringa Avenue', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'095de9cb-1697-4f86-97cb-dbb69fc6f948', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'a441f720-89b2-4fe7-93d3-dffc7da21a33', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(2354.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'ed7b0711-0d4b-4767-8aad-f13502ec8e8e', NULL, NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, NULL, NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'ae9126bb-fcb3-470c-be8d-f8d3df96d37f', N'TT Apartment', N'65 Maud Mfusi Street', CAST(2334.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'fb1fc3a6-d547-4087-a84d-fad6ec06ab2d', NULL, NULL, CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, NULL, NULL)
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'9ee7b101-d254-476c-9138-fc64c4498144', N'Steve Biko', N'65 Maud Mfusi Street', CAST(3000.00 AS Decimal(18, 2)), CAST(4000.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[flats] ([Id], [Name], [Address], [RentingPrice], [Deposit], [StatusId], [PhoneNumber], [Email]) VALUES (N'08fe8c2c-98ec-497c-b098-fd870ce868a8', N'Zweli JP Nkuna', N'65 Maud Mfusi Street', CAST(0.00 AS Decimal(18, 2)), CAST(0.00 AS Decimal(18, 2)), 1, N'0606630092', N'maxwellzweli@gmail.com')
+GO
+INSERT [dbo].[LandLord] ([Id], [UserId], [FlatId], [Date]) VALUES (N'ac3a573e-224e-4414-bb0d-2ff676e31f96', N'00000000-0000-0000-0000-000000000000', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', CAST(N'2021-01-29T12:27:02.040' AS DateTime))
+GO
+INSERT [dbo].[LandLord] ([Id], [UserId], [FlatId], [Date]) VALUES (N'0253c53f-7b2f-4e91-87aa-613886791a79', N'00000000-0000-0000-0000-000000000000', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', CAST(N'2021-01-29T13:18:17.907' AS DateTime))
+GO
+INSERT [dbo].[LandLord] ([Id], [UserId], [FlatId], [Date]) VALUES (N'1c95fd09-ac4f-4649-b943-76387cae3991', N'00000000-0000-0000-0000-000000000000', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', CAST(N'2021-01-29T12:23:01.990' AS DateTime))
+GO
+INSERT [dbo].[LandLord] ([Id], [UserId], [FlatId], [Date]) VALUES (N'27865927-b14b-41aa-9c90-a929633253f5', N'00000000-0000-0000-0000-000000000000', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', CAST(N'2021-01-29T13:12:40.613' AS DateTime))
+GO
+INSERT [dbo].[LandLord] ([Id], [UserId], [FlatId], [Date]) VALUES (N'fbab8005-fd38-444b-92a7-c828541a5859', N'00000000-0000-0000-0000-000000000000', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', CAST(N'2021-01-29T13:17:41.280' AS DateTime))
+GO
+INSERT [dbo].[LandLord] ([Id], [UserId], [FlatId], [Date]) VALUES (N'31307ca4-af8e-4fac-8efb-c9599e1f4454', N'00000000-0000-0000-0000-000000000000', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', CAST(N'2021-01-29T13:17:47.650' AS DateTime))
+GO
+INSERT [dbo].[LandLord] ([Id], [UserId], [FlatId], [Date]) VALUES (N'ffef01de-87a1-4806-8680-ed5013babe75', N'a9e2a6ca-d790-4c99-be46-d3702266052f', N'f7bfbf91-c002-4d85-b747-c360f4b7d417', CAST(N'2021-01-29T12:36:34.727' AS DateTime))
+GO
+INSERT [dbo].[RoomBookings] ([Id], [FlatId], [FlatRoomTypeId], [UserId], [Idnumber], [BookingCreationDate], [BookingDate], [StatusId]) VALUES (N'11a46481-39d0-4f66-a078-ff747be49ab0', N'caa44127-fb1f-4acc-97db-02cd28358b93', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'b138fc4f-da74-49e4-8243-0fd2f275d07c', NULL, CAST(N'2021-02-16T02:30:59.450' AS DateTime), CAST(N'2021-02-25T00:00:00.000' AS DateTime), 0)
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'd56864ff-5fef-4994-a0a7-0165b3fe18d1', N'00000000-0000-0000-0000-000000000000', N'RoomImages/RoomImagesea57e42c-57a2-44c9-8856-7785e5194347.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'b2e67e13-e61f-47e0-ba99-0210f23c4010', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesd5b3dba7-8a5a-4a93-8e4f-a4cfb3e0e586.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'3f6f26ab-d114-47f0-9ccf-025850f7eeae', N'00000000-0000-0000-0000-000000000000', N'RoomImages/RoomImages8adf060c-d26c-49d6-9494-74f848fcc4f4.gif')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'0c4a40cc-caac-45e7-b14a-040d96420cb3', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages9fc92135-a362-43d4-a252-537f92854f5e.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'8b10dc1b-3135-4a6c-9685-097359780b76', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesc0814fec-fe95-4e67-90ab-8c50e0a3beac.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'e8f62703-0d4e-46a8-b45e-0cc55aefff09', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', N'RoomImages/RoomImagesb8fcf127-81f8-4af8-b11f-93180e0ebeff.PNG')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'61f32cb7-abb7-42f2-be28-0d944d459781', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesf3a0e5a7-ad2c-4796-b402-bc501ea09a8e.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'b4e63e8a-4a35-4d12-b499-15476874962f', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImageseb2ae4ac-1253-47f1-bc9a-54d286e6d3b7.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'05ddd31c-59bf-4551-8f99-168f02f03e75', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesecb5a33c-8886-4221-8501-f66ba9c454a9.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'a00b2e8e-3592-4e08-a0ee-1ce54aead50b', N'00000000-0000-0000-0000-000000000000', N'RoomImages/RoomImages7eac2bc3-1e20-4609-8014-e811c463be05.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'2652b5d8-9906-4b78-a150-251fcacfa905', N'00000000-0000-0000-0000-000000000000', N'RoomImages/RoomImages180b501e-6ff5-436d-bfe4-560706b41559.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'1f6496eb-f571-42a8-bd3a-34f9556b8a7a', N'00000000-0000-0000-0000-000000000000', N'RoomImages/RoomImages72f19461-8e80-4ff5-a3d6-5dfa5a904589.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'9c12c4ef-e123-453c-8ae1-35ecf711b907', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages267fe42b-40bb-414b-918e-400600ec1ac5.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'8e5897b8-5de5-4682-ad32-3d2df2dc3604', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages8b9dc9ca-0dec-4525-9b91-cc5921c9acb3.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'81a23140-46cb-4e82-811f-48906c6d30e9', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesa7dac1a5-c9ce-436e-83a6-0394dd3c62fe.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'4245fe45-9a03-455c-960d-4d5b72d2d2ce', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages31a2315f-e4d1-4af9-8943-7a84c182d685.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'82a16a20-ffe6-4f81-94f8-5833e26982b5', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', N'RoomImages/RoomImagesdf814d41-486c-4580-a8c3-5d4a21c54d74.JPG')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'15db66a3-0580-4035-ae73-5badd2397eea', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages95c7d256-11e5-4396-8789-e716a5aeb6ad.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'3dd25dc6-a752-46aa-9f97-5ed253f60b56', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages2140d766-fb9e-498d-894f-95b0f27a0c49.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'3c9e3c85-039b-4a61-b5d5-6b255f6c9e4c', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages000cf02b-8dbf-4c96-bf1d-7bab39e8538f.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'ab67e5f0-da43-4b5f-a287-6bc18d199bd8', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages2a816a90-493b-4b23-8d7b-c40669087189.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'6b17094f-b15c-44a6-a0fc-6d1d2d50dd72', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', N'RoomImages/RoomImagesd86f1376-aa41-4f43-87fe-c501cf65ff81.PNG')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'a53ad997-003f-4ded-8b2e-8abda3d7965c', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages4e7b9c7e-a55c-435a-b169-fe5e5c75f5bc.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'3ced6389-2ab7-4bb7-8633-8c218a756312', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesef96b6a4-b06d-4811-823f-2eba8cfa5cf4.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'28995656-d982-478d-b94c-91dd98e87515', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagescc0eea61-f180-49f2-91ab-7a9a2965f224.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'd7eaad8b-7f33-4789-9a33-9514df75b13f', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages452c6bc9-1903-472e-958d-832ccd2c599f.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'b024a4a5-663d-4f35-a468-a02b91229260', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages3a14d36e-8dbe-4d2e-bdea-388d79120e0a.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'911f6caf-a7de-4eae-9492-a3fc52dc26e5', N'46e453e2-6dc9-48f3-968d-9aac100887a1', N'RoomImages/RoomImagesf670de32-a675-42eb-aae5-6934f0352059.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'd8618969-dcf0-4f5f-b390-a60880350852', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesa32b942b-3e3c-4fc8-8846-6530421e294a.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'dd5df250-0da3-41ca-b49d-a80d3c285a01', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesb66a1310-15fa-4b51-a47c-8f0f3d9d6b47.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'36f16eec-c462-4904-b6e3-b7e6145bb309', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages3e62ee2e-a772-474a-a287-20422f2b8612.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'786b80bf-5c86-4640-b07a-c0649edfacb2', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages348c560e-9f9a-4537-83b3-0410fb40b0ff.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'33446e49-6291-45a5-909f-c811251dee0d', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesad3d9378-6cda-4ad9-92f4-da9ab92cb954.jpg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'646d24f2-01b9-4f16-8e8c-ccad50bb939c', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages4a43014b-c91a-48b7-a922-6deabd8a2a0b.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'90f4a62e-e474-4053-a66f-d04ea9f137fc', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages64a6a3ba-33c5-4647-b7c1-e331a4501cc0.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'27948960-ace4-40da-b20c-d721cb1a29b1', N'feca5cc9-cd24-4299-9a9d-31135f0c8088', N'RoomImages/RoomImages126eef7b-30a2-45c5-8d68-f2f798abad99.PNG')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'b26fab88-384f-46b5-bbf8-d80246bbb2f6', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImagesf175cfa3-5e1c-4fda-9ec6-78228c1c3bfe.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'6b795c0a-2e64-46be-becc-de49ff892544', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages37df0d32-00c6-44ad-82b1-4c99c2aefd5a.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'692f3c54-f007-4a03-b82e-e20956628063', N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'RoomImages/RoomImages4d57d6fa-7e73-4026-81e9-83d1ded15714.jpeg')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'b5c85707-a6de-469d-a530-e625083adb64', N'46e453e2-6dc9-48f3-968d-9aac100887a1', N'RoomImages/RoomImages47c32c31-ff4c-4f58-924c-11607786c882.gif')
+GO
+INSERT [dbo].[RoomImages] ([Id], [FlatRoomtypeId], [ImageUrl]) VALUES (N'9a8b8a84-cb87-4764-9773-f579b5b8c806', N'00000000-0000-0000-0000-000000000000', N'RoomImages/RoomImages0a7b66a7-42af-47c6-90ba-f044c0f6dc1d.jpeg')
+GO
+INSERT [dbo].[RoomTypes] ([Id], [Name], [Description], [NumberOfPeople]) VALUES (N'feca5cc9-cd24-4299-9a9d-31135f0c8088', N'Double', N'A basic double  Room', 2)
+GO
+INSERT [dbo].[RoomTypes] ([Id], [Name], [Description], [NumberOfPeople]) VALUES (N'7e3fe512-6ab7-4b77-825b-6aa924c9e4d7', N'Two Sleeper', N'A Double Room That Has two beds', 2)
+GO
+INSERT [dbo].[RoomTypes] ([Id], [Name], [Description], [NumberOfPeople]) VALUES (N'f3713f82-b961-4417-a14f-6bc7ad16b412', N'Three Sleeper', N'A  Room That Has Three beds', 3)
+GO
+INSERT [dbo].[RoomTypes] ([Id], [Name], [Description], [NumberOfPeople]) VALUES (N'2b572480-d321-4574-81ac-a6cdfb0252b2', N'Single', N'It Is a Single room that has  nothing', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Status] ON 
+GO
+INSERT [dbo].[Status] ([StatusId], [ShortDescription], [LongDescription]) VALUES (1, N'ApplicationSubmitted', N'The Flat application has been successfully submitted to the system pending approval ')
+GO
+INSERT [dbo].[Status] ([StatusId], [ShortDescription], [LongDescription]) VALUES (2, N'ApplicationAccepted', N'The Flat application has been successfully Approved Pending  Administration Processes')
+GO
+SET IDENTITY_INSERT [dbo].[Status] OFF
+GO
+ALTER TABLE [dbo].[Amenities] ADD  DEFAULT (newsequentialid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[FlatAmenities] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[FlatHistory] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[FlatImages] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[FlatRooms] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[FlatRoomTypes] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[flats] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[LandLord] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[RoomImages] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[RoomTypes] ADD  DEFAULT (newid()) FOR [Id]
+GO
+ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
+GO
+/****** Object:  StoredProcedure [dbo].[AccapetPhotosAndHistory]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <02 February 2021>
+-- Description:	<The camera man has  upload the photos to the database pending  activation>
+-- =============================================
+CREATE PROCEDURE [dbo].[AccapetPhotosAndHistory] 
+	-- Add the parameters for the stored procedure here
+	@statusId int,
+	@userid  uniqueidentifier,
+@FlatId  uniqueidentifier
+AS
+BEGIN TRANSACTION
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+ BEGIN
+UPDATE [dbo].[flats]
+   SET     [StatusId] = @statusId      
+ WHERE Id=@FlatId
+ END
+ BEGIN
+INSERT INTO [dbo].[FlatHistory]
+           (
+           [FlatId]
+           ,[StatusId]
+           ,[UserId]
+           ,[Date])
+     VALUES(@FlatId, @statusId,@userid, GETDATE())
+         
+END
+COMMIT TRANSACTION
+GO
+/****** Object:  StoredProcedure [dbo].[AcceptFlatAndHistory]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <04 January 2021>
+-- Description:	<Accepting  flat application and  update Flat History>
+-- =============================================
+CREATE PROCEDURE  [dbo].[AcceptFlatAndHistory] 
+	-- Add the parameters for the stored procedure here
+@Name  varchar(1000),
+@Address  varchar(1000),
+@Rent decimal,
+@Deposit decimal, 
+@statusId int,
+@PhoneNumber  varchar(1000),
+@Email varchar(100),
+@userid  uniqueidentifier,
+@FlatId  uniqueidentifier
+AS
+BEGIN TRANSACTION
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+ BEGIN
+UPDATE [dbo].[flats]
+   SET
+      [Name] = @Name
+      ,[Address] = @Address
+      ,[RentingPrice] = @Rent
+      ,[Deposit] = @Deposit
+      ,[StatusId] = @statusId
+      ,[PhoneNumber] = PhoneNumber
+      ,[Email] = @Email
+ WHERE Id=@FlatId
+ END
+ BEGIN
+INSERT INTO [dbo].[FlatHistory]
+           (
+           [FlatId]
+           ,[StatusId]
+           ,[UserId]
+           ,[Date])
+     VALUES(@FlatId, @statusId,@userid, GETDATE())
+         
+END
+COMMIT TRANSACTION
+GO
+/****** Object:  StoredProcedure [dbo].[AddFlatRoom]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <29 January 2021>
+-- Description:	<Add Room to the system >
+-- =============================================
+CREATE PROCEDURE [dbo].[AddFlatRoom] 
+	-- Add the parameters for the stored procedure here
+	@flatId UNIQUEIDENTIFIER,
+	@roomtypeId UNIQUEIDENTIFIER,
+	@roomNumber varchar,
+	@gender int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
 
+    -- Insert statements for procedure here
+ INSERT INTO [dbo].[FlatRooms]([FlatId],[RoomTypeId],[RoomNumber],[Gender]) VALUES(@flatId,@roomtypeId,@roomNumber,@gender)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[AddFlatRoomImage]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
-INSERT INTO [dbo].[AspNetUsers]
-           ([Id],[FirstName],[LastName],[Gender],[Email],[EmailConfirmed],[PasswordHash],[SecurityStamp],[PhoneNumber],[PhoneNumberConfirmed],[TwoFactorEnabled],[LockoutEnabled],[AccessFailedCount],[UserName])
-     VALUES
-           ('CAA44127-FB1F-4ACC-97DB-02CD28358B93','Zweli','Nkuna',1,'Admin@Flats.com',1,'AGig1qwCaaT03lZe2vsaeMKNJ9Yreh8bn3vcle6qO6MTJuHzx8ZtVZFwPnJbDV6Big==','CAA44127-FB1F-4ACC-97DB-02CD28358B93','0606633845',1,2,0,0,'Admin')
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <06 march 2021>
+-- Description:	<Add Flat Room Image to the Flat images and Flat Room Images Table>
+-- =============================================
+CREATE PROCEDURE [dbo].[AddFlatRoomImage]
+	-- Add the parameters for the stored procedure here
+	@flatroomtypid uniqueidentifier,
+	@imageUrl Nvarchar,
+	@statusId int
+	
+AS
+BEGIN
+	
+	DECLARE @returnedimageId uniqueidentifier = NEWID()
+    
+	BEGIN
+
+INSERT INTO [dbo].[FlatImages]([Id]  ,[StatusId]  ,[ImageUrl]) VALUES(@returnedimageId, @statusId, @imageUrl )
+  END
+
+  BEGIN
+
+INSERT INTO [dbo].[FlatRoomImages]([Id],[FlatRoomTypeId],[FlatImageId]) VALUES(NEWID(),@flatroomtypid, @returnedimageId)
+
+  END
+
+END
 GO
-
-INSERT INTO [dbo].[AspNetUserRoles]([UserId],[RoleId])
-     VALUES('CAA44127-FB1F-4ACC-97DB-02CD28358B93','CAA44127-FB1F-4ACC-97DB-02CD28358B93')       
+/****** Object:  StoredProcedure [dbo].[AddLandLord]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
 GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <29/01/2021>
+-- Description:	<Add Landlord>
+-- =============================================
+CREATE PROCEDURE [dbo].[AddLandLord] 
+	-- Add the parameters for the stored procedure here
+@flatId uniqueidentifier,
+@userid  uniqueidentifier
+AS
+BEGIN TRANSACTION
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+BEGIN
+
+
+INSERT INTO [dbo].[LandLord] ([UserId],[FlatId],[Date]) VALUES (@userid,@flatId,GETDATE())
+          
+END
+
+ BEGIN
+ INSERT INTO [dbo].[AspNetUserRoles]([UserId],[RoleId])
+     VALUES(@userid,'2F36C5E2-68A1-42F7-B147-0E70678CEBF5')       
+ END
+
+COMMIT TRANSACTION
+GO
+/****** Object:  StoredProcedure [dbo].[AddRoomBooking]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <09 February 2021>
+-- Description:	<Add Room booking and return Booking Id>
+-- =============================================
+CREATE PROCEDURE [dbo].[AddRoomBooking] 
+	-- Add the parameters for the stored procedure here
+     @IdNumber varchar(13),
+@UserId  uniqueidentifier,
+@FlatRoomTypeId uniqueidentifier,
+@FlatId  uniqueidentifier,
+@statusId int,
+@bookingDate datetime
+AS
+BEGIN TRANSACTION
+	DECLARE @roombookingId uniqueidentifier = NEWID()
+
+	BEGIN 
+
+INSERT INTO [dbo].[RoomBookings]
+           ([Id]
+           ,[FlatId]
+           ,[FlatRoomTypeId]
+           ,[UserId]
+           ,[Idnumber]
+           ,[BookingCreationDate]
+		   ,[BookingDate]
+           ,[StatusId])
+     VALUES(@roombookingId,@FlatId,@FlatRoomTypeId,@UserId,@IdNumber,GETDATE(),@bookingDate,@statusId)
+                  	
+	END
+
+	Select @roombookingId
+         
+COMMIT TRANSACTION
+
+GO
+/****** Object:  StoredProcedure [dbo].[AddRoomOccupant]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <16 February 2021>
+-- Description:	<Add a  room occupant>
+-- =============================================
+CREATE PROCEDURE  [dbo].[AddRoomOccupant] 
+	-- Add the parameters for the stored procedure here
+	@FirstName nvarchar(max),
+	@LastName  nvarchar(max),
+	@CellPhone nvarchar(max) ,
+	@StatusId  int,
+	@Gender int,
+	@Idnumber nvarchar(13),
+	@DateIn datetime,	
+	@DateOut datetime,
+	@FlatRoomId uniqueidentifier 
+AS
+BEGIN TRANSACTION
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+	DECLARE @returnedRoomOccupantId uniqueidentifier = NEWID()
+BEGIN
+
+INSERT INTO [dbo].[RoomOccupant]
+           ([Id]
+           ,[FirstName]
+           ,[LastName]
+           ,[CellPhone]
+           ,[StatusId]
+           ,[Gender]
+           ,[Idnumber]
+           ,[DateIn]
+           ,[DateOut]
+           ,[FlatRoomId])
+     VALUES(@returnedRoomOccupantId, @FirstName, @LastName, @CellPhone, @StatusId, @Gender, @Idnumber, @DateIn,@DateOut, @FlatRoomId)
+          
+
+
+END
+
+SELECT @returnedRoomOccupantId
+COMMIT TRANSACTION
+GO
+/****** Object:  StoredProcedure [dbo].[AddRoomsOrAmenities]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <02 January 2020>
+-- Description:	<Stored proc to Add rooms and Amenities by FlatId>
+-- =============================================
+CREATE PROCEDURE [dbo].[AddRoomsOrAmenities] 
+	-- Add the parameters for the stored procedure here
+	@flatId  uniqueidentifier,
+	@AmenitieId  uniqueidentifier,
+	@RoomTypeId  uniqueidentifier,
+	@Type  int,
+	@Rent decimal,
+	@Deposit decimal
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    If(@Type=1)
+	Begin
+
+INSERT INTO [dbo].[FlatAmenities]
+           (
+           [FlatId]
+           ,[AmenitieId])
+     VALUES(@flatId,@AmenitieId)
+   
+	ENd
+	Else If(@Type=2)
+	Begin
+
+INSERT INTO [dbo].[FlatRoomTypes]
+           (
+           [FlatId]
+           ,[RoomTypeId],
+		   [Rent],
+		   [Deposit])
+     VALUES(@flatId,@RoomTypeId, @Rent, @Deposit)
+        
+    End
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[AddToFlatHistory]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <22 January 2021>
+-- Description:	<Add To Flat History>
+-- =============================================
+CREATE PROCEDURE  [dbo].[AddToFlatHistory] 
+	-- Add the parameters for the stored procedure here
+@statusId int,
+@flatId uniqueidentifier,
+@userid  uniqueidentifier
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	BEGIN
+INSERT INTO [dbo].[FlatHistory]
+           (
+           [FlatId]
+           ,[StatusId]
+           ,[UserId]
+           ,[Date])
+     VALUES(@flatId, @statusId,@userid, GETDATE())
+           
+           END
+   End      
+GO
+/****** Object:  StoredProcedure [dbo].[CreateFlatAndHistory]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Zweli Nkuna
+-- Create date: 24 December 2020
+-- Description:	Create  a flat  application and  insert data in to the flat history table
+-- =============================================
+CREATE PROCEDURE [dbo].[CreateFlatAndHistory] 
+@Name  varchar(1000),
+@Address  varchar(1000),
+@Rent decimal,
+@Deposit decimal, 
+@statusId int,
+@PhoneNumber  varchar(1000),
+@Email varchar(100),
+@userid  uniqueidentifier
+
+AS
+BEGIN TRANSACTION
+	DECLARE @returnedFlatId uniqueidentifier = NEWID()
+	DECLARE @UserExistInLandLordRole int
+	BEGIN 
+
+INSERT INTO [dbo].[flats]
+           ([Id],
+           [Name]
+           ,[Address]
+           ,[RentingPrice]
+           ,[Deposit]
+           ,[StatusId]
+           ,[PhoneNumber], [Email])
+     VALUES( @returnedFlatId,@Name,@Address,@Rent,@Deposit,@statusId,@PhoneNumber,@Email )
+          	
+	END
+
+	BEGIN
+INSERT INTO [dbo].[FlatHistory] ([FlatId],[StatusId],[UserId],[Date]) VALUES(@returnedFlatId, @statusId,@userid, GETDATE())
+           
+           END
+		   BEGIN
+		   SET @UserExistInLandLordRole = (SELECT COUNT(UserId) FROM [dbo].[AspNetUserRoles] WHERE [UserId]=@userid AND [RoleId]='2F36C5E2-68A1-42F7-B147-0E70678CEBF5')  
+		   END
+		   BEGIN
+		   IF(@UserExistInLandLordRole=0)
+		   BEGIN
+		     INSERT INTO [dbo].[AspNetUserRoles]([UserId],[RoleId])
+     VALUES(@userid,'2F36C5E2-68A1-42F7-B147-0E70678CEBF5')  
+		   END
+		   END
+		   SELECT @returnedFlatId      
+COMMIT TRANSACTION
+GO
+/****** Object:  StoredProcedure [dbo].[GeFlatApplicantUserId]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <22 January 2021>
+-- Description:	<Get The userId of the user that submitted  the flat  application>
+-- =============================================
+Create PROCEDURE [dbo].[GeFlatApplicantUserId] 
+	-- Add the parameters for the stored procedure here
+	@flatId  uniqueidentifier,
+	@statusId int
+AS
+
+select UserId  from FlatHistory where  FlatId=@flatId and StatusId=@statusId
 
 
 
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllAmenitiesByFlatId]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <07 February 2021>
+-- Description:	<Get all the amenities  by flat id>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAllAmenitiesByFlatId] 
+	-- Add the parameters for the stored procedure here
+@flatId  uniqueidentifier
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+SELECT  a.Id, a.[Name],a.[ImageUrl]  FROM [dbo].[FlatAmenities] as f join Amenities as a on a.Id=f.AmenitieId  WHERE FlatId = @flatId
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllFlatRooms]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <29 January 2021>
+-- Description:	<Get All flat  Rooms>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAllFlatRooms] 
+	-- Add the parameters for the stored procedure here
+	@flatId UNIQUEIDENTIFIER
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	Select f.Id, f.RoomNumber, f.Gender, r.[Name], r.NumberOfPeople, r.[Description] from FlatRooms as f join RoomTypes r on r.Id= f.RoomTypeId  where  f.FlatId=@flatId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllFlatsByStatusId]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Zweli Nkuna
+-- Create date: 26 December 2020
+-- Description:	 Get All Submitted Applications
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAllFlatsByStatusId]  
+	-- Add the parameters for the stored procedure here
+	@statusId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	 Select  f.Address, f.Deposit,f.Email,f.Id,f.Name,f.PhoneNumber,f.RentingPrice,s.LongDescription from  flats f join Status s on  s.StatusId=f.StatusId
+	 where f.StatusId =@statusId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllFlatsExeptStatusId]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Zweli Nkuna
+-- Create date: 29 January 2020
+-- Description:	 Get all application Exept the passed  status Id
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAllFlatsExeptStatusId]  
+	-- Add the parameters for the stored procedure here
+	@statusId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	 Select  f.Address, f.Deposit,f.Email,f.Id,f.Name,f.PhoneNumber,f.RentingPrice,s.LongDescription from  flats f join Status s on  s.StatusId=f.StatusId
+	 where f.StatusId !=@statusId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllRoomBookings For a Flat]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <16 February 2021>
+-- Description:	<Get All RoomBookings For A Flat>
+-- =============================================
+CREATE PROCEDURE  [dbo].[GetAllRoomBookings For a Flat] 
+	-- Add the parameters for the stored procedure here
+	@FlatId  uniqueidentifier,
+@statusId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
 
 
+SELECT rb.Id,au.FirstName,au.Email,au.LastName,au.Gender,au.LastName,au.PhoneNumber
+      ,[FlatId]
+      ,[FlatRoomTypeId]
+      ,[UserId]
+      ,[Idnumber]
+      ,[BookingCreationDate]
+      
+  FROM [dbo].[RoomBookings]  rb join [dbo].[AspNetUsers]  au on rb.UserId =au.Id where rb.FlatId=@FlatId and rb.StatusId=@statusId
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllRoomBookingsForAFlat]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <16 February 2021>
+-- Description:	<Get All RoomBookings For A Flat>
+-- =============================================
+CREATE PROCEDURE  [dbo].[GetAllRoomBookingsForAFlat] 
+	-- Add the parameters for the stored procedure here
+	@FlatId  uniqueidentifier,
+@statusId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+SELECT rb.Id,au.FirstName,au.Email,au.LastName,au.Gender,au.LastName,au.PhoneNumber
+      ,[FlatId]
+      ,[FlatRoomTypeId]
+      ,[UserId]
+      ,[Idnumber]
+      ,[BookingCreationDate]
+      ,[BookingDate]
+  FROM [dbo].[RoomBookings]  rb join [dbo].[AspNetUsers]  au on rb.UserId =au.Id where rb.FlatId=@FlatId and rb.StatusId=@statusId
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllRoomtypesByFlatId]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <20 February 2021>
+-- Description:	<Get all the room types for a flat>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAllRoomtypesByFlatId] 
+	-- Add the parameters for the stored procedure here
+	@flatId  uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    SELECT frt.Id, frt.RoomTypeId,frt.[Deposit] , frt.Rent, rt.[Name], rt.[Description], rt.NumberOfPeople FROM FlatRoomTypes as frt INNER JOIN RoomTypes as rt on frt.RoomTypeId= rt.Id WHERE  frt.FlatId=@flatId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAllUsersExeptStaff]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <22 January 2021>
+-- Description:	<Get a list of all uses exept the users that  are defualt  in the system such as admin, Super Admin, and  Camare>
+-- =============================================
+Create PROCEDURE  [dbo].[GetAllUsersExeptStaff]  
+-- Add the parameters for the stored procedure here
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT u.Id, u.FirstName ,u.LastName, u.Gender, u.Email , u.PhoneNumber From 
+	 AspNetUsers u right join AspNetUserRoles  r ON r.UserId =u.Id where r.RoleId!='CAA44127-FB1F-4ACC-97DB-02CD28358B93'
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetFlatRoomTypes]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <29 January 2021>
+-- Description:	<Get All Room Type For a  flat>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetFlatRoomTypes] 
+	-- Add the parameters for the stored procedure here
+		@flatId UNIQUEIDENTIFIER
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+    -- Insert statements for procedure here
+	SELECT f.Id, f.Deposit,f.Rent, room.Id as'RoomTypeId' ,room.Description, room.Name, room.NumberOfPeople FROM FlatRoomTypes as f join RoomTypes as room on f.RoomTypeId=room.Id  where FlatId=@flatId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetLatestFlats]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <03 February 2021>
+-- Description:	<GetLatest Flat to Desplay on the Home  page>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetLatestFlats] 
+	-- Add the parameters for the stored procedure here
+	@statusId int
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+    -- Insert statements for procedure here
+	SELECT TOP (6) img.ImageUrl, f.Id,f.[Name],f.RentingPrice, f.[Address], f.Deposit from flats as f  join  FlatImages as img  on f.Id= img.FlatId where img.StatusId=@statusId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetPaginatedFlats]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <11 February 2021>
+-- Description:	<Get Paginated  flats with a  Keyword>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetPaginatedFlats] 
+	-- Add the parameters for the stored procedure here
+	 @startRow int, 
+    @rowsPerPage int,
+	@isCount bit,
+	@keyword varchar,
+	@statusId int
+AS
+BEGIN
+	IF(@isCount=1)
+BEGIN
+		Select COUNT(f.Id) as 'recordCount'
+		from  flats as f  join  FlatImages as img  on f.Id= img.FlatId where img.StatusId=@statusId	 and (f.[Name] like '%' + @keyword +'%' OR f.[Address] like '%' + @keyword +'%')
+END
+ELSE IF(@isCount = 0)
+BEGIN	
+		 SELECT img.ImageUrl, f.Id,f.[Name],f.RentingPrice, f.[Address], f.Deposit from flats as f  join  FlatImages as img  on f.Id= img.FlatId where img.StatusId=@statusId and (f.[Name] like '%' + @keyword +'%' OR f.[Address] like '%' + @keyword +'%')
+		 Order By Id
+		OFFSET @startRow ROWS
+			FETCH NEXT @rowsPerPage ROWS ONLY
+				END
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[GetRoomBookingById]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <16 February 2021>
+-- Description:	<Get a RoomBooking For A Flat By Flat Id>
+-- =============================================
+create PROCEDURE  [dbo].[GetRoomBookingById] 
+	-- Add the parameters for the stored procedure here
+	@bookingId  uniqueidentifier
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+SELECT rb.Id,au.FirstName,au.Email,au.LastName,au.Gender,au.LastName,au.PhoneNumber
+      ,[FlatId]
+      ,[FlatRoomTypeId]
+      ,[UserId]
+      ,[Idnumber]
+      ,[BookingCreationDate]
+      ,[BookingDate]
+  FROM [dbo].[RoomBookings]  rb join [dbo].[AspNetUsers]  au on rb.UserId =au.Id where rb.Id=@bookingId 
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetUserById]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <22 January 2021>
+-- Description:	<Get User by User Id>
+-- =============================================
+Create PROCEDURE  [dbo].[GetUserById] 
+	-- Add the parameters for the stored procedure here
+	@userid  uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+    -- Insert statements for procedure here
+	SELECT  [Id]
+      ,[FirstName]
+      ,[LastName]
+      ,[Gender]
+      ,[Email]
+      ,[EmailConfirmed]    
+      ,[PhoneNumber]
+      ,[UserName]
+  FROM [FlatsDatabase].[dbo].[AspNetUsers] where  Id=@userid
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetUserFlatByStatusId]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <26 February 2021>
+-- Description:	<Get User Flats By the User And statusId>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetUserFlatByStatusId] 
+	-- Add the parameters for the stored procedure here
+	@userId UNIQUEIDENTIFIER,
+	@statusId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	  Select  f.Address, f.Deposit,f.Email,f.Id,f.Name,f.PhoneNumber,f.RentingPrice, st.StatusId as 'Status' , st.ShortDescription as 'StatusDescription' from  flats f join FlatHistory fh  on  fh.FlatId=f.Id join [Status] st on st.StatusId=@statusId
+	 where f.StatusId =@statusId and fh.UserId = @userId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[UpdateFlat]    Script Date: 2021/03/06 02:40:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Zweli Nkuna>
+-- Create date: <22 January 2021>
+-- Description:	<Updated The Flat basic Information>
+-- =============================================
+CREATE PROCEDURE  [dbo].[UpdateFlat] 
+	-- Add the parameters for the stored procedure here
+@Name  varchar(1000),
+@Address  varchar(1000),
+@Rent decimal,
+@Deposit decimal, 
+@PhoneNumber  varchar(1000),
+@Email varchar(100),
+@flatId uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+UPDATE [dbo].[flats]
+   SET [Name]=@Name, [Address]=@Address,[RentingPrice] =@Rent, [Deposit]=@Deposit,[PhoneNumber]=@PhoneNumber,[Email]=@Email     
+ WHERE Id=@flatId
+
+
+END
+GO
