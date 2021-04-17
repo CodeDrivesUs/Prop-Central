@@ -21,113 +21,15 @@
     <link rel="stylesheet" href="~/css/slick.css">
     <link rel="stylesheet" href="~/css/slicknav.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-    @using Microsoft.AspNet.Identity
+
     <link rel="stylesheet" href="~/css/style.css">
-    @{
-        Flats.Models.ApplicationDbContext db = new Flats.Models.ApplicationDbContext();
-        var users = User.Identity.GetUserId();
-    }
+ 
 </head>
 <body>
 
     <div id="_main">
 
-        <header>
-            <div class="header-area ">
-                <div id="sticky-header" class="main-header-area">
-                    <div class="container-fluid">
-                        <div class="header_bottom_border">
-                            <div class="row align-items-center">
-                                <div class="col-xl-2 col-lg-2">
-                                    <div class="logo">
-                                        <a href="/">
-                                            <img src="~/Content/Images/imageedit_4_4735067272.png" width="100" height="30" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6">
-                                    <div class="main-menu  d-none d-lg-block">
-                                        <nav>
-                                            <ul id="navigation">
-
-                                                <li><a href="/flats/FlatApplication">Become a Landlord</a></li>
-                                                <li><a class="" href="/Home/Findflat">Find Flat</a></li>
-                                                <li>
-                                                    <a href="#">Room Mate <i class="ti-angle-down"></i></a>
-                                                    <ul class="submenu">
-                                                        <li><a href="/RoomMates/Index">Find Room Mate</a></li>
-                                                        @if (Request.IsAuthenticated)
-                                                        {
-                                                            <li><a href="/RoomMates/Create">Request Room Mate</a></li>
-                                                        }
-                                                    </ul>
-                                                </li>
-
-                                                @{ if (Request.IsAuthenticated)
-                                                    {
-
-                                                        <li>
-                                                            <a href="#">@User.Identity.GetUserName() <i class="ti-angle-down"></i></a>
-                                                            <ul class="submenu">
-                                                                @*@if(db.Booking.Where(x => x.UserId == users && x.Status == "Submitted").Count() > 0)
-                                                                    {
-                                                                    <li><a href="/Bookings/Mybookings">Bookings <i class="glyphicon glyphicon-bookmark"></i><span class="badge badge-danger"> @db.Booking.Where(x => x.UserId == users && x.Status == "Submitted").Count()</span></a></li>
-                                                                    }*@
-                                                                <li><a href="/Messages"><i><img src="~/Content/Icons/icons8-new-message-64.png" height="24" width="24" /></i><span id="count" class="badge badge-danger badge-counter"></span></a></li>
-                                                                <li><a href="/profiles/Details">Profile</a></li>
-                                                                <li><a href="/manage/Index">Settings</a></li>
-                                                                <li class="divider"></li>
-                                                                <li><a href="@Url.Action("LogOff", "Account")">LogOut</a></li>
-                                                            </ul>
-                                                        </li>
-                                                    }
-                                                    else
-                                                    {
-
-                                                        <li>
-                                                            <a href="#">Account <i class="ti-angle-down"></i></a>
-                                                            <ul class="submenu">
-                                                                <li class=""><a class="" href='@Url.Action("Register", "Account")'><span class="">Create Account</span></a></li>
-                                                                <li class=""><a class="" href='@Url.Action("Login", "Account")'><span class="">Login</span></a></li>
-                                                            </ul>
-                                                        </li>
-                                                    }
-                                                }
-
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 d-none d-lg-block">
-                                    <div class="social_wrap d-flex align-items-center justify-content-end">
-                                        <div class="number">
-                                            <p> <i class="fa fa-phone"></i> +2784 252 7283</p>
-                                        </div>
-                                        <div class="social_links d-none d-xl-block">
-                                            <ul>
-                                                <li><a href="#"> <i class="fa fa-instagram"></i> </a></li>
-                                                <li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>
-                                                <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
-                                                <li><a href="#"> <i class="fa fa-google-plus"></i> </a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="seach_icon">
-                                    <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
-                                        <i class="fa fa-search"></i>
-                                    </a>
-                                </div>
-                                <div class="col-12">
-                                    <div class="mobile_menu d-block d-lg-none"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </header>
+        @Html.Partial("_navbar")
         <main>
             @RenderBody()
         </main>
@@ -317,7 +219,7 @@
 
 
     <script src="~/js/main.js"></script>
-  
+
 
     @RenderSection("scripts", required: false)
 
@@ -446,6 +348,15 @@
                 }
             })
         }
+    </script>
+    <script src="~/Assert/FlatApplication/js/jquery.steps.js"></script>
+
+    <script src="~/Assert/FlatApplication/js/main.js"></script>
+
+   
+    <script>
+      
+
     </script>
 </body>
     </html>

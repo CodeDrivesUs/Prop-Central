@@ -2967,6 +2967,7 @@
     <Content Include="Views\LandLord\MyFlats.cshtml" />
     <Content Include="Views\LandLord\FlatDashBord.cshtml" />
     <Content Include="Views\LandLord\Success.cshtml" />
+    <Content Include="Views\Shared\_navbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

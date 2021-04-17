@@ -142,3 +142,12 @@ var Finished = function () {
     var flatId = $("#FlatId").val();
     window.location.replace("/Camara/FlatDashBord/?FlatId=" + flatId);
 }
+function populateamenities(name) {
+    var value = $("#display_amenity").val();
+    if (value == null) {
+        $("#display_amenity").val(name);
+    }
+    else {
+        $("#display_amenity").val("," + name);
+    }
+}
