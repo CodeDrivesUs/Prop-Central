@@ -18,7 +18,6 @@ namespace Flats.Controllers
             string fileName = folder+ Guid.NewGuid().ToString() + "." +GetFileExtention(upload.Filename);
        
             string path = Path.Combine(   Server.MapPath("~/Uploads/"+folder), fileName  );
-       
             try
             {
                 upload.SaveAs(path);

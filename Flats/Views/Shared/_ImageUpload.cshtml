@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @model Flats.Models.ImageUpload
+        @using Flats.BusinessLogic.Configuration
     <!-- Fine Uploader Gallery CSS file
     ====================================================================== -->
     <link href="~/node_modules/fine-uploader/fine-uploader/fine-uploader-gallery.css" rel="stylesheet" />
@@ -105,9 +106,13 @@
         var galleryUploader = new qq.FineUploader({
             element: document.getElementById("fine-uploader"),
             template: 'qq-template-gallery',
+            cors: {
+                expected: true,
+                sendCredentials: false
+            },
             multiple: false,
             request: {
-                endpoint: '/ImageUpload/UploadFile?folder=' + '@Model.location'
+                endpoint: '@AppSetting.APIBaseUrl' + 'ImageUpload/UploadFile?folder=' + '@Model.location'
             },
             thumbnails: {
                 placeholders: {

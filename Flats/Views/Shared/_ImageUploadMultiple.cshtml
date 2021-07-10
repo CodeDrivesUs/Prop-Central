@@ -105,6 +105,10 @@
             element: document.getElementById("fine-uploader-multiple"),
             template: 'qq-template-gallery',
             multiple: true,
+            cors: {
+                expected: true,
+                sendCredentials: false
+            },
             request: {
                 endpoint: '/ImageUpload/UploadFile?folder=' + '@Model.location'
             },

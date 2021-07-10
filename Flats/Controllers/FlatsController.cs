@@ -29,7 +29,7 @@ namespace Flats.Controllers
             _flatBusiness = new FlatBusiness();
         }
         // GET: Flats
-        public ActionResult FlatApplication()
+        public ActionResult FlatApplication( )
         {       
             return View();
         }
