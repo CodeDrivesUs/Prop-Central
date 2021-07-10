@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Http;
 using Newtonsoft.Json;
 
 namespace Flats.Api.Models
@@ -12,7 +13,15 @@ namespace Flats.Api.Models
         [Display(Name = "External access token")]
         public string ExternalAccessToken { get; set; }
     }
-
+    public class UserRequest
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+    public class UserResponse
+    {
+        public HttpResponseMessage responseMsg { get; set; }
+    }
     public class ChangePasswordBindingModel
     {
         [Required]

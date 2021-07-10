@@ -17,6 +17,7 @@ namespace Flats.Api
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
             config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data"));
+            config.MessageHandlers.Add(new ValidateTokenHandler());
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.EnableCors();
