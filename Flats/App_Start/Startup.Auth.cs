@@ -58,11 +58,11 @@ namespace Flats
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "73570434564-5cnjsuai5srql4n2i8peuj54bb8s5h6i.apps.googleusercontent.com",
+                ClientSecret = "8bW6ZBPVyYRO-fxcaII437K7"
+            });
         }
     }
 }

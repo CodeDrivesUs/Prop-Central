@@ -11,9 +11,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Flats.Api.Models;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 
 namespace Flats.Api.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GenerateJWTTokenController : ApiController
     {
         private ApplicationUserManager _userManager;
@@ -53,7 +55,7 @@ namespace Flats.Api.Controllers
             {
                 string token = createToken(userRequest.Username);
                 //return the token
-                return Ok<string>(token);
+                return Ok<object>(new { token = token });
             }
             else
             {
