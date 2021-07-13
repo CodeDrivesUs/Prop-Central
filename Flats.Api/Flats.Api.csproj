@@ -333,6 +333,10 @@
       <Project>{f369e85a-f14d-45c2-ad2f-92e3c6cc10d8}</Project>
       <Name>Flats.BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Flats.Enums\Flats.Enums.csproj">
+      <Project>{6d7a3dc2-2087-4f06-a84c-ea1ca97b41d9}</Project>
+      <Name>Flats.Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flats.SharedModel\Flats.SharedModel.csproj">
       <Project>{b0181bc4-878b-4286-84e9-15a145dc161e}</Project>
       <Name>Flats.SharedModel</Name>

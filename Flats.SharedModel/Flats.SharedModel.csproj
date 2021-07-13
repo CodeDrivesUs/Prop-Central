@@ -102,6 +102,8 @@
     <Compile Include="LandLordSharedModels\AddOccupantToARoom.cs" />
     <Compile Include="LandLordSharedModels\LandLordIndex.cs" />
     <Compile Include="LandLordSharedModels\MyFlatsIndex.cs" />
+    <Compile Include="Profile\ProfileSharedModel.cs" />
+    <Compile Include="Profile\ProfilePictureSharedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomBookingSharedModel\RoomBookingSharedModel.cs" />
     <Compile Include="RoomBookingSharedModel\UserRoomBooingSharedModel.cs" />

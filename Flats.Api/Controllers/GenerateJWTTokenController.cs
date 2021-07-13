@@ -12,6 +12,8 @@ using System.Web.Mvc;
 using Flats.Api.Models;
 using System.Threading.Tasks;
 using System.Web.Http.Cors;
+using Flats.BusinessLogic.UsereBusiness;
+using Flats.BusinessLogic.ProfileBusiness;
 
 namespace Flats.Api.Controllers
 {
@@ -19,15 +21,17 @@ namespace Flats.Api.Controllers
     public class GenerateJWTTokenController : ApiController
     {
         private ApplicationUserManager _userManager;
-
+        private readonly IUsereBusiness _usereBusiness;
+        private readonly IProfileBusiness _profileBusiness;
         public GenerateJWTTokenController()
         {
+            _usereBusiness = new UsereBusiness();
+            _profileBusiness = new ProfileBusiness();
         }
 
         public GenerateJWTTokenController(ApplicationUserManager userManager)
-        {
+        {         
             UserManager = userManager;
-
         }
 
         public ApplicationUserManager UserManager
@@ -55,7 +59,7 @@ namespace Flats.Api.Controllers
             {
                 string token = createToken(userRequest.Username);
                 //return the token
-                return Ok<object>(new { token = token });
+                return Ok<object>(new { token = token,User= _profileBusiness.GetFullProfileByUserId(new Guid(result.Id)) });
             }
             else
             {

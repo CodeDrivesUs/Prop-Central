@@ -41,7 +41,7 @@
                                                             <li><a href="/Bookings/Mybookings">Bookings <i class="glyphicon glyphicon-bookmark"></i><span class="badge badge-danger"> @db.Booking.Where(x => x.UserId == users && x.Status == "Submitted").Count()</span></a></li>
                                                             }*@
                                                         <li><a href="/Messages"><i><img src="~/Content/Icons/icons8-new-message-64.png" height="24" width="24" /></i><span id="count" class="badge badge-danger badge-counter"></span></a></li>
-                                                        <li><a href="/profiles/Details">Profile</a></li>
+                                                        <li><a href="/profile/MyProfile">Profile</a></li>
                                                         <li><a href="/manage/Index">Settings</a></li>
                                                         <li class="divider"></li>
                                                         <li><a href="@Url.Action("LogOff", "Account")">LogOut</a></li>

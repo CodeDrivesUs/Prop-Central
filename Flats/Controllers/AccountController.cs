@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Flats.Models;
-
+using Flats.BusinessLogic.ProfileBusiness;
 namespace Flats.Controllers
 {
     [Authorize]
@@ -17,9 +17,10 @@ namespace Flats.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private IProfileBusiness _profileBusiness;
         public AccountController()
         {
+            _profileBusiness = new ProfileBusiness();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -175,10 +176,7 @@ namespace Flats.Controllers
         }
         public void CreateProfile(string UserID)
         {
-
-            //var profiles = new Profile { UserId = UserID };
-            //db.profiles.Add(profiles);
-            //db.SaveChanges();
+            _profileBusiness.AddProfile(new Guid(UserID));     
         }
         //
         // GET: /Account/ConfirmEmail

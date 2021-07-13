@@ -16,7 +16,6 @@ namespace Flats.Repository
         }
         public SqlConnection GetSQLConnection()
         {
-
             return new SqlConnection(ConfigurationManager.ConnectionStrings["FlatsDatabaseConnection"].ConnectionString);
         }
     }

@@ -26,7 +26,7 @@ namespace Flats.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("FlatsDatabaseConnection", throwIfV1Schema: false)
         {
         }
 

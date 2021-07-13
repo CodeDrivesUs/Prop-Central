@@ -7,7 +7,6 @@ using Flats.DataModel.Rooms;
 using Flats.DataModel.FlatImages;
 using Flats.DataModel.RoomBookings;
 using Flats.DataModel.RoomOccupant;
-using Flats.SharedModel;
 using Flats.SharedModel.AmenitiesSharedModel;
 using Flats.SharedModel.FlatSharedModels;
 using Flats.SharedModel.RoomTypeSharedModel;
@@ -16,11 +15,13 @@ using Flats.SharedModel.RoomSharedModel;
 using Flats.SharedModel.FlatImageSharedModel;
 using Flats.SharedModel.RoomBookingSharedModel;
 using Flats.SharedModel.RoomOccupantSharedModels;
+using Flats.SharedModel.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flats.SharedModel;
 
 namespace Flats.DataMapping.AutoMapper
 {
@@ -44,6 +45,8 @@ namespace Flats.DataMapping.AutoMapper
             CreateMap<RoomOccupantSharedModel, RoomOccupant>().ReverseMap();
             CreateMap<RoomOccupantSharedModel, UserRoomBooking>().ReverseMap();
             CreateMap<FlatRoomTypesSharedModel, FlatRoomTypes>().ReverseMap();
+            CreateMap<ProfilePictureSharedModel, DataModel.Profile.ProfilePicture>().ReverseMap();
+            CreateMap < ProfileSharedModel, DataModel.Profile.Profile>().ReverseMap();
 
         }
     }

@@ -50,6 +50,8 @@
     <Compile Include="FlatDataRepository\IFlatDataRepository.cs" />
     <Compile Include="FlatImageDataRepository\FlatImageDataRepository.cs" />
     <Compile Include="FlatImageDataRepository\IFlatImageDataRepository.cs" />
+    <Compile Include="ProfileDataRepository\IProfileDataRepository.cs" />
+    <Compile Include="ProfileDataRepository\ProfileDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomBookingDataRepository\IRoomBookingDataRepository.cs" />
     <Compile Include="RoomBookingDataRepository\RoomBookingDataRepository.cs" />

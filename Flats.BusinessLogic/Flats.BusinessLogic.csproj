@@ -51,6 +51,8 @@
     <Compile Include="FlatBusiness\IFlatBusiness.cs" />
     <Compile Include="FlatImageBusiness\FlatImageBusiness.cs" />
     <Compile Include="FlatImageBusiness\IFlatImageBusiness.cs" />
+    <Compile Include="ProfileBusiness\IProfileBusiness.cs" />
+    <Compile Include="ProfileBusiness\ProfileBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomBookingBusiness\IRoomBookingBusiness.cs" />
     <Compile Include="RoomBookingBusiness\RoomBookingBusiness.cs" />
@@ -71,6 +73,10 @@
     <ProjectReference Include="..\Flats.DataModel\Flats.DataModel.csproj">
       <Project>{885166E5-CF3A-4BC1-A4FE-D86A5277685B}</Project>
       <Name>Flats.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flats.DataRepository\Flats.DataRepository.csproj">
+      <Project>{91aa5ab5-8420-48a5-9bc8-0f6b1b499b86}</Project>
+      <Name>Flats.DataRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Flats.Enums\Flats.Enums.csproj">
       <Project>{6d7a3dc2-2087-4f06-a84c-ea1ca97b41d9}</Project>
