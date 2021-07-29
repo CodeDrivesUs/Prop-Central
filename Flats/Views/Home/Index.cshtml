@@ -62,7 +62,7 @@
 
 <!-- where_togo_area_end  -->
 <!-- popular_destination_area_start  -->
-@*<div class="popular_destination_area">
+<div class="popular_destination_area">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -73,29 +73,64 @@
                 </div>
             </div>
             <div class="row">
-                @foreach (var i in Model.Places)
-                {
-
+             
                     <div class="col-lg-4 col-md-6">
                         <div class="single_destination">
                             <div class="thumb">
-                                @if (i.Image != null)
-                                {
-                                    var base64 = Convert.ToBase64String(i.Image);
-                                    var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-                                    <img src="@imgsrc" height="240" alt="">
-                                }
+                            
+                                    
+                                    <img src="https://localhost:44327/Uploads/ProfilePictures/ProfilePictures089e17c9-ad80-4624-8133-913ab530e795.jpg" height="240" alt="">
+                           
                             </div>
                             <div class="content">
-                                <p class="d-flex align-items-center">@i.Name <a href="/Home/Places/?name=@i.PlacesId"> <span>@flat.getlocationlist(i.Name).Count</span> Flats</a> </p>
+                                <p class="d-flex align-items-center">Berea <a href="/Home/Places/?name="> <span>45</span> Flats</a> </p>
                             </div>
                         </div>
                     </div>
-                }
+                <div class="col-lg-4 col-md-6">
+                        <div class="single_destination">
+                            <div class="thumb">
+                            
+                                    
+                                    <img src="https://localhost:44327/Uploads/ProfilePictures/ProfilePictures089e17c9-ad80-4624-8133-913ab530e795.jpg" height="240" alt="">
+                           
+                            </div>
+                            <div class="content">
+                                <p class="d-flex align-items-center">Berea <a href="/Home/Places/?name="> <span>45</span> Flats</a> </p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-lg-4 col-md-6">
+                        <div class="single_destination">
+                            <div class="thumb">
+                            
+                                    
+                                    <img src="https://localhost:44327/Uploads/ProfilePictures/ProfilePictures089e17c9-ad80-4624-8133-913ab530e795.jpg" height="240" alt="">
+                           
+                            </div>
+                            <div class="content">
+                                <p class="d-flex align-items-center">Berea <a href="/Home/Places/?name="> <span>45</span> Flats</a> </p>
+                            </div>
+                        </div>
+                    </div> 
+                <div class="col-lg-4 col-md-6">
+                        <div class="single_destination">
+                            <div class="thumb">
+                            
+                                    
+                                    <img src="https://localhost:44327/Uploads/ProfilePictures/ProfilePictures089e17c9-ad80-4624-8133-913ab530e795.jpg" height="240" alt="">
+                           
+                            </div>
+                            <div class="content">
+                                <p class="d-flex align-items-center">Berea <a href="/Home/Places/?name="> <span>45</span> Flats</a> </p>
+                            </div>
+                        </div>
+                    </div>
+               
 
             </div>
         </div>
-    </div>*@
+    </div>
 <!-- popular_destination_area_end  -->
 <!-- newletter_area_start  -->
 <!-- newletter_area_end  -->
